@@ -384,6 +384,16 @@ To make sure a folder on your computer reflect the most recent changes made in a
 5. You can now `fetch` changes to that repo and have them reflected on your local machine with the command
 
     `$ git fetch upstream `
+    
+6. Check out your fork's local master branch.
+
+    `$ git checkout master`
+    
+7. Merge the changes from upstream/master into your local master branch. This brings your fork's master branch into sync with the upstream repository, without losing your local changes.
+
+    `$ git merge upstream/master`
+    
+Note: Git may send you to a weird window asking you to write a commit message. You can escape this with `Shift+:` followed by Q. 
 
 
 
