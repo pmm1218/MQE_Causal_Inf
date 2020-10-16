@@ -199,7 +199,7 @@ A good IV is not unlike a unicorn. It is quite powerful/magical as it will allow
 
 ## Chasing Unicorns
 
-It is also a rare, (some may argue imaginary) beast, that often turns out to be a horse with an overly optimistic rider (author).
+It is also a rare, (some may argue imaginary) beast, that often turns out to be a horse with an optimistic rider (author).
 
 \centering![]("images\unicorn.jpg"){width=45%}
 
@@ -371,7 +371,7 @@ stargazer(simiv1, simiv2, simiv3, header=FALSE,
 
 ## 2SLS:
 
-How does $\beta_{IV}$ uses the instrumental variable to retrieve an unbiased estimate?
+How does $\beta_{IV}$ use the instrumental variable to retrieve an unbiased estimate?
 
 To build intuition, let's look at the two-stage least squares (2SLS) estimator $\beta_{2SLS}$.
 
@@ -458,12 +458,12 @@ stargazer(simiv1, simiv3,sim2slsss, header=FALSE,  type='latex',
 The **reduced form** regresses the outcome directly on the exogenous instrument (and any other exogenous variables if you have them):
 
 $$
-y_i=\pi_0+\pi_1z+\eta
+y_i=\pi_0+\pi_1z_i+\eta
 $$
 \tiny
 ```{r sim2sls 4, echo=TRUE, results = "asis"}
 sim2slsrf<-felm(Y~z,ivdat)
-stargazer(sim2slsfs, sim2slsss, sim2slsrf,  type='latex', header=FALSE, omit.stat = "all")
+stargazer(simiv3, sim2slsfs,  sim2slsrf,  type='latex', header=FALSE, omit.stat = "all")
 ```
 
 
@@ -861,18 +861,6 @@ But this is not what we are interested in.
 
 We want to know the effect of taking the pill. 
 
-## The "Work Horse" IV: Intuition
-
-**How is this fixing the non-complier problem?**
-
-If there were perfect compliance: 
-
-- the reduced form estimate would be the effect of taking the pill
-
-  - the first stage would give us $\hat{\gamma}_1=1$ 
-
-  - the IV estimate would be $\hat{\beta}_{IV}=\frac{\hat{\pi}_1}{1}=\hat{\pi}_1$.
-  
 
 ## The "Work Horse" IV: Intuition
 
