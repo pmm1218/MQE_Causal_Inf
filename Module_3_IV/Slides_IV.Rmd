@@ -20,9 +20,7 @@ Even with fixed effects, certain types of unobservables can still bias our estim
 
 For OVB to not be a problem, we want a treatment variable $x_i$ where we know that there does not exist some omitted variable $x_{ov}$ such that
 
-- $cor(x_i,x_{ov})\neq 0$ 
-
-- and $cor(y_i, x_{ov})\neq 0$.
+- $cor(x_i,x_{ov})\neq 0$ and $cor(y_i, x_{ov})\neq 0$.
 
 This is a tall order...
 
@@ -60,9 +58,9 @@ $$
 y_i=\beta_0+\beta_1x_1+\beta_2x_2+\epsilon
 $$
 
-- $x_i$ and $x_2$ are uncorrelated with $\epsilon$ 
+- $x_1$ and $x_2$ are uncorrelated with $\epsilon$ 
 
-- $x_i$ and $x_2$ they are correlated with each other such that $Cov(x_1,x_2)\neq 0$
+- $x_1$ and $x_2$ are correlated with each other such that $Cov(x_1,x_2)\neq 0$
 
 So whats the problem? 
 
@@ -85,6 +83,14 @@ $$
 \nu=\beta_2x_2+\epsilon.
 $$
 
+## Cov Math Rules: 
+
+$Cov(X+Y,Z)=Cov(X,Z)+Cov(Y,Z)$
+
+$Cov(X,X)= Var(X)$
+
+$Cov(cX,Y)=cCov(X,Y)$
+
 ## The problem: 
 
 $$
@@ -97,7 +103,10 @@ $$
 \end{aligned}
 $$
 
- $cov(x_1,\nu)\neq0\Rightarrow\hat{\beta}_{1,OLS}$ is biased.
+ $cov(x_1,\nu)\neq0$ since $cov(x_1, \nu)=cov(x_1,\beta_2x_2+\epsilon)=\beta_2cov(x_1,x_2)+cov(x_1,\epsilon)$ and $cov(x_1,x_2)\neq0$
+ 
+$\Rightarrow\hat{\beta}_{1,OLS}$ is biased.
+
 
 ## All is not lost!
  
@@ -115,7 +124,7 @@ An **instrumental variable** (IV) is a variable that
 An IV is a variable, $z$ that satisfies two important properties:
 
 - $Cov(z, x_1)\neq 0$ (the first stage).
-- $Cov(z, \nu)= 0$ (the exclusion restriction). 
+- $Cov(z, \nu)= 0$ (since $Cov(z,x_2)=0$) (the exclusion restriction) . 
 
 ## The First Stage
 
@@ -133,9 +142,12 @@ $Cov(z, \nu)= 0$
 
 - $z$ has to affect $y$ **only** through $x_1$. 
 
-- $\Rightarrow Cov(z,\epsilon)=0$ (because we've already assumed that $x_2$ is uncorrelated with $\epsilon$).
+- Since $Cov(z, \nu)=\beta_2Cov(z,x_2)+Cov(z,\epsilon)$
 
-
+  $\Rightarrow Cov(z,x_2)=0$ and $Cov(z,\epsilon)=0$ 
+  
+  $\Rightarrow$ all of the influence of $z$ on $y$ must be chanelled through $x_1$. 
+  
 ## The IV estimator
 $$
 \begin{aligned}
