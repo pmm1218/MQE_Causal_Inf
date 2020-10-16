@@ -116,12 +116,12 @@ sigmaMat<-matrix(c(1,0.75,0.25,0.75,1,0,0.25,0,1), nrow=3)
 sigmaMat
 
 
-set.seed(3221)
+set.seed(5000)
 ivdat<- as.data.frame(mvrnorm(10000, mu = c(0,0,0), 
                      Sigma = sigmaMat))
 
 names(ivdat)<-c("x_1","x_2","z")
-cor(ivdat)
+cov(ivdat)
 
 ivdat$error<-rnorm(10000, mean=0, sd=1)
 
@@ -153,13 +153,13 @@ Suppose there exists a variable $z$ that satisfies the two conditions outlined a
 Our simulated data includes $z$, a variable with these properties 
 
 ```{r simiv 5, results = "asis", echo=TRUE}
-cor(ivdat$z, ivdat$x_1)
+cov(ivdat$z, ivdat$x_1)
 
 #note: we can test this correlation because I am working with simulated data and observe x_2.
 #In the wild x_2 would be unobservable and you would have to argue that this condition holds.
 ivdat$nu<-B2*ivdat$x_2+ivdat$error
 
-cor(ivdat$z, ivdat$nu)
+cov(ivdat$z, ivdat$nu)
 
 ```
 
@@ -238,7 +238,7 @@ stargazer(sim2slsfs, sim2slsss, sim2slsrf,  type='latex')
 It turns out that we can recover our estimate of $\hat{\beta}_1$ by taking the $\hat{\pi}_1$from the reduced form and dividing it by $\hat{\gamma}_1$ from the first stage:
 
 $$
-\hat{\beta}_1=\frac{\hat{\pi}_1}{\hat{\gamma}_1}=\frac{2.578}{0.239}=10.786
+\hat{\beta}_1=\frac{\hat{\pi}_1}{\hat{\gamma}_1}=\frac{2.443}{0.249}=9.807
 $$
 
 Again, we get the right coefficient on $x_1$. Why does this work? The reduced form is (essentially) the effect of $z$ on $y$. What we are doing is taking the effect of $z$ on $y$ and scaling it by the effect of $z$ on $x_1$ (since $z$ affects $y$ via $x_1$).^[Note: this won't work if you have multiple endogenous variables and multiple instruments or additional exogenous variables.]

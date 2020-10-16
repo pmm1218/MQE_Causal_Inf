@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 2.9.7300 64-bit) (preloaded format=pdflatex 2020.2.15)  9 OCT 2020 14:25
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 2.9.7300 64-bit) (preloaded format=pdflatex 2020.2.15)  16 OCT 2020 14:53
 entering extended mode
 **./Lecture_Notes_Markdown_IV.tex
 (Lecture_Notes_Markdown_IV.tex
@@ -670,12 +670,12 @@ LaTeX Font Info:    Trying to load font information for TS1+lmtt on input line
 ("C:\Users\Claire\AppData\Local\Programs\MiKTeX 2.9\tex/latex/lm\ts1lmtt.fd"
 File: ts1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
 ) [3 <./images/real_unicorn.jpg> <./images/unicorn.jpg>] [4]
-Overfull \hbox (10.74557pt too wide) in paragraph at lines 389--420
+Overfull \hbox (2.96782pt too wide) in paragraph at lines 389--420
  [][] 
  []
 
 [5] [6]
-Overfull \hbox (109.69032pt too wide) in paragraph at lines 520--554
+Overfull \hbox (101.91257pt too wide) in paragraph at lines 520--554
  [][] 
  []
 
@@ -737,7 +737,7 @@ ers/Claire/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/lm/lmsy7.pfb><C
 fb><C:/Users/Claire/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/lm/lmt
 t10.pfb><C:/Users/Claire/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/l
 m/lmtti10.pfb>
-Output written on Lecture_Notes_Markdown_IV.pdf (19 pages, 586971 bytes).
+Output written on Lecture_Notes_Markdown_IV.pdf (19 pages, 586966 bytes).
 PDF statistics:
  267 PDF objects out of 1000 (max. 8388607)
  52 named destinations out of 1000 (max. 500000)

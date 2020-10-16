@@ -162,6 +162,27 @@ With the exclusion restriction: $cov(z, \nu)= 0\Rightarrow E[\hat{\beta}_{1,IV}]
 
 Woot Woot! We have an unbiased estimator!
 
+## Do the following variables satisfy the properties of a good instrument?
+
+1. You are interested how the length of a prison sentence affects recidivism 5 years later. You instrument with how strict the randomly assigned judge to the case is.
+
+2. You are interested in how college attendance influences wages. You instrument with family home proximity to a college.
+
+3. You are interested in how stress affects blood pressure. You instrument with COVID rates in the local community. 
+
+
+## Some instruments:
+
+\small An (old) survey of instrumental variables: Angrist and Krueger (2001)
+
+\centering![]("images\ivsurvey.png"){width=75%}
+
+
+
+
+
+
+
 ## Chasing Unicorns
 
 - $z$'s that satisfy the first condition are easy to find, and we can test that $Cov(z, x_1)\neq 0$
@@ -170,7 +191,7 @@ Woot Woot! We have an unbiased estimator!
 
 ## Chasing Unicorns
 
-A good IV is not unlike a unicorn. It is quite powerful/magical as it will allow you to recover a consistent estimate of $\hat{\beta}_1$ in a situation that was otherwise hopeless.
+A good IV is not unlike a unicorn. It is quite powerful/magical as it will allow you to recover a consistent estimate of $\beta_1$ in a situation that was otherwise hopeless.
 
 \centering![]("images\real_unicorn.jpg"){width=75%}
 
@@ -178,7 +199,7 @@ A good IV is not unlike a unicorn. It is quite powerful/magical as it will allow
 
 ## Chasing Unicorns
 
-It is also a rare, (some may argue imaginary) beast, that usually turns out to be a horse with an overly optimistic rider (author).
+It is also a rare, (some may argue imaginary) beast, that often turns out to be a horse with an overly optimistic rider (author).
 
 \centering![]("images\unicorn.jpg"){width=45%}
 
@@ -200,11 +221,11 @@ $$
 Y_i=\beta_0+\beta_1 x_{1i}+\beta_2 x_{2i}+\epsilon_i
 $$
 
-- $x_1$ and $x_2$ are correlated with $Cor(x_1,x_2)=0.75$
+- $x_1$ and $x_2$ covary with $Cov(x_1,x_2)=0.75$
 
-- $z$ is correlated with $x_1$ such that $Cor(x_1,z)=0.25$
+- $z$ covaries with $x_1$ such that $Cov(x_1,z)=0.25$
 
-- $z$ is not correlated with $x_2$ (so $Cor(x_2,z)=0$). 
+- $z$ does not covary with $x_2$ (so $Cov(x_2,z)=0$). 
 
 ## A simulation
 
@@ -218,12 +239,12 @@ sigmaMat<-matrix(c(1,0.75,0.25,0.75,1,0,0.25,0,1), nrow=3)
 sigmaMat
 
 
-set.seed(3221)
+set.seed(5000)
 ivdat<- as.data.frame(mvrnorm(10000, mu = c(0,0,0), 
                      Sigma = sigmaMat))
 
 names(ivdat)<-c("x_1","x_2","z")
-cor(ivdat)
+cov(ivdat)
 ```
 
 ## A simulation
@@ -257,6 +278,25 @@ How will our estimate of $\hat{\beta}_1$ in model 2 compare to the true $\beta$?
 $\Rightarrow$ Top Hat
 
 ## A simulation:
+
+```{r simiv 4aa,  echo=TRUE}
+cov(ivdat$Y,ivdat$x_2)
+cov(ivdat$x_1,ivdat$x_2)
+
+```
+
+\normalsize
+How will our estimate of $\hat{\beta}_1$ in model 2 compare to the true $\beta$? 
+
+- $Cov(Y, x_2)<0$
+
+- $Cov(x_1,x_2)>0$
+
+- $\hat{\beta}_1$ is downward biased
+
+
+
+## A simulation:
 \tiny
 ```{r simiv 4a, results = "asis", echo=TRUE}
 stargazer(simiv1, simiv2, header=FALSE, type='latex', omit.stat = "all", single.row = TRUE)
@@ -272,20 +312,20 @@ stargazer(simiv1, simiv2, header=FALSE, type='latex', omit.stat = "all", single.
 
 Suppose there exists a variable $z$ that satisfies the two conditions outlined above: 
 
-- $Cov(z, V_1)\neq 0$ (the first stage).
+- $Cov(z, x_1)\neq 0$ (the first stage).
 
 - $Cov(z, \nu)= 0$ (the exclusion restriction). 
 
 Our simulated data includes $z$, a variable with these properties 
 \tiny
 ```{r simiv 5, results = "asis", echo=TRUE}
-cor(ivdat$z, ivdat$x_1)
+cov(ivdat$z, ivdat$x_1)
 
-#note: we can test this correlation because I am working with simulated data and observe x_2.
+#note: we can test this covariance because I am working with simulated data and observe x_2.
 #In the wild x_2 would be unobservable and you would have to argue that this condition holds.
 
 ivdat$nu<-B2*ivdat$x_2+ivdat$error
-cor(ivdat$z, ivdat$nu)
+cov(ivdat$z, ivdat$nu)
 ```
 
 ## A simulation:
@@ -382,31 +422,35 @@ sim2slsss<-felm(Y~hatx_1,ivdat)
 
 
 ## The second stage:
-\tiny
-```{r sim2sls 2a,  echo=TRUE}
-
-hatgamma0<-sim2slsfs$coefficients[1]
-hatgamma1<-sim2slsfs$coefficients[2]
-ivdat$hatx_1<-hatgamma0+hatgamma1*ivdat$z
-
-sim2slsss<-felm(Y~hatx_1,ivdat)
-
-```
-
-\centering![]("images\badass-unicorn-emma-sondergaard.jpg"){width=50%}
 
 
-## The second stage:
-\tiny
-```{r sim2sls 2b, results = "asis", echo=TRUE}
-stargazer(simiv1, simiv2, simiv3,sim2slsss, header=FALSE,  type='latex', omit.stat = "all", no.space=TRUE)
-```
 
-\footnotesize
+:::::: {.columns}
+
+::: {.column width="30%" data-latex="{0.55\textwidth}"}
+
+\centering![]("images\badass-unicorn-emma-sondergaard.jpg")
+
+\small
 - Math Magic! $\hat{\beta}_{1,2SLS}$ consistently estimates $\beta_1$ and $\hat{\beta}_{1,2SLS}=\hat{\beta}_{1,IV}$!
 
-- Note: The standard errors reported from the second stage of 2SLS will not be correct (because they are based on $\hat{x}_1$ rather than $x_1$).(There are ways to correct this but the math and coding is a bit complicated.) 
 
+:::
+
+
+::: {.column width="70%" data-latex="{0.4\textwidth}"}
+
+\tiny
+```{r sim2sls 2b, results = "asis", echo=TRUE}
+stargazer(simiv1, simiv3,sim2slsss, header=FALSE,  type='latex',
+          omit.stat = "all", no.space=TRUE)
+```
+
+:::
+::::::
+\footnotesize
+
+- Note: The standard errors reported from the second stage of 2SLS will not be correct (because they are based on $\hat{x}_1$ rather than $x_1$).(There are ways to correct this but the math and coding are a bit complicated.)
 
 
 ## The Reduced Form (and more cool IV intuition)
@@ -433,7 +477,7 @@ stargazer(sim2slsfs, sim2slsss, sim2slsrf,  type='latex', header=FALSE, omit.sta
 We can recover $\hat{\beta}_1$ by taking the $\hat{\pi}_1$from the reduced form and dividing it by $\hat{\gamma}_1$ from the first stage:
 
 $$
-\hat{\beta}_1=\frac{\hat{\pi}_1}{\hat{\gamma}_1}=\frac{2.578}{0.239}=10.786
+\hat{\beta}_1=\frac{\hat{\pi}_1}{\hat{\gamma}_1}=\frac{2.442}{0.249}=9.807
 $$
 
 - Math Magic!
@@ -460,7 +504,7 @@ $$
 We can recover $\hat{\beta}_1$ by taking the $\hat{\pi}_1$from the reduced form and dividing it by $\hat{\gamma}_1$ from the first stage:
 
 $$
-\hat{\beta}_1=\frac{\hat{\pi}_1}{\hat{\gamma}_1}=\frac{2.578}{0.239}=10.786
+\hat{\beta}_1=\frac{\hat{\pi}_1}{\hat{\gamma}_1}=\frac{2.442}{0.249}=9.807
 $$
 
 - Math Magic!
@@ -560,7 +604,8 @@ ivdatwk$Y<-ivdatwk$x_1*B1+ivdatwk$x_2*B2+ivdatwk$error
 
 simivweakfs<-lm(x_1~z,ivdatwk)
 simivweak<-felm(Y~1|0|(x_1~z),ivdatwk)
-stargazer(simivweakfs,simivweak,  type='latex', omit.stat = c("n", "adj.rsq", "rsq", "ser"), header=FALSE)
+stargazer(simivweakfs,simivweak,  type='latex', omit.stat = c("n", "adj.rsq", "rsq", "ser"), 
+          header=FALSE)
 ```
 
 ## The Ugly: Simulation
@@ -643,12 +688,12 @@ And this is a good segway to the RCT module.
 
 The model for a medical trial:
 $$
-y_i=\beta_0+\beta_1 d_i+\epsilon_i.
+Y_i=\alpha+\tau D_i+\epsilon_i.
 $$
 
-- $y_i$ represents a medical outcome (continuous or discreet). 
+- $Y_i$ represents a medical outcome (continuous or discreet). 
 
-- $d_i$ is generally a dummy variable (1 if treated and 0 if not). 
+- $D_i$ is generally a dummy variable (1 if treated and 0 if not). 
 
 - The error term, $\epsilon_i$ represents all other factors that affect the health outcome
 
@@ -658,9 +703,9 @@ This regression model corresponds to the potential outcome model with constant t
 
 $$
 \begin{aligned}
-y&=dy_1+(1-d)y_0\\
-y_0&=\beta_0+\epsilon\\
-y_1&=y_0+\beta_1.
+Y_i(D_i)&=D_iY(1)+(1-D_i)Y(0)\\
+Y_i(0)&=\alpha+\epsilon_i\\
+Y_i(1)&=Y_i(0)+\tau.
 \end{aligned}
 $$
 
@@ -668,7 +713,8 @@ Our goal:
 
 - estimate the effect that the treatment (say a pill) has on our outcome (say blood pressure)
 
-- our hope is that $\beta_1$ is large and negative. 
+- our hope is that $\tau$ is negative and large in magnitude. 
+
 
 ## Medical trials (RCT)
 
@@ -680,11 +726,23 @@ Options: Non-Experimental estimates:
   
 - Regress blood pressure on whether or not you take the pill
   
-- Problem: 
+- **What is the problem with this approach?** 
+
+## Medical trials (RCT)
+
+Options: Non-Experimental estimates:
+
+- Selling the drug to the general population.
+  
+- Collect some data
+  
+- Regress blood pressure on whether or not you take the pill
+  
+- **What is the problem with this approach?** 
   
   - people who take the pill are the ones who have high blood pressure to begin with! 
   
-  - We will likely get a positive estimate of $\beta_1$ (even with controls).
+  - We will likely get a positive estimate of $\tau$ (even with controls).
     
 
 ## Medical trials (RCT)
@@ -698,11 +756,14 @@ Options: A Medical Trial:
 - Control group are given a placebo (or nothing at all).   
 
 
+## Medical trials (RCT)
+
+
 Back in the old days: the **intention to treat** (or ITT) estimate:
 
-- Calculate  $\bar{y}_{i,treat}-\bar{y}_{i,control}$
+- Calculate  $\bar{Y}_{i,treat}-\bar{Y}_{i,control}$
   
-- This is the equivalent to estimating $y_i=\beta_0+\beta_1d_i+\epsilon$ where $d_i=1$ if in the treatment group and 0 if in the control group
+- This is the equivalent to estimating $Y_i=\alpha+\tau D_i+\epsilon_i$ where $D_i=1$ if in the treatment group and 0 if in the control group
 
 - **intention to treat** because you compare the group that you intended to treat and the group that you do not intend to treat. 
 
@@ -717,7 +778,7 @@ Back in the old days: the **intention to treat** (or ITT) estimate:
 
 - some (selected) people in the control group would obtain the pill from another source (even though they were not supposed to)
 
-Non-compliance can bias in the estimate of $\beta_1$.
+Non-compliance can bias the estimate of $\tau$.
 
 **How can this bias be corrected?**
 
@@ -725,27 +786,27 @@ Non-compliance can bias in the estimate of $\beta_1$.
 
 This is actually a simple IV problem:
 
-- The instrument, $z_i$ is the intention to treat:
+- The instrument, $Z_i$ is the intention to treat:
 
-  - $z_i=1$ if you are assigned to the treatment group (we intend to treat you)
+  - $Z_i=1$ if you are assigned to the treatment group (we intend to treat you)
   
-  - $z_i=0$ if you are assigned to the control group (we do not intend to treat you)
+  - $Z_i=0$ if you are assigned to the control group (we do not intend to treat you)
   
-**Does $z_i$ satisfies the two properties of a good instrument?**
+**Does $Z_i$ satisfies the two properties of a good instrument?**
 
 
 
 
 ## The "Work Horse" IV: 
 
-**Does $z_i$ satisfies the two properties of a good instrument?**
+**Does $Z_i$ satisfies the two properties of a good instrument?**
 
-- $z_i$ is randomly assigned so by construction will be uncorrelated with $\nu_i$ so $cov(z_i,\nu_i)=0$ (the exclusion restriction). 
+- $Z_i$ is randomly assigned so by construction will be uncorrelated with $\epsilon_i$ so $cov(Z_i,\epsilon_i)=0$ (the exclusion restriction). 
 
-- $z_i$ is correlated with $d_i$, because you are going to be more likely to take the pill if you are in the treatment group so $cov(z_i,d_i)\neq0$ (the first stage).
+- $Z_i$ is correlated with $D_i$, because you are going to be more likely to take the pill if you are in the treatment group so $cov(Z_i,D_i)\neq0$ (the first stage).
 
 
-$\Rightarrow z_i$ is a valid instrument for $d_i$ and the IV estimator gives us a consistent estimate of $\beta_1$, the effect of taking the pill on blood pressure. 
+$\Rightarrow Z_i$ is a valid instrument for $D_i$ and the IV estimator gives us a consistent estimate of $\tau$, the effect of taking the pill on blood pressure. 
 
 ## The "Work Horse" IV: Intuition
 
@@ -761,9 +822,9 @@ Example:
 
 ## The "Work Horse" IV: Intuition
 
-The first stage will regress whether you took the pill on whether you were in the treatment group $d_i$ on $z_i$:
+The first stage will regress whether you took the pill on whether you were in the treatment group $D_i$ on $Z_i$:
 $$
-d_i=\gamma_0+\gamma_1z_i+u_i
+D_i=\gamma_0+\gamma_1Z_i+u_i
 $$
 Zero people in the control group took the pill while half in the treatment group took the pill:
 
@@ -774,9 +835,9 @@ $\Rightarrow E[\hat{\gamma}_0]=0$ and $E[\hat{\gamma}_1]=0.5$.
 
 The IV estimate is the reduced form scaled by the first stage: 
 
-The reduced form is a regression of $y_i$ (your blood pressure) on $z_i$(whether you were assigned to the treatment or control group): 
+The reduced form is a regression of $Y_i$ (your blood pressure) on $Z_i$(whether you were assigned to the treatment or control group): 
 $$
-y_i=\pi_0+\pi_1z_i+v_i
+Y_i=\pi_0+\pi_1Z_i+v_i
 $$
 
 Therefore our IV estimate,
@@ -788,13 +849,36 @@ $$
 
 **How is this fixing the non-complier problem?**
 
+
 ## The "Work Horse" IV: Intuition
 
 **How is this fixing the non-complier problem?**
 
-The reduced form is estimating the effect that being assigned to the treatment group has on blood pressure.
+The reduced form is estimating the effect that being assigned to the treatment group has on blood pressure. 
 
-If there were a perfect compliance: 
+But this is not what we are interested in. 
+
+
+We want to know the effect of taking the pill. 
+
+## The "Work Horse" IV: Intuition
+
+**How is this fixing the non-complier problem?**
+
+If there were perfect compliance: 
+
+- the reduced form estimate would be the effect of taking the pill
+
+  - the first stage would give us $\hat{\gamma}_1=1$ 
+
+  - the IV estimate would be $\hat{\beta}_{IV}=\frac{\hat{\pi}_1}{1}=\hat{\pi}_1$.
+  
+
+## The "Work Horse" IV: Intuition
+
+**How is this fixing the non-complier problem?**
+
+If there were perfect compliance: 
 
 - the reduced form estimate would be the effect of taking the pill
 
@@ -807,6 +891,23 @@ If compliance isn't perfect:
 - the reduced form estimates the effect of increasing the probability you take the pill 
 
   - This means that the reduced form is not estimating the full effect of taking the pill
+
+## The "Work Horse" IV: Intuition: Example
+
+- 10 people in the treatment group. 5 take the pill and 5 do not. 
+
+  - The (expected) mean blood pressure for the treatment group:
+$$
+ E[y_i|TreatGroup_i]=\frac{5\beta_0+5(\beta_0+\beta_1)}{10}=\beta_0+\frac{\beta_1}{2}
+$$
+
+- 10 people in the control group, no one takes the pill. 
+
+  - The (expected) mean blood pressure for the control group:
+$$
+ E[y_i|ContGroup_i]=\beta_0
+$$
+
 
 ## The "Work Horse" IV: Intuition: Example
 
@@ -848,11 +949,13 @@ We re-scale the reduced form because:
 
 ## The "Work Horse" IV: Intuition:
 
-Also, the IV is different from simply taking the mean of $y_i$ for those in the treatment group who took the pill and subtracting the mean of $y_i$ for those in the control group who did not take the pill. 
+Note:
 
-This would be affected by the same selection issues as a simple OLS regression of $y_i$ on $d_i$.
+- the IV is different from simply taking the mean of $Y_i$ for those in the treatment group who took the pill and subtracting the mean of $y_i$ for those in the control group who did not take the pill. 
 
-(The people in the treatment group who choose not to take the pill do so because their blood pressure was not very high to begin with. Those who take the pill are the ones that all had high blood pressure so we will tend to underestimate the pill's effect). 
+- This would be affected by the same selection issues as a simple OLS regression of $y_i$ on $d_i$.
+
+
 
 ## The "Work Horse" IV: In practice
 
@@ -881,7 +984,7 @@ $$
 Votes_i=\beta_0+\beta_1Contacted_i+\beta_jX_j+\epsilon_i.
 $$
 
-But who gets contacted however is not random as not everyone will pick up the phone!
+But who gets contacted is not random (not everyone will pick up the phone!)
 
 They instrument $Contacted_i$, with being randomly assigned to receive a call from the campaign. Thus the first stage is
 
@@ -910,7 +1013,8 @@ Replicating results of columns 1 of p.49 and p.50:
 \tiny
 ```{r repaggiva, results = "asis", echo=TRUE}
 
-stargazer(regols1,regiv1,type='latex', se = list( regols1$rse, regiv1$rse), header=FALSE, omit.stat = "all")
+stargazer(regols1,regiv1,type='latex', se = list( regols1$rse, regiv1$rse), header=FALSE,
+          omit.stat = "all")
 
 ```
 
