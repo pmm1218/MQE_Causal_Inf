@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 2.9.7300 64-bit) (preloaded format=pdflatex 2020.2.15)  15 OCT 2020 16:19
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 2.9.7300 64-bit) (preloaded format=pdflatex 2020.2.15)  19 OCT 2020 15:56
 entering extended mode
 **./Slides_RCT.tex
 (Slides_RCT.tex
@@ -999,6 +999,12 @@ LaTeX Warning: Label `' multiply defined.
 
 LaTeX Warning: Label `' multiply defined.
 
+
+LaTeX Warning: Label `' multiply defined.
+
+
+LaTeX Warning: Label `' multiply defined.
+
 )
 \openout1 = `Slides_RCT.aux'.
 
@@ -1490,6 +1496,79 @@ Overfull \hbox (21.96706pt too wide) in paragraph at lines 14--42
 
 ] [42
 
+] [43
+
+] [44
+
+] [45
+
+] [46
+
+] [47
+
+] [48
+
+]
+<images/contraceptivefailure.png, id=340, 529.22719pt x 877.02657pt>
+File: images/contraceptivefailure.png Graphic file (type png)
+<use images/contraceptivefailure.png>
+Package pdftex.def Info: images/contraceptivefailure.png  used on input line 12
+30.
+(pdftex.def)             Requested size: 162.41136pt x 269.14543pt.
+
+Overfull \vbox (50.80557pt too high) detected at line 1230
+ []
+
+[49
+
+ <./images/contraceptivefailure.png>]
+LaTeX Font Info:    Font shape `T1/lmss/bx/it' in size <10.95> not available
+(Font)              Font shape `T1/lmss/bx/sl' tried instead on input line 1247
+.
+[50
+
+] [51
+
+] [52
+
+] [53
+
+] [54
+
+]
+\openout4 = `Slides_RCT.vrb'.
+
+(Slides_RCT.vrb
+
+Package hyperref Warning: Ignoring empty anchor on input line 18.
+
+) [55
+
+] [56
+
+] [57
+
+]
+\openout4 = `Slides_RCT.vrb'.
+
+(Slides_RCT.vrb
+
+Package hyperref Warning: Ignoring empty anchor on input line 19.
+
+) [58
+
+] [59
+
+] [60
+
+] [61
+
+] [62
+
+] [63
+
+] [64
+
 ]
 \tf@nav=\write6
 \openout6 = `Slides_RCT.nav'.
@@ -1500,28 +1579,28 @@ Overfull \hbox (21.96706pt too wide) in paragraph at lines 14--42
 \tf@snm=\write8
 \openout8 = `Slides_RCT.snm'.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1117.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 1117.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1578.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 1578.
 (Slides_RCT.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1117.
-Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 1117.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1578.
+Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 1578.
 
 LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 25454 strings out of 481565
- 467919 string characters out of 2913711
- 729302 words of memory out of 3000000
- 39918 multiletter control sequences out of 15000+200000
- 612769 words of font info for 116 fonts, out of 3000000 for 9000
+ 25598 strings out of 481565
+ 470128 string characters out of 2913711
+ 729303 words of memory out of 3000000
+ 39974 multiletter control sequences out of 15000+200000
+ 616443 words of font info for 125 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 58i,16n,67p,1551b,553s stack positions out of 5000i,500n,10000p,200000b,50000s
-{C:/Users/Claire/AppData/Local/Programs/MiKTeX 2.9/fonts/enc/dvips/lm/lm-math
-sy.enc}{C:/Users/Claire/AppData/Local/Programs/MiKTeX 2.9/fonts/enc/dvips/lm/lm
--mathit.enc}{C:/Users/Claire/AppData/Local/Programs/MiKTeX 2.9/fonts/enc/dvips/
-lm/lm-ts1.enc}{C:/Users/Claire/AppData/Local/Programs/MiKTeX 2.9/fonts/enc/dvip
-s/lm/lm-ec.enc}{C:/Users/Claire/AppData/Local/Programs/MiKTeX 2.9/fonts/enc/dvi
+ 58i,16n,67p,1551b,775s stack positions out of 5000i,500n,10000p,200000b,50000s
+{C:/Users/Claire/AppData/Local/Programs/MiKTeX 2.9/fonts/enc/dvips/lm/lm-ec.e
+nc}{C:/Users/Claire/AppData/Local/Programs/MiKTeX 2.9/fonts/enc/dvips/lm/lm-mat
+hsy.enc}{C:/Users/Claire/AppData/Local/Programs/MiKTeX 2.9/fonts/enc/dvips/lm/l
+m-mathit.enc}{C:/Users/Claire/AppData/Local/Programs/MiKTeX 2.9/fonts/enc/dvips
+/lm/lm-ts1.enc}{C:/Users/Claire/AppData/Local/Programs/MiKTeX 2.9/fonts/enc/dvi
 ps/lm/lm-rm.enc}{C:/Users/Claire/AppData/Local/Programs/MiKTeX 2.9/fonts/enc/dv
 ips/lm/lm-mathex.enc}<C:/Users/Claire/AppData/Local/Programs/MiKTeX 2.9/fonts/t
 ype1/public/lm/lmex10.pfb><C:/Users/Claire/AppData/Local/Programs/MiKTeX 2.9/fo
@@ -1532,23 +1611,24 @@ MiKTeX 2.9/fonts/type1/public/lm/lmss10.pfb><C:/Users/Claire/AppData/Local/Prog
 rams/MiKTeX 2.9/fonts/type1/public/lm/lmss12.pfb><C:/Users/Claire/AppData/Local
 /Programs/MiKTeX 2.9/fonts/type1/public/lm/lmss8.pfb><C:/Users/Claire/AppData/L
 ocal/Programs/MiKTeX 2.9/fonts/type1/public/lm/lmss9.pfb><C:/Users/Claire/AppDa
-ta/Local/Programs/MiKTeX 2.9/fonts/type1/public/lm/lmssbx10.pfb><C:/Users/Clair
-e/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/lm/lmsso10.pfb><C:/Users
-/Claire/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/lm/lmsso8.pfb><C:/
-Users/Claire/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/lm/lmsso9.pfb
-><C:/Users/Claire/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/lm/lmsy1
-0.pfb><C:/Users/Claire/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/lm/
-lmsy5.pfb><C:/Users/Claire/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public
-/lm/lmsy6.pfb><C:/Users/Claire/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/pu
-blic/lm/lmsy9.pfb><C:/Users/Claire/AppData/Local/Programs/MiKTeX 2.9/fonts/type
-1/public/lm/lmtk10.pfb><C:/Users/Claire/AppData/Local/Programs/MiKTeX 2.9/fonts
-/type1/public/lm/lmtt10.pfb><C:/Users/Claire/AppData/Local/Programs/MiKTeX 2.9/
-fonts/type1/public/lm/lmtt8.pfb><C:/Users/Claire/AppData/Local/Programs/MiKTeX 
-2.9/fonts/type1/public/lm/lmtti10.pfb><C:/Users/Claire/AppData/Local/Programs/M
-iKTeX 2.9/fonts/type1/public/amsfonts/symbols/msam10.pfb>
-Output written on Slides_RCT.pdf (42 pages, 682604 bytes).
+ta/Local/Programs/MiKTeX 2.9/fonts/type1/public/lm/lmssbo10.pfb><C:/Users/Clair
+e/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/lm/lmssbx10.pfb><C:/User
+s/Claire/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/lm/lmsso10.pfb><C
+:/Users/Claire/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/lm/lmsso8.p
+fb><C:/Users/Claire/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/lm/lms
+so9.pfb><C:/Users/Claire/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/l
+m/lmsy10.pfb><C:/Users/Claire/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/pub
+lic/lm/lmsy5.pfb><C:/Users/Claire/AppData/Local/Programs/MiKTeX 2.9/fonts/type1
+/public/lm/lmsy6.pfb><C:/Users/Claire/AppData/Local/Programs/MiKTeX 2.9/fonts/t
+ype1/public/lm/lmsy9.pfb><C:/Users/Claire/AppData/Local/Programs/MiKTeX 2.9/fon
+ts/type1/public/lm/lmtk10.pfb><C:/Users/Claire/AppData/Local/Programs/MiKTeX 2.
+9/fonts/type1/public/lm/lmtt10.pfb><C:/Users/Claire/AppData/Local/Programs/MiKT
+eX 2.9/fonts/type1/public/lm/lmtt8.pfb><C:/Users/Claire/AppData/Local/Programs/
+MiKTeX 2.9/fonts/type1/public/lm/lmtti10.pfb><C:/Users/Claire/AppData/Local/Pro
+grams/MiKTeX 2.9/fonts/type1/public/amsfonts/symbols/msam10.pfb>
+Output written on Slides_RCT.pdf (64 pages, 827457 bytes).
 PDF statistics:
- 407 PDF objects out of 1000 (max. 8388607)
- 125 named destinations out of 1000 (max. 500000)
- 18495 words of extra memory for PDF output out of 20736 (max. 10000000)
+ 562 PDF objects out of 1000 (max. 8388607)
+ 191 named destinations out of 1000 (max. 500000)
+ 18500 words of extra memory for PDF output out of 20736 (max. 10000000)
 

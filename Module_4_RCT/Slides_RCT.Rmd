@@ -529,5 +529,280 @@ This ATE hides important heterogenety that is quite different for DGP 1, 2 and 3
 - A positive effect on non-females and negative effect on females in DGP 3
 
 
+## Alphabet Soup!:IV's and RCT's from ITT to TOT
+
+In RCT's, it is important to carefully define "Treatment".
+
+Recall the blood pressure medication example: What is the "Treatment"?
+
+- Is the treatment **taking the medication**?
+
+- Is the treatment being **instructed to take the medication**?
+
+With non-compliance, the estimated treatment effect will depend on how we define treatment. 
+
+## Alphabet Soup!:IV's and RCT's from ITT to TOT
+
+If I am interested in estimating the effects of actually taking the medication:
+
+- $\tau=E[Y_i(1)]-E[Y_i(0)]$ will not estimate the treatment effect. 
+
+**Why?**
+
+## Alphabet Soup!:IV's and RCT's from ITT to TOT
+
+If I am interested in estimating the effects of actually taking the medication:
+
+- $\tau=E[Y_i(1)]-E[Y_i(0)]$ will not estimate the treatment effect. 
+
+**Why?**
+
+- $\tau$ is an estimate of the **intent-to-treat (ITT)** 
+
+- it compares the outcomes of those I **intended** to give the medication to, to those I did not intend to give the medication to. 
+
+- This is the estimated effect of being **told** to take the medication. 
+
+
+## Alphabet Soup!:IV's and RCT's from ITT to TOT
+
+
+With non-complieres, the **ITT** estimate $\neq$ **TOT** estimate.
+
+- The ITT: the effect of being in the treated group.
+
+- The TOT:  the effect of the treatment on those who actually got treated. 
+
+We can recover the TOT estimates using an IV estimation where being treated is instrumented  by being in the treatment group (see the IV Module Notes).  
+
+## Alphabet Soup!:IV's and RCT's from ITT to TOT
+
+But what do we care about? The ITT or the TOT? 
+
+## Alphabet Soup!:IV's and RCT's from ITT to TOT
+
+But what do we care about? The ITT or the TOT? 
+
+
+It depends.  
+
+## ITT and TOT: Contraceptive choice
+
+
+:::::: {.columns}
+
+::: {.column width="40%" data-latex="{0.55\textwidth}"}
+
+\small
+- What is the TOT for male condoms?
+
+- What is the ITT for male condoms?
+
+- Which value do you care about if you are the condom manufacturer?
+
+- Which value do you care about if you are a practitioner (doctor, public health advisor ...)?
+
+:::
+
+
+::: {.column width="60%" data-latex="{0.4\textwidth}"}
+
+ ![...]("images\contraceptivefailure.png")
+
+:::
+::::::
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## RCT Challenges: Spillovers! SUTVA
+
+- Key RCT assumption: random assignment of D
+
+- Implicit RCT assumption: \textit{stable unit treatment value assumption} or \textit{SUTVA}.
+
+**SUTVA: \textit{no spillovers.} Unit $i$'s potential outcomes are unaffected by whether unit $j$ is treated or untreated.** 
+
+SUTVA tends to be violated whenever the treatment, $D_i$ involves spillovers between groups, aka some type of externality.
+
+
+## RCT Challenges: Spillovers! SUTVA
+
+- Treatment: receiving a measles vacination 
+
+- Outcome: getting the measles
+
+**Does SUTVA hold?** 
+
+## RCT Challenges: Spillovers! SUTVA
+
+- Treatment: receiving a measles vacination 
+
+- Outcome: getting the measles
+
+**Does SUTVA hold?** 
+
+- $Y_i(D_i)$ depends on all of the $D$'s, not just $D_i$. 
+
+- Example: if all the units are vaccinated, except $i$ then $Y_i(1)-Y_i(0)=0$: no treatment effect. (Since there is no one for $i$ to catch the measles from). 
+
+
+
+## RCT Challenges: Attrition Bias
+
+What happens to your estimates if some of the people in your experiment vanish before you can collect their endline outcome data?
+
+- If attrition is completely random, then it is not really a problem. Your sample size will be smaller but it will not bias your results.
+
+But what will happen if attrition is a function of treatment status?
+
+- RCT estimates are likely biased when attrition correlates with treatment status.
+
+
+## Attrition Bias Simulation
+
+To see why, lets return to our simulation of the reading group RCT.
+
+We know that the true treatment effect is $\tau=10$. 
+
+Suppose there are missing scores: some students did not show up on test day.
+
+The students who do not show up are the students who know they will do poorly on the reading exam. 
+
+
+## Attrition Bias Simulation
+\tiny
+```{r missing, , results="asis", echo=TRUE}
+
+scores5$read4miss<-NA
+scores5$read4miss[scores5$read4>75]<-scores5$read4[scores5$read4>75]
+
+rctmiss<-felm(read4miss~treat,scores5)
+
+stargazer(rctmiss,  type="latex", header=FALSE, omit.stat = "all")
+```
+\normalsize
+Treatment:
+
+- shifted the distribution upwards by 10 points
+
+- makes the "observed" left tale longer which biases our estimate downwards 
+
+## Addressing Attrition Bias
+
+Best option:
+
+- Minimize attrition throughout the data collection process.
+
+If you are still faced with attrition:
+
+- check to see if there the attrition is similar across treatment and control groups 
+
+- check if attrition correlates with observables
+
+If you have uneven problematic attrition:
+
+- it is sometimes possible to bound the extent of the bias by making hypothetical assumptions about who is dropping out of control and treatment.
+
+
+## Attrition Bias Simulation
+
+If the principal knows that students who will score below 75 don't take the test:
+
+- she can recover the true treatment effect by excluding the students who became observed because of the treatment from the estimation
+
+Of course it is unlikely that in the real world, a researcher would know the exact model of attrition and how treatment affects attrition (ie the treatment effect in this case).
+
+
+## Attrition Bias Simulation
+\tiny
+```{r missinga, results="asis", echo=TRUE}
+
+scores5$obsnew<-0
+scores5$obsnew[scores5$treat==1 & scores5$read4>75 & scores5$read4<85]<-1
+
+rctmiss2<-felm(read4miss~treat,scores5[scores5$obsnew==0,])
+
+
+stargazer(rctmiss, rctmiss2, type="latex", header=FALSE)
+```
+
+
+
+
+## RCT advantages:
+
+Randomized Control trials: huge advantages for causal inference. 
+
+RCTs are relatively easy to explain to policy makers, and even the general public $\Rightarrow$ important advantages when it comes to communicating research results to the wider world.
+
+RCT have become a widely used tool in economics and the social sciences today.
+
+The 2019 Nobel Laureat in Economics was give to Abhijit Banerjee, Esther Duflo and Michael Kremer for their role in bringing this experimental approach to economic research (particularly in development economics). 
+
+## RCT limitations:
+
+RCT's can be quite costly to conduct and the logistics of running an RCT are quite demanding.
+
+Many very important social and economic questions where running an RCT would simply not be ethical.
+
+- the effects of juvenile incarceration on human capital and future crime is clearly a question of first order importance but randomization would clearly be unethical.
+
+Conceptual limitations: 
+
+- External validity
+
+- Experimenter demand effects
+
+- General equilibrium effects
+
+## External validity
+
+Would you get the same results in a different context?
+
+- RCT's  are often conducted in a limited geographical area with a relatively small sample size.
+
+Would you get the same results if the program were implemented on a larger scale?
+
+- RCT's are often implemented with a lot more care and resources more then the large scale policy they are testing. This could change the effects. 
+
+
+## Experimenter demand effects
+
+Could subjects be behaving differently then they normally would because of the experimental context they are in? 
+
+- **Hawthorne effects:** the idea that individuals might modify their behavior simply because they are being observed.
+
+- a particular concern, if they would affect the treatment and control differently. 
+
+Are subjects changeing their behavior in order to conform to what they believe the researcher expects of them?
+
+- This is a particularly important question when experiments are incentivized and a subject could perceive that they would receive more rewards for certain types of behaviors. 
+
+## Experimenter demand effects
+
+Generally advisable to:
+
+- Minimize the salience of the evaluation
+
+- Ensure the experimental experience is the same for both the treated and control groups. 
+
+## General equilibrium effects
+
+Many of the policies we are interested in in economics affect variables that are not determined by a single individual's choices (eg prices).
+
+Most RCT's are small: unlikely to affect market level variables such as prices.  
+
+If the intervention were implemented at scale, could changes in market level variables change  estimated effects? 
 
 
