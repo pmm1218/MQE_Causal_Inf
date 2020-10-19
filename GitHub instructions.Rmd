@@ -20,6 +20,9 @@ Git and GitHub are often used in conjunction but are really two distinct things.
 
 To get a big picture overview of exactly what you can do with Git and Git hub, I would recommend taking the time to watch the Git and GitHub for Poets series of youtube videos https://www.youtube.com/playlist?list=PLRqwX-V7Uu6ZF9C0YMKuns9sLDzK6zoiV.
 
+The diagram below give a basic sketch of what group workflow on GitHub should look like. Each group will have a central repo which each group member will fork onto their personal GitHub account. If you wish to work on your local computer, you can then use Git to clone, pull and push changes between your fork and your local machine. From your GitHub account, you can then integrate your code and sync your work with the central repo for your project. 
+
+  ![]("images\git-fork-clone-flow.png"){width=75%}
 
 # Getting started:
 
