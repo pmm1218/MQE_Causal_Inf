@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 2.9.7300 64-bit) (preloaded format=pdflatex 2020.2.15)  19 OCT 2020 15:56
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 2.9.7300 64-bit) (preloaded format=pdflatex 2020.2.15)  20 OCT 2020 17:02
 entering extended mode
 **./Slides_RCT.tex
 (Slides_RCT.tex
@@ -1192,32 +1192,13 @@ Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: End \AtBeginDocument code.
 (Slides_RCT.nav) [1
 
-{C:/Users/Claire/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}]
-\openout4 = `Slides_RCT.vrb'.
-
-(Slides_RCT.vrb
-LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 2
-.
-("C:\Users\Claire\AppData\Local\Programs\MiKTeX 2.9\tex/latex/lm\t1lmtt.fd"
-File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
-)
-LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <10.95> not available
-(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 3.
-LaTeX Font Info:    Trying to load font information for TS1+lmtt on input line 
-4.
-("C:\Users\Claire\AppData\Local\Programs\MiKTeX 2.9\tex/latex/lm\ts1lmtt.fd"
-File: ts1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
-)) [2
+{C:/Users/Claire/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}] [2
 
 ] [3
 
-] [4
-
-] [5
-
 ]
 LaTeX Font Info:    Trying to load font information for OT1+lmss on input line 
-211.
+188.
 ("C:\Users\Claire\AppData\Local\Programs\MiKTeX 2.9\tex/latex/lm\ot1lmss.fd"
 File: ot1lmss.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
@@ -1225,28 +1206,28 @@ Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `lmss' (encoding: OT1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
-LaTeX Font Info:    Trying to load font information for OML+lmm on input line 2
-11.
+LaTeX Font Info:    Trying to load font information for OML+lmm on input line 1
+88.
 ("C:\Users\Claire\AppData\Local\Programs\MiKTeX 2.9\tex/latex/lm\omllmm.fd"
 File: omllmm.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 
-211.
+188.
 ("C:\Users\Claire\AppData\Local\Programs\MiKTeX 2.9\tex/latex/lm\omslmsy.fd"
 File: omslmsy.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 
-211.
+188.
 ("C:\Users\Claire\AppData\Local\Programs\MiKTeX 2.9\tex/latex/lm\omxlmex.fd"
 File: omxlmex.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10.95> on input line 211.
+(Font)              <10.95> on input line 188.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <8> on input line 211.
+(Font)              <8> on input line 188.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <6> on input line 211.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 211
+(Font)              <6> on input line 188.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 188
 .
 ("C:\Users\Claire\AppData\Local\Programs\MiKTeX 2.9\tex/latex/amsfonts\umsa.fd"
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
@@ -1255,7 +1236,7 @@ File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 cfg"
 File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 211
+LaTeX Font Info:    Trying to load font information for U+msb on input line 188
 .
 ("C:\Users\Claire\AppData\Local\Programs\MiKTeX 2.9\tex/latex/amsfonts\umsb.fd"
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
@@ -1265,12 +1246,16 @@ cfg"
 File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
 )
 LaTeX Font Info:    Font shape `T1/lmss/m/it' in size <10.95> not available
-(Font)              Font shape `T1/lmss/m/sl' tried instead on input line 211.
+(Font)              Font shape `T1/lmss/m/sl' tried instead on input line 188.
 LaTeX Font Info:    Font shape `T1/lmss/m/it' in size <8> not available
-(Font)              Font shape `T1/lmss/m/sl' tried instead on input line 211.
+(Font)              Font shape `T1/lmss/m/sl' tried instead on input line 188.
 LaTeX Font Info:    Font shape `T1/lmss/m/it' in size <6> not available
-(Font)              Font shape `T1/lmss/m/sl' tried instead on input line 211.
-[6
+(Font)              Font shape `T1/lmss/m/sl' tried instead on input line 188.
+[4
+
+] [5
+
+] [6
 
 ] [7
 
@@ -1278,32 +1263,39 @@ LaTeX Font Info:    Font shape `T1/lmss/m/it' in size <6> not available
 
 ] [9
 
-] [10
-
 ]
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <9> on input line 298.
+(Font)              <9> on input line 278.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5> on input line 298.
+(Font)              <5> on input line 278.
 LaTeX Font Info:    Font shape `T1/lmss/m/it' in size <9> not available
-(Font)              Font shape `T1/lmss/m/sl' tried instead on input line 298.
+(Font)              Font shape `T1/lmss/m/sl' tried instead on input line 278.
 LaTeX Font Info:    Font shape `T1/lmss/m/it' in size <5> not available
-(Font)              Font shape `T1/lmss/m/sl' tried instead on input line 298.
-[11
+(Font)              Font shape `T1/lmss/m/sl' tried instead on input line 278.
+[10
+
+] [11
 
 ] [12
 
 ] [13
 
-] [14
-
 ]
 \openout4 = `Slides_RCT.vrb'.
 
 (Slides_RCT.vrb
+LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 6
+.
+("C:\Users\Claire\AppData\Local\Programs\MiKTeX 2.9\tex/latex/lm\t1lmtt.fd"
+File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
+)
 LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <6> not available
 (Font)              Font shape `T1/lmtt/b/n' tried instead on input line 7.
-) [15
+LaTeX Font Info:    Trying to load font information for TS1+lmtt on input line 
+23.
+("C:\Users\Claire\AppData\Local\Programs\MiKTeX 2.9\tex/latex/lm\ts1lmtt.fd"
+File: ts1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
+)) [14
 
 ]
 \openout4 = `Slides_RCT.vrb'.
@@ -1312,7 +1304,9 @@ LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <6> not available
 
 Package hyperref Warning: Ignoring empty anchor on input line 14.
 
-) [16
+) [15
+
+] [16
 
 ] [17
 
@@ -1326,12 +1320,12 @@ Package hyperref Warning: Ignoring empty anchor on input line 14.
 \openout4 = `Slides_RCT.vrb'.
 
 (Slides_RCT.vrb
-Overfull \hbox (105.04446pt too wide) in alignment at lines 30--35
+Overfull \hbox (105.04446pt too wide) in alignment at lines 33--38
  [] [] [] [] [] [] [] [] [] [] [] [] 
  []
 
 
-Overfull \hbox (105.04446pt too wide) in alignment at lines 35--49
+Overfull \hbox (105.04446pt too wide) in alignment at lines 38--52
  [] [] [] [] [] [] [] [] [] [] [] [] 
  []
 
@@ -1341,7 +1335,7 @@ Overfull \hbox (105.04446pt too wide) in alignment at lines 35--49
 \openout4 = `Slides_RCT.vrb'.
 
 (Slides_RCT.vrb)
-Overfull \vbox (46.15448pt too high) detected at line 579
+Overfull \vbox (46.15448pt too high) detected at line 574
  []
 
 [22
@@ -1356,7 +1350,7 @@ Overfull \vbox (46.15448pt too high) detected at line 579
 
 (Slides_RCT.vrb
 
-Package hyperref Warning: Ignoring empty anchor on input line 13.
+Package hyperref Warning: Ignoring empty anchor on input line 14.
 
 ) [24
 
@@ -1365,7 +1359,7 @@ Package hyperref Warning: Ignoring empty anchor on input line 13.
 
 (Slides_RCT.vrb
 
-Package hyperref Warning: Ignoring empty anchor on input line 13.
+Package hyperref Warning: Ignoring empty anchor on input line 14.
 
 ) [25
 
@@ -1374,10 +1368,10 @@ Package hyperref Warning: Ignoring empty anchor on input line 13.
 
 (Slides_RCT.vrb
 
-Package hyperref Warning: Ignoring empty anchor on input line 13.
+Package hyperref Warning: Ignoring empty anchor on input line 14.
 
 
-Overfull \hbox (12.37436pt too wide) in paragraph at lines 14--38
+Overfull \hbox (12.37436pt too wide) in paragraph at lines 15--39
  [] 
  []
 
@@ -1388,10 +1382,10 @@ Overfull \hbox (12.37436pt too wide) in paragraph at lines 14--38
 
 (Slides_RCT.vrb
 
-Package hyperref Warning: Ignoring empty anchor on input line 13.
+Package hyperref Warning: Ignoring empty anchor on input line 14.
 
 
-Overfull \hbox (2.81186pt too wide) in paragraph at lines 14--38
+Overfull \hbox (2.81186pt too wide) in paragraph at lines 15--39
  [] 
  []
 
@@ -1401,70 +1395,36 @@ Overfull \hbox (2.81186pt too wide) in paragraph at lines 14--38
 
 ]
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10> on input line 814.
+(Font)              <10> on input line 808.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7> on input line 814.
+(Font)              <7> on input line 808.
 LaTeX Font Info:    Font shape `T1/lmss/m/it' in size <10> not available
-(Font)              Font shape `T1/lmss/m/sl' tried instead on input line 814.
+(Font)              Font shape `T1/lmss/m/sl' tried instead on input line 808.
 LaTeX Font Info:    Font shape `T1/lmss/m/it' in size <7> not available
-(Font)              Font shape `T1/lmss/m/sl' tried instead on input line 814.
+(Font)              Font shape `T1/lmss/m/sl' tried instead on input line 808.
 [29
 
-]
-<images/significant_comic1.png, id=214, 406.51875pt x 237.13594pt>
-File: images/significant_comic1.png Graphic file (type png)
-<use images/significant_comic1.png>
-Package pdftex.def Info: images/significant_comic1.png  used on input line 819.
+] [30
 
-(pdftex.def)             Requested size: 307.30125pt x 179.25906pt.
-[30
-
- <./images/significant_comic1.png>]
-<images/significant_comic2.png, id=223, 406.51875pt x 300.3722pt>
-File: images/significant_comic2.png Graphic file (type png)
-<use images/significant_comic2.png>
-Package pdftex.def Info: images/significant_comic2.png  used on input line 824.
-
-(pdftex.def)             Requested size: 307.30125pt x 227.06148pt.
-[31
-
- <./images/significant_comic2.png>]
-<images/significant_comic3.png, id=232, 406.51875pt x 301.125pt>
-File: images/significant_comic3.png Graphic file (type png)
-<use images/significant_comic3.png>
-Package pdftex.def Info: images/significant_comic3.png  used on input line 829.
-
-(pdftex.def)             Requested size: 307.30125pt x 227.63055pt.
-[32
-
- <./images/significant_comic3.png>]
-<images/significant_comic4.png, id=240, 406.51875pt x 286.06876pt>
-File: images/significant_comic4.png Graphic file (type png)
-<use images/significant_comic4.png>
-Package pdftex.def Info: images/significant_comic4.png  used on input line 834.
-
-(pdftex.def)             Requested size: 307.30125pt x 216.24904pt.
-[33
-
- <./images/significant_comic4.png>] [34
+] [31
 
 ]
 \openout4 = `Slides_RCT.vrb'.
 
-(Slides_RCT.vrb) [35
+(Slides_RCT.vrb) [32
 
 ]
 \openout4 = `Slides_RCT.vrb'.
 
 (Slides_RCT.vrb
 
-Package hyperref Warning: Ignoring empty anchor on input line 13.
+Package hyperref Warning: Ignoring empty anchor on input line 15.
 
-) [36
+) [33
 
-] [37
+] [34
 
-] [38
+] [35
 
 ]
 \openout4 = `Slides_RCT.vrb'.
@@ -1473,12 +1433,12 @@ Package hyperref Warning: Ignoring empty anchor on input line 13.
 
 Package hyperref Warning: Ignoring empty anchor on input line 18.
 
-) [39
+) [36
 
 ]
 \openout4 = `Slides_RCT.vrb'.
 
-(Slides_RCT.vrb) [40
+(Slides_RCT.vrb) [37
 
 ]
 \openout4 = `Slides_RCT.vrb'.
@@ -1492,7 +1452,13 @@ Overfull \hbox (21.96706pt too wide) in paragraph at lines 14--42
  [] 
  []
 
-) [41
+) [38
+
+] [39
+
+] [40
+
+] [41
 
 ] [42
 
@@ -1502,34 +1468,41 @@ Overfull \hbox (21.96706pt too wide) in paragraph at lines 14--42
 
 ] [45
 
-] [46
-
-] [47
-
-] [48
-
 ]
-<images/contraceptivefailure.png, id=340, 529.22719pt x 877.02657pt>
+<images/contraceptivefailure.png, id=312, 529.22719pt x 877.02657pt>
 File: images/contraceptivefailure.png Graphic file (type png)
 <use images/contraceptivefailure.png>
 Package pdftex.def Info: images/contraceptivefailure.png  used on input line 12
-30.
+19.
 (pdftex.def)             Requested size: 162.41136pt x 269.14543pt.
 
-Overfull \vbox (50.80557pt too high) detected at line 1230
+Overfull \vbox (50.80557pt too high) detected at line 1219
  []
 
-[49
+[46
 
  <./images/contraceptivefailure.png>]
 LaTeX Font Info:    Font shape `T1/lmss/bx/it' in size <10.95> not available
-(Font)              Font shape `T1/lmss/bx/sl' tried instead on input line 1247
+(Font)              Font shape `T1/lmss/bx/sl' tried instead on input line 1236
 .
-[50
+[47
+
+] [48
+
+] [49
+
+] [50
 
 ] [51
 
-] [52
+]
+\openout4 = `Slides_RCT.vrb'.
+
+(Slides_RCT.vrb
+
+Package hyperref Warning: Ignoring empty anchor on input line 18.
+
+) [52
 
 ] [53
 
@@ -1540,7 +1513,7 @@ LaTeX Font Info:    Font shape `T1/lmss/bx/it' in size <10.95> not available
 
 (Slides_RCT.vrb
 
-Package hyperref Warning: Ignoring empty anchor on input line 18.
+Package hyperref Warning: Ignoring empty anchor on input line 19.
 
 ) [55
 
@@ -1548,14 +1521,7 @@ Package hyperref Warning: Ignoring empty anchor on input line 18.
 
 ] [57
 
-]
-\openout4 = `Slides_RCT.vrb'.
-
-(Slides_RCT.vrb
-
-Package hyperref Warning: Ignoring empty anchor on input line 19.
-
-) [58
+] [58
 
 ] [59
 
@@ -1567,9 +1533,87 @@ Package hyperref Warning: Ignoring empty anchor on input line 19.
 
 ] [63
 
-] [64
+]
+<images/mervis.png, id=427, 411.87505pt x 489.90106pt>
+File: images/mervis.png Graphic file (type png)
+<use images/mervis.png>
+Package pdftex.def Info: images/mervis.png  used on input line 1620.
+(pdftex.def)             Requested size: 199.7403pt x 237.5793pt.
+[64
+
+ <./images/mervis.png>]
+<images/phackingcomic.png, id=435, 259.97125pt x 366.36874pt>
+File: images/phackingcomic.png Graphic file (type png)
+<use images/phackingcomic.png>
+Package pdftex.def Info: images/phackingcomic.png  used on input line 1628.
+(pdftex.def)             Requested size: 122.91243pt x 173.21635pt.
+[65
+
+ <./images/phackingcomic.png (PNG copy)>]
+<images/brodeuretal.png, id=442, 438.28258pt x 326.38065pt>
+File: images/brodeuretal.png Graphic file (type png)
+<use images/brodeuretal.png>
+Package pdftex.def Info: images/brodeuretal.png  used on input line 1640.
+(pdftex.def)             Requested size: 199.7332pt x 148.73749pt.
+[66
+
+ <./images/brodeuretal.png>]
+<images/pvalpolsci.png, id=450, 769.37437pt x 532.23843pt>
+File: images/pvalpolsci.png Graphic file (type png)
+<use images/pvalpolsci.png>
+Package pdftex.def Info: images/pvalpolsci.png  used on input line 1645.
+(pdftex.def)             Requested size: 261.19641pt x 180.69066pt.
+[67
+
+ <./images/pvalpolsci.png>]
+<images/significant_comic1.png, id=459, 406.51875pt x 237.13594pt>
+File: images/significant_comic1.png Graphic file (type png)
+<use images/significant_comic1.png>
+Package pdftex.def Info: images/significant_comic1.png  used on input line 1650
+.
+(pdftex.def)             Requested size: 307.30125pt x 179.25906pt.
+[68
+
+ <./images/significant_comic1.png>]
+<images/significant_comic2.png, id=467, 406.51875pt x 300.3722pt>
+File: images/significant_comic2.png Graphic file (type png)
+<use images/significant_comic2.png>
+Package pdftex.def Info: images/significant_comic2.png  used on input line 1655
+.
+(pdftex.def)             Requested size: 307.30125pt x 227.06148pt.
+[69
+
+ <./images/significant_comic2.png>]
+<images/significant_comic3.png, id=475, 406.51875pt x 301.125pt>
+File: images/significant_comic3.png Graphic file (type png)
+<use images/significant_comic3.png>
+Package pdftex.def Info: images/significant_comic3.png  used on input line 1660
+.
+(pdftex.def)             Requested size: 307.30125pt x 227.63055pt.
+[70
+
+ <./images/significant_comic3.png>]
+<images/significant_comic4.png, id=483, 406.51875pt x 286.06876pt>
+File: images/significant_comic4.png Graphic file (type png)
+<use images/significant_comic4.png>
+Package pdftex.def Info: images/significant_comic4.png  used on input line 1665
+.
+(pdftex.def)             Requested size: 307.30125pt x 216.24904pt.
+[71
+
+ <./images/significant_comic4.png>] [72
+
+] [73
 
 ]
+<images/PAP.png, id=504, 743.77875pt x 472.76625pt>
+File: images/PAP.png Graphic file (type png)
+<use images/PAP.png>
+Package pdftex.def Info: images/PAP.png  used on input line 1705.
+(pdftex.def)             Requested size: 307.30052pt x 195.32867pt.
+[74
+
+ <./images/PAP.png>]
 \tf@nav=\write6
 \openout6 = `Slides_RCT.nav'.
 
@@ -1579,23 +1623,23 @@ Package hyperref Warning: Ignoring empty anchor on input line 19.
 \tf@snm=\write8
 \openout8 = `Slides_RCT.snm'.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1578.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 1578.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1707.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 1707.
 (Slides_RCT.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1578.
-Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 1578.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1707.
+Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 1707.
 
 LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 25598 strings out of 481565
- 470128 string characters out of 2913711
+ 25675 strings out of 481565
+ 471191 string characters out of 2913711
  729303 words of memory out of 3000000
- 39974 multiletter control sequences out of 15000+200000
- 616443 words of font info for 125 fonts, out of 3000000 for 9000
+ 40015 multiletter control sequences out of 15000+200000
+ 615384 words of font info for 123 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 58i,16n,67p,1551b,775s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 58i,16n,67p,800b,775s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Users/Claire/AppData/Local/Programs/MiKTeX 2.9/fonts/enc/dvips/lm/lm-ec.e
 nc}{C:/Users/Claire/AppData/Local/Programs/MiKTeX 2.9/fonts/enc/dvips/lm/lm-mat
 hsy.enc}{C:/Users/Claire/AppData/Local/Programs/MiKTeX 2.9/fonts/enc/dvips/lm/l
@@ -1622,13 +1666,12 @@ lic/lm/lmsy5.pfb><C:/Users/Claire/AppData/Local/Programs/MiKTeX 2.9/fonts/type1
 /public/lm/lmsy6.pfb><C:/Users/Claire/AppData/Local/Programs/MiKTeX 2.9/fonts/t
 ype1/public/lm/lmsy9.pfb><C:/Users/Claire/AppData/Local/Programs/MiKTeX 2.9/fon
 ts/type1/public/lm/lmtk10.pfb><C:/Users/Claire/AppData/Local/Programs/MiKTeX 2.
-9/fonts/type1/public/lm/lmtt10.pfb><C:/Users/Claire/AppData/Local/Programs/MiKT
-eX 2.9/fonts/type1/public/lm/lmtt8.pfb><C:/Users/Claire/AppData/Local/Programs/
-MiKTeX 2.9/fonts/type1/public/lm/lmtti10.pfb><C:/Users/Claire/AppData/Local/Pro
-grams/MiKTeX 2.9/fonts/type1/public/amsfonts/symbols/msam10.pfb>
-Output written on Slides_RCT.pdf (64 pages, 827457 bytes).
+9/fonts/type1/public/lm/lmtt8.pfb><C:/Users/Claire/AppData/Local/Programs/MiKTe
+X 2.9/fonts/type1/public/lm/lmtti10.pfb><C:/Users/Claire/AppData/Local/Programs
+/MiKTeX 2.9/fonts/type1/public/amsfonts/symbols/msam10.pfb>
+Output written on Slides_RCT.pdf (74 pages, 1175359 bytes).
 PDF statistics:
- 562 PDF objects out of 1000 (max. 8388607)
- 191 named destinations out of 1000 (max. 500000)
- 18500 words of extra memory for PDF output out of 20736 (max. 10000000)
+ 637 PDF objects out of 1000 (max. 8388607)
+ 222 named destinations out of 1000 (max. 500000)
+ 18525 words of extra memory for PDF output out of 20736 (max. 10000000)
 

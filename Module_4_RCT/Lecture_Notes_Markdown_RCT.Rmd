@@ -356,7 +356,7 @@ Clearly this attrition pattern has biased our estimate of the treatment effect d
 So what can be done to address attrition bias? The first solution is to minimize attrition throughout the data collection process. If you are still faced with attrition, you can also check to see if there the attrition is similar across treatment and control groups and make sure that it does not correlate with observables. Finally, even with problematic attrition, it is often possible to bound the extent of the bias by making hypothetical assumptions about who is dropping out of control and treatment. For instance, if the principal knows that students who will score below 75 don't take the test, she can recover the true treatment effect by excluding the students who became observed because of the treatment from the estimation, as we see in the second column (of course it is unlikely that in the real world, a researcher would know the exact model of attrition).
 
 \subsection{RCT critiques}
-Randomized Control trial present some huge advantages when it comes to causal inference. Thru randomization, omitted variable are no longer a problem and we can be much more confident that our estimates are the causal effect of the treatment we are studying. Because of these advantages RCT have become a widely used tool in economics and the social sciences today. The 2019 Nobel Laureat in Economics was give to Abhijit Banerjee, Esther Duflo and Michael Kremer for their role in bringing this experimental approach to economic research (particularly in development economics). It is also worth noting that RCT are relatively easy to explain to policy makers, and even the general public. This presents some important advantages when it comes to communicating research results to the wider world.
+Randomized Control trial present some huge advantages when it comes to causal inference. With randomization, omitted variable are no longer a problem and we can be much more confident that our estimates are the causal effect of the treatment we are studying. Because of these advantages RCT have become a widely used tool in economics and the social sciences today. The 2019 Nobel Laureat in Economics was give to Abhijit Banerjee, Esther Duflo and Michael Kremer for their role in bringing this experimental approach to economic research (particularly in development economics). It is also worth noting that RCT are relatively easy to explain to policy makers, and even the general public. This presents some important advantages when it comes to communicating research results to the wider world.
 
 Nevertheless, despite their many advantages, RCT's do present certain limitations. RCT's can be quite costly to conduct and the logistics of running an RCT are quite demanding. Furthermore, there are many very important social and economic questions where running an RCT would simply not be ethical. Understanding the effects of juvenile incarceration on human capital and future crime is clearly a question of first order importance. Randomizing which juveniles get incarcerated for the purpose of research is also clearly unethical, leaving researcher to tackle these questions with the other empirical approaches we discuss in this course.
 
@@ -381,43 +381,46 @@ Another important concern with small scale RCT's is that many of the policies we
 
 This next point is not exclusively an RCT problem, nor even an Economics problem. Though because of the sunk costs involved in doing an RCT, incentives have made some of these problems particularly pronounced in projects with RCT designs, while others are more pronounced in other research designs.
 
+The points made here will be most relevant for research done in academic settings because they are driven by the incentive to publish. Even if you do not end up working in this setting, what you want to think about is how the incentive structure you are working in (business, policy...) could generate incentives that affect how you, your colleagues, your bosses, your subordinates, conduct analyses. 
+
 \subsubsection{Publication Bias}
 
-Publication Bias is widespread in many scientific fields. It refers to a pattern whereby papers with certain types of findings are more likely to get published in academic journals, leaving a lot of other types of papers unpublished. In particular, papers that report null-results (ie, no statistically significant effect was detected) are much more difficult to publish, so much so that they go unwritten altogether leading to what some researchers refer to as the "file drawer" problem: Well done research that finds null-results is simply unobserved, languishing unwritten in the drawers (hard-drives) of universities, potentially giving an incomplete picture to the answer to important questions and leading to wasted effort as researchers re-do analysis that has already done but just was never publicised.  
+Publication Bias is widespread in many scientific fields. It refers to a pattern whereby papers with certain types of findings are more likely to get published in academic journals, leaving a lot of other types of papers unpublished. In particular, papers that report null-results (ie, no statistically significant effect was detected) are much more difficult to publish, so much so that they go unwritten altogether leading to what some researchers refer to as the "file drawer" problem: Well done research that finds null-results is simply unobserved, languishing unwritten in the drawers (hard-drives) of universities, potentially giving an incomplete picture to the answer to important questions and leading to wasted effort as researchers re-do analysis that has already done but just was never publicized.  
 
- ![]("images\mervis.png"){width=75%}
+\centering ![]("images\mervis.png"){width=75%}
 
-\subsubsection{P-Hacking}
+\flushleft \subsubsection{P-Hacking}
 
-![ ]("images\phackingcomic.png"){width=40%}
+\centering ![ ]("images\phackingcomic.png"){width=40%}
  
-Since there are often different (valid) ways to specify a regression, researchers will often favor the (valid) specification that yields the most "publishable" results. 
+\flushleft Since there are often different (valid) ways to specify a regression, researchers will often favor the (valid) specification that yields the most "publishable" results. 
 
-A pattern wherby there is an excess mass of papers reporting p-values that are right under the "significance" (z=1.96) threshold has been documented in many fields. 
+A pattern whereby there is an excess mass of papers reporting p-values that are right under the "significance" (z=1.96) threshold has been documented in many fields. 
 
 ![From Brodeur et al.2016  ]("images\brodeuretal.png"){width=65%}
 
-![ ]("images\pvalpolsci.png")
+![ ]("images\pvalpolsci.png"){width=85%}
 
 \subsubsection{Cherry-Picking}
 
-![]("images\significant_comic.png")
+\flushleft When researchers have incurred large costs on a project, there are very strong incentives to find significant effects. One way to increase the chance of finding significant effects, is to collect data on a huge number of outcome variables. Without insight into the actual research process, it then becomes difficult to tell if the researcher found what their hypothesis predicted or if they simply ran many many regressions. 
 
-When researchers have incured large costs on a project, there are very strong incentives to find significant effects.One way to increase the chance of finding significant effects, is to collect data on a huge number of outcome variables. Without insight into the actual research process, it then becomes difficult to tell if the researcher found what their hypothesis predicted or if they simply ran many many regressions. 
+\centering ![]("images\significant_comic.png")
+
  
-\subsection{Research Transparency}
+\flushleft \subsection{Research Transparency}
 
-Fourtunately there is a push to adress these issues in economics, particularly in the RCT field where these incentives are very strong and the researcher has so much control over the data collection process. 
+Fortunately there is a push to address these issues in economics, particularly in the RCT field where these incentives are very strong and the researcher has so much control over the data collection process. 
 
-- Increasingly journals require that the data and code used to generate the research results be made available to other researchers. This allows people the oportunity to verify the methodology used by the researcher. 
+- Increasingly journals require that the data and code used to generate the research results be made available to other researchers. This allows people the opportunity to verify the methodology used by the researcher. 
 
-- When a project runs regressions on an inordinate number of outcome variables, it is increasingly expected that the researcher will report multiple inference adjusted standard erros (in addition to the usual standard errors). These ajusted standard errors generally require a stricter significance threshold for individual comparisons, so as to compensate for the number of inferences being made.
+- When a project runs regressions on an inordinate number of outcome variables, it is increasingly expected that the researcher will report multiple inference adjusted standard errors (in addition to the usual standard errors). These adjusted standard errors generally require a stricter significance threshold for individual comparisons, so as to compensate for the number of inferences being made.
 
 - Pre-analysis plans are increasingly becoming the norm. A pre-analysis plan is a document detailing the the questions, methods, and estimations a researcher plans to implement in a research project before they actually receive any data. The plan is then dated and filed in a public repository so that when the data is later analysed, evaluators can assess how far the researcher had to deviate from their initial project plan. 
 
 - Some journals are starting to accept articles based on the pre-analysis plan, before seeing any results.
 
- ![...]("images\PAP.png")
+ ![]("images\PAP.png")
  
 
 

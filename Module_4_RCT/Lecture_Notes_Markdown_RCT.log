@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 2.9.7300 64-bit) (preloaded format=pdflatex 2020.2.15)  19 OCT 2020 17:36
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 2.9.7300 64-bit) (preloaded format=pdflatex 2020.2.15)  20 OCT 2020 17:03
 entering extended mode
 **./Lecture_Notes_Markdown_RCT.tex
 (Lecture_Notes_Markdown_RCT.tex
@@ -673,61 +673,58 @@ LaTeX Warning: Float too large for page by 23.94922pt on input line 900.
 <images/mervis.png, id=138, 411.87505pt x 489.90106pt>
 File: images/mervis.png Graphic file (type png)
 <use images/mervis.png>
-Package pdftex.def Info: images/mervis.png  used on input line 1125.
+Package pdftex.def Info: images/mervis.png  used on input line 1132.
 (pdftex.def)             Requested size: 352.33907pt x 419.08653pt.
 <images/phackingcomic.png, id=139, 259.97125pt x 366.36874pt>
 File: images/phackingcomic.png Graphic file (type png)
 <use images/phackingcomic.png>
-Package pdftex.def Info: images/phackingcomic.png  used on input line 1129.
+Package pdftex.def Info: images/phackingcomic.png  used on input line 1136.
 (pdftex.def)             Requested size: 187.89714pt x 264.79713pt.
 [16 <./images/mervis.png>]
 <images/brodeuretal.png, id=145, 438.28258pt x 326.38065pt>
 File: images/brodeuretal.png Graphic file (type png)
 <use images/brodeuretal.png>
-Package pdftex.def Info: images/brodeuretal.png  used on input line 1141.
+Package pdftex.def Info: images/brodeuretal.png  used on input line 1148.
 (pdftex.def)             Requested size: 305.3378pt x 227.37921pt.
 <images/pvalpolsci.png, id=146, 769.37437pt x 532.23843pt>
 File: images/pvalpolsci.png Graphic file (type png)
 <use images/pvalpolsci.png>
-Package pdftex.def Info: images/pvalpolsci.png  used on input line 1145.
-(pdftex.def)             Requested size: 469.7638pt x 324.97357pt.
+Package pdftex.def Info: images/pvalpolsci.png  used on input line 1152.
+(pdftex.def)             Requested size: 399.30215pt x 276.22957pt.
 [17 <./images/phackingcomic.png (PNG copy)> <./images/brodeuretal.png>]
 <images/significant_comic.png, id=154, 487.8225pt x 1353.25575pt>
 File: images/significant_comic.png Graphic file (type png)
 <use images/significant_comic.png>
-Package pdftex.def Info: images/significant_comic.png  used on input line 1149.
+Package pdftex.def Info: images/significant_comic.png  used on input line 1164.
 
 (pdftex.def)             Requested size: 234.46477pt x 650.42265pt.
-[18 <./images/pvalpolsci.png>] [19]
-Overfull \vbox (19.39531pt too high) has occurred while \output is active []
-
-[20 <./images/significant_comic.png>]
+[18 <./images/pvalpolsci.png>] [19 <./images/significant_comic.png>]
 LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 1
-166.
+174.
 ("C:\Users\Claire\AppData\Local\Programs\MiKTeX 2.9\tex/latex/lm\ts1lmr.fd"
 File: ts1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-<images/PAP.png, id=170, 743.77875pt x 472.76625pt>
+<images/PAP.png, id=166, 743.77875pt x 472.76625pt>
 File: images/PAP.png Graphic file (type png)
 <use images/PAP.png>
-Package pdftex.def Info: images/PAP.png  used on input line 1192.
+Package pdftex.def Info: images/PAP.png  used on input line 1198.
 (pdftex.def)             Requested size: 469.7634pt x 298.59454pt.
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1196.
-[21 <./images/PAP.png>]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 1196.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1200.
+[20 <./images/PAP.png>]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 1200.
 (Lecture_Notes_Markdown_RCT.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1196.
-Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 1196.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1200.
+Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 1200.
 
 LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
  13661 strings out of 481565
- 204303 string characters out of 2913711
+ 204310 string characters out of 2913711
  497813 words of memory out of 3000000
  28472 multiletter control sequences out of 15000+200000
- 600610 words of font info for 132 fonts, out of 3000000 for 9000
+ 600693 words of font info for 133 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  41i,15n,42p,1556b,469s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Users/Claire/AppData/Local/Programs/MiKTeX 2.9/fonts/enc/dvips/lm/lm-ts1.
@@ -755,9 +752,9 @@ s/Claire/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/lm/lmsy10.pfb><C:
 0.pfb><C:/Users/Claire/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/lm/
 lmtt10.pfb><C:/Users/Claire/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/publi
 c/lm/lmtti10.pfb>
-Output written on Lecture_Notes_Markdown_RCT.pdf (21 pages, 1138886 bytes).
+Output written on Lecture_Notes_Markdown_RCT.pdf (20 pages, 1138504 bytes).
 PDF statistics:
- 287 PDF objects out of 1000 (max. 8388607)
- 62 named destinations out of 1000 (max. 500000)
+ 281 PDF objects out of 1000 (max. 8388607)
+ 60 named destinations out of 1000 (max. 500000)
  14452 words of extra memory for PDF output out of 17280 (max. 10000000)
 

@@ -546,7 +546,7 @@ $$
 
 Be weary of the **forbidden regression**!
 
-People sometimes try to run a logit, probit, Poisson or some other non-linear regression as the first stage of a 2SLS procedure. This is a bad idea. Don't do it.  
+People sometimes try to run a logit, probit, or some other non-linear regression as the first stage of a 2SLS procedure. This is a bad idea. Don't do it.  
 
 ## The Ugly: Weak Instruments
 
@@ -566,7 +566,7 @@ $$
 
 For $E[\hat{\beta}_{IV}]=\beta_1$, we need $cov(z,\nu)=0$ (the exclusion restriction) to hold.
 
-Suppose this assumption is violated in a small way, meaning that $cov(z,\nu)\neq 0$ but that it was a vary small value. 
+Suppose this assumption is violated in a small way, meaning that $cov(z,\nu)\neq 0$ but that it was a very small value. 
 
 If $cov(z,x_1)$ is also small, the violation of the exclusion restriction will get amplified leading to potentially severe bias in our estimator. 
 

@@ -21,7 +21,7 @@ knitr::opts_chunk$set(echo = TRUE,out.width = 40, tidy=T, tidy.opts=list(width.c
 ```
 
 
-```{r wrap-hook}
+```{r wrap-hook, echo=FALSE}
 library(knitr)
 hook_output = knit_hooks$get('output')
 knit_hooks$set(output = function(x, options) {
@@ -36,7 +36,6 @@ knit_hooks$set(output = function(x, options) {
 })
 ```
 
-## Module 4: Randomized Control Trials
 
 
 ## The Experimental Ideal:
@@ -57,9 +56,9 @@ Randomized control trials (RCT's) aka the "Gold standard" of experimental design
 
 ## Random assignment and the selection problem
 
-The idea: use random assignment remove selection bias
+The idea: use random assignment to remove selection bias
 
-Suppose a constant treatment effect: $Y_i(1)-Y_i(0)=\tau$, a constant. For observation $i$ we have that
+Suppose a constant treatment effect: $Y_i(1)-Y_i(0)=\tau$. For observation $i$ we have that
 
 
 $$
@@ -99,6 +98,8 @@ $$
 
 This is because treatment is not random:  $\{Y_i(1), Y_i(0)\}\not\perp  D_i$. 
 
+## Random assignment and the selection problem
+
 There is no reason to believe that those who select into treatment have the same expected outcome as those who do not, if they were to be treated, that is to say, it is possible (and even likely) that  
 
 $$
@@ -124,7 +125,7 @@ $$
 $$
 
 
-With random assignment, we know that in expectiation, 
+With random assignment, we know that in expectation, 
 
 $$
 \underbrace{E[Y_i(0)|D_i=0]}_\text{observed}=  \underbrace{E[Y_i(0)|D_i=1]}_\text{unobserved}= E[Y_i(0)]
@@ -152,7 +153,7 @@ and we can easily estimate  $\bar{\tau}$, by taking the difference between the a
 
 ## RCT estimation
 
-RCT regressions are about as straigtforward as it gets.
+RCT regressions are about as straightforward as it gets.
 
 As modeled above, you can estimate 
 
@@ -170,7 +171,7 @@ $$
 E[Y_i(1)]-E[Y_i(0)] = 
     \underbrace{\tau}_\text{treatment effect} + \underbrace{E[\eta_i|D_i=1]-E[\eta_i|D_i=0]}_\text{selection bias}.
 $$
-With proper randomizating,
+With proper randomization,
 
 $$
 E[\eta_i|D_i=1]= E[\eta_i|D_i=0]
@@ -181,11 +182,11 @@ so there is no selection bias giving us an unbiased estimate of $\tau$.
 
 I am a principal of a large school and I want to evaluate how access to small reading groups with a paraprofessional helps improve 4th grade test scores.
 
-I take all the 4th graders and randomly assign 30 percent of them to treatment (participating in the reading groups) with therest to the control group which continued with class as normal. 
+I take all the 4th graders and randomly assign 30 percent of them to treatment (participating in the reading groups). The control group continued class as normal. 
 
 ## RCT Simulation
 
-I generate a set of simualted data: 
+I generate a set of simulated data: 
 \tiny
 ```{r simrct1, results = "asis", echo=TRUE}
 
@@ -206,7 +207,11 @@ alpha=75
 tau=10
 
 #the data generating process: notice the class does affect a student's score
-scores5$read4<-alpha+tau*scores5$treat+scores5$error+4*scores5$class_1+(-6)*scores5$class_2+8*scores5$class_3+(-4)*scores5$class_4+7*scores5$class_5+(-2)*scores5$class_6+5*scores5$class_7+(-10)*scores5$class_8+8*scores5$class_9+4*scores5$class_10
+scores5$read4<-(alpha+tau*scores5$treat+scores5$error
+                +4*scores5$class_1+(-6)*scores5$class_2+8*scores5$class_3
+                +(-4)*scores5$class_4+7*scores5$class_5+(-2)*scores5$class_6
+                +5*scores5$class_7+(-10)*scores5$class_8
+                +8*scores5$class_9+4*scores5$class_10)
 ```
 
 ## RCT Simulation
@@ -250,13 +255,21 @@ Balance test variables should be
 
 - or characteristics that would be unaffected by treatment.
 
+**Why?**
+
+Select good variables to include in our balance test. 
+
+$\Rightarrow$ TopHat
+
+## RCT Balance Tests
+
 Balance tests are often run on many variables: 
 
 - some may come up with a statistically significant difference by simple random chance 
 
 - if many are significantly different, this is a red flag that the key assumption does not hold 
 
-- There are corrections that can be implemented if the unbalanced variables are are of particular concern (look up Bonferroni correction)   
+- There are corrections that can be implemented if the unbalanced variables are of particular concern (look up Bonferroni correction)   
 
 ## RCT Simulation
 
@@ -272,13 +285,16 @@ She has access to some additional data. She adds it to her data set and does a b
 
 #simulating covariates
 
-#third grade test scores. Notice I am generateing simulated academic scores that have a correlation to their "untreated" performance in 4th grade reading
+#third grade test scores. Notice I am generateing simulated academic scores 
+#that have a correlation to their "untreated" performance in 4th grade reading
 scores5$read3<-alpha+scores5$error+rnorm(300,3,2)
 scores5$math3<-alpha+scores5$error+rnorm(300,15,2)
 scores5$hist3<-alpha+scores5$error+rnorm(300,5,2)
 scores5$pe3<-rnorm(300,90,2)
 
-#other 4th grade test scores: notice I am generating scores that correlated with their subject performance in 3rd grade. Also, the treatment is affecting other 4th grade academic scores
+#other 4th grade test scores: notice I am generating scores that correlated 
+#with their subject performance in 3rd grade. Also, the treatment is 
+#affecting other 4th grade academic scores
 scores5$hist4<-4*scores5$treat+scores5$hist3+rnorm(300,-2,2)
 scores5$pe4<-scores5$pe3+rnorm(300,0,5)
 scores5$math4<-2*scores5$treat+scores5$math3+rnorm(300,-5,3)
@@ -314,34 +330,35 @@ allModelsList <- lapply(paste(namevec,"~treat"), as.formula)
 allModelsResults <- lapply(allModelsList, function(x) lm(x, scores5))  
 ```
 
-Some of the variables you included in the balance test are problematic. Which ones?
-
-$\Rightarrow$ Top Hat
 
 
 ## RCT Simulation
 \tiny
 ```{r simrct2c, echo=TRUE, results="asis"}
 
-stargazer(allModelsResults[[1]],allModelsResults[[2]],allModelsResults[[3]],allModelsResults[[4]], allModelsResults[[5]], type="latex", header=FALSE)
+stargazer(allModelsResults[[1]],allModelsResults[[2]],allModelsResults[[3]],
+          allModelsResults[[4]], allModelsResults[[5]], type="latex", header=FALSE)
 ```
 ## RCT Simulation
 \tiny
 ```{r simrct2d, echo=TRUE, results="asis"}
 
-stargazer(allModelsResults[[6]],allModelsResults[[7]],allModelsResults[[8]],allModelsResults[[9]], allModelsResults[[10]], type="latex", header=FALSE)
+stargazer(allModelsResults[[6]],allModelsResults[[7]],allModelsResults[[8]],
+          allModelsResults[[9]], allModelsResults[[10]], type="latex", header=FALSE)
 ```
 ## RCT Simulation
 \tiny
 ```{r simrct2e, echo=TRUE, results="asis"}
 
-stargazer(allModelsResults[[11]],allModelsResults[[12]],allModelsResults[[13]],allModelsResults[[14]], allModelsResults[[15]], type="latex", header=FALSE)
+stargazer(allModelsResults[[11]],allModelsResults[[12]],allModelsResults[[13]],
+          allModelsResults[[14]], allModelsResults[[15]], type="latex", header=FALSE)
 ```
 ## RCT Simulation
 \tiny
 ```{r simrct2f, echo=TRUE, results="asis"}
 
-stargazer(allModelsResults[[16]],allModelsResults[[17]],allModelsResults[[18]],allModelsResults[[19]], allModelsResults[[20]], type="latex", header=FALSE)
+stargazer(allModelsResults[[16]],allModelsResults[[17]],allModelsResults[[18]],
+          allModelsResults[[19]], allModelsResults[[20]], type="latex", header=FALSE)
 
 ```
 
@@ -377,25 +394,17 @@ If you had not modeled the data, would you be concerned?
   
 If I change the seed in the simulation (try 5000), some other variables will likely be significant due to random chance. 
   
-  
-  
-## The laws of probability
+## Controls in RCT specifications
 
- ![]("images\significant_comic1.png")
+Because the treatment was randomized, estimating
 
-## The laws of probability
+$$
+Y_i=\alpha+\tau D_i+\epsilon
+$$
 
- ![]("images\significant_comic2.png")
- 
-## The laws of probability
+- gives us an unbiased estimate of $\tau$ 
 
- ![]("images\significant_comic3.png")
- 
-## The laws of probability
-
- ![]("images\significant_comic4.png")
- 
- 
+- controlling for omitted variables is not necessary
  
 ## Controls in RCT specifications
 
@@ -413,7 +422,7 @@ That said, it is common to see specifications in RCT projects that include a vec
 
 - verify that estimated coefficient does not change significantly when controls are added 
 
-- adding controls can make our estimated more precise and shrink the standard errors. 
+- adding controls can make our estimates more precise and shrink the standard errors. 
 
 
 ## Controls in RCT specifications
@@ -430,7 +439,9 @@ rct3<-felm(read4~treat+read3+female+pe3+math3+hist3|class,scores5)
 
 \tiny
 ```{r controlsa, echo=TRUE, results="asis"}
-stargazer(rct1, rct2, rct3, type="latex", header=FALSE, omit.stat = "all")
+stargazer(rct1, rct2, rct3, type="latex", header=FALSE, omit.stat = "all",
+                 add.lines = list(c("Class FE:", "No", "No", "Yes")),
+          no.space=TRUE)
 ```
  
 ## Controls in RCT specifications
@@ -490,20 +501,23 @@ I now will simulate a DGP with heterogeneous treatment effects by gender
 
 #the second data generating process 
 nf<-20
-scores5$read4het1<-(alpha+nf*scores5$treat+scores5$error+4*scores5$class_1+(-6)*scores5$class_2
+scores5$read4het1<-(nf*scores5$treat+(-20)*scores5$female*scores5$treat+
+                    alpha+scores5$error
+                    +4*scores5$class_1+(-6)*scores5$class_2
                     +8*scores5$class_3+(-4)*scores5$class_4+7*scores5$class_5
                     +(-2)*scores5$class_6+5*scores5$class_7+(-10)*scores5$class_8
-                    +8*scores5$class_9+4*scores5$class_10+(-20)*scores5$female*scores5$treat)
+                    +8*scores5$class_9+4*scores5$class_10)
 
 rct2<-felm(read4het1~treat,scores5)
 rcthet2<-felm(read4het1~treat+female+female*treat,scores5)
 
 #the third data generating process 
 nf2<-30
-scores5$read4het2<-(alpha+nf2*scores5$treat+scores5$error+4*scores5$class_1+(-6)*scores5$class_2
+scores5$read4het2<-(nf2*scores5$treat+(-40)*scores5$female*scores5$treat+
+                     alpha+scores5$error+4*scores5$class_1+(-6)*scores5$class_2
                     +8*scores5$class_3+(-4)*scores5$class_4+7*scores5$class_5
                     +(-2)*scores5$class_6+5*scores5$class_7+(-10)*scores5$class_8
-                    +8*scores5$class_9+4*scores5$class_10+(-40)*scores5$female*scores5$treat)
+                    +8*scores5$class_9+4*scores5$class_10)
 
 rct3<-felm(read4het2~treat,scores5)
 rcthet3<-felm(read4het2~treat+female+female*treat,scores5)
@@ -520,7 +534,7 @@ stargazer(rct1,rcthet1,rct2,rcthet2,rct3,rcthet3, type="latex",header=FALSE, omi
 
 DGP 1, 2 and 3 return similar estimates of the ATE (average treatment effect). 
 
-This ATE hides important heterogenety that is quite different for DGP 1, 2 and 3:
+This ATE hides important heterogeneity that is quite different for DGP 1, 2 and 3:
 
 - No heterogeneity in DGP 1
 
@@ -638,7 +652,7 @@ SUTVA tends to be violated whenever the treatment, $D_i$ involves spillovers bet
 
 ## RCT Challenges: Spillovers! SUTVA
 
-- Treatment: receiving a measles vacination 
+- Treatment: receiving a measles vaccination 
 
 - Outcome: getting the measles
 
@@ -646,7 +660,7 @@ SUTVA tends to be violated whenever the treatment, $D_i$ involves spillovers bet
 
 ## RCT Challenges: Spillovers! SUTVA
 
-- Treatment: receiving a measles vacination 
+- Treatment: receiving a measles vaccination 
 
 - Outcome: getting the measles
 
@@ -655,6 +669,8 @@ SUTVA tends to be violated whenever the treatment, $D_i$ involves spillovers bet
 - $Y_i(D_i)$ depends on all of the $D$'s, not just $D_i$. 
 
 - Example: if all the units are vaccinated, except $i$ then $Y_i(1)-Y_i(0)=0$: no treatment effect. (Since there is no one for $i$ to catch the measles from). 
+
+**What would be a potential SUTVA violation concern in our small reading group simulation?**
 
 
 
@@ -742,13 +758,13 @@ stargazer(rctmiss, rctmiss2, type="latex", header=FALSE)
 
 ## RCT advantages:
 
-Randomized Control trials: huge advantages for causal inference. 
+- Randomized Control trials: huge advantages for causal inference. 
 
-RCTs are relatively easy to explain to policy makers, and even the general public $\Rightarrow$ important advantages when it comes to communicating research results to the wider world.
+- RCTs are relatively easy to explain to policy makers, and even the general public $\Rightarrow$ important advantages when it comes to communicating research results to the wider world.
 
-RCT have become a widely used tool in economics and the social sciences today.
+- RCT have become a widely used tool in economics and the social sciences today.
 
-The 2019 Nobel Laureat in Economics was give to Abhijit Banerjee, Esther Duflo and Michael Kremer for their role in bringing this experimental approach to economic research (particularly in development economics). 
+- The 2019 Nobel Laureat in Economics was give to Abhijit Banerjee, Esther Duflo and Michael Kremer for their role in bringing this experimental approach to economic research (particularly in development economics). 
 
 ## RCT limitations:
 
@@ -804,5 +820,100 @@ Many of the policies we are interested in in economics affect variables that are
 Most RCT's are small: unlikely to affect market level variables such as prices.  
 
 If the intervention were implemented at scale, could changes in market level variables change  estimated effects? 
+
+
+## Fishing for Stars
+
+Other research issues (not exclusive to RCT's): 
+
+- Publication Bias
+
+- P-Hacking
+
+- Cherry-Picking
+
+- The push for research transparency
+
+Note: these points are most relevant for academic research, but highlight the need to understand the incentives behind any data analysis project. 
+
+## Publication Bias
+
+- Common problem in many scientific fields. 
+
+- Papers that report null-results (ie, no statistically significant effect was detected) are much more difficult to publish
+
+- These papers may be left unwritten leading to the "file drawer" problem: 
+
+    - null-results are unobserved $\Rightarrow$ an incomplete picture to the answer to important questions 
+    
+    -  wasted effort as researchers re-do analysis that has already been done but was never publicized.  
+
+## Publication Bias
+
+\centering ![]("images\mervis.png"){width=65%}
+
+
+## P-Hacking
+
+When choosing between different (valid) ways to specify a regression, researchers will often favor the most "publishable" results. 
+
+\centering ![ ]("images\phackingcomic.png"){width=40%}
+
+## P-Hacking
+
+This leads to an excess mass of papers reporting p-values that are right under the "significance" (z=1.96) threshold.
+
+![From Brodeur et al.2016  ]("images\brodeuretal.png"){width=65%}
+
+## P-Hacking
+
+
+![ ]("images\pvalpolsci.png"){width=85%}
+
+## Cherry-Picking
+
+
+ ![]("images\significant_comic1.png")
+
+## Cherry-Picking
+ ![]("images\significant_comic2.png")
+ 
+## Cherry-Picking
+ ![]("images\significant_comic3.png")
+ 
+## Cherry-Picking
+ ![]("images\significant_comic4.png")
+ 
+## Cherry-Picking
+
+When researchers have incurred large costs on a project, there are very strong incentives to find significant effects. 
+
+One way to increase the chance of finding significant effects, is to collect data on a huge number of outcome variables. 
+
+Without insight into the actual research process, it then becomes difficult to tell if the researcher found what their hypothesis predicted or if they simply ran many many regressions. 
+
+
+## Efforts towards research transparency
+
+There is a push to address these issues in economics, particularly in the RCT field.
+
+- **Public Data and Code:** Increasingly a journal requirement
+
+- **Multiple inference adjusted standard errors:**  report adjusted standard errors to compensate for the number of inferences being made, if there are many outcomes. 
+
+- **Pre-analysis plans:** a publicly filed document detailing the the questions, methods, and estimations a researcher plans to implement before they actually receive any data. 
+
+- **Pre-result publication:** Some journals are starting to accept articles based on the pre-analysis plan, before seeing any results.
+
+## Efforts towards research transparency
+
+ ![]("images\PAP.png")
+ 
+
+
+
+
+
+
 
 
