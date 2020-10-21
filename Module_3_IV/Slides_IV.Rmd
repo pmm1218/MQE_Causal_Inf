@@ -318,15 +318,7 @@ Suppose there exists a variable $z$ that satisfies the two conditions outlined a
 
 Our simulated data includes $z$, a variable with these properties 
 \tiny
-```{r simiv 5, results = "asis", echo=TRUE}
-cov(ivdat$z, ivdat$x_1)
 
-#note: we can test this covariance because I am working with simulated data and observe x_2.
-#In the wild x_2 would be unobservable and you would have to argue that this condition holds.
-
-ivdat$nu<-B2*ivdat$x_2+ivdat$error
-cov(ivdat$z, ivdat$nu)
-```
 
 ## A simulation:
 
@@ -409,7 +401,6 @@ summary(sim2slsfs)
 
 
 ## The second stage:
-\tiny
 ```{r sim2sls 2, echo=TRUE}
 
 hatgamma0<-sim2slsfs$coefficients[1]
