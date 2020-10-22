@@ -1,0 +1,45 @@
+---
+title: "MQE: Economic Inference from Data:  \nModule 4: Randomized Control Trials"
+author: "Claire Duquennois"
+date: "6/9/2020"
+output:
+  beamer_presentation: default
+  pdf_document: default
+  slidy_presentation: default
+---
+
+
+```{r setup, include=FALSE}
+library(MASS)
+library(lfe)
+library(stargazer)
+knitr::opts_chunk$set(echo = FALSE)
+knitr::opts_chunk$set(fig.width=9, fig.height=5)
+options(width=80)
+knitr::opts_chunk$set(echo = TRUE,out.width = 40, tidy=T, tidy.opts=list(width.cutoff=60))
+
+```
+
+
+```{r wrap-hook, echo=FALSE}
+library(knitr)
+hook_output = knit_hooks$get('output')
+knit_hooks$set(output = function(x, options) {
+  # this hook is used only when the linewidth option is not NULL
+  if (!is.null(n <- options$linewidth)) {
+    x = knitr:::split_lines(x)
+    # any lines wider than n should be wrapped
+    if (any(nchar(x) > n)) x = strwrap(x, width = n)
+    x = paste(x, collapse = '\n')
+  }
+  hook_output(x, options)
+})
+```
+
+
+
+## The Experimental Ideal:
+
+
+
+
