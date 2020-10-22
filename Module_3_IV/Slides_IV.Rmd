@@ -420,7 +420,6 @@ sim2slsss<-felm(Y~hatx_1,ivdat)
 
 ::: {.column width="30%" data-latex="{0.55\textwidth}"}
 
-\centering![]("images\badass-unicorn-emma-sondergaard.jpg")
 
 \small
 - Math Magic! $\hat{\beta}_{1,2SLS}$ consistently estimates $\beta_1$ and $\hat{\beta}_{1,2SLS}=\hat{\beta}_{1,IV}$!
@@ -461,9 +460,6 @@ stargazer(simiv3, sim2slsfs,  sim2slsrf,  type='latex', header=FALSE, omit.stat 
 ## The Reduced Form (and more cool IV intuition)
 
 
-:::::: {.columns}
-
-::: {.column width="70%" data-latex="{0.55\textwidth}"}
 
 We can recover $\hat{\beta}_1$ by taking the $\hat{\pi}_1$from the reduced form and dividing it by $\hat{\gamma}_1$ from the first stage:
 
@@ -475,22 +471,11 @@ $$
 
 - Why does this work?
 
-:::
 
-
-::: {.column width="30%" data-latex="{0.4\textwidth}"}
-
-\centering![]("images\images.jpg")
-
-:::
-::::::
 
 ## The Reduced Form (and more cool IV intuition)
 
 
-:::::: {.columns}
-
-::: {.column width="70%" data-latex="{0.55\textwidth}"}
 
 We can recover $\hat{\beta}_1$ by taking the $\hat{\pi}_1$from the reduced form and dividing it by $\hat{\gamma}_1$ from the first stage:
 
@@ -502,15 +487,7 @@ $$
 
 - Why does this work? We are taking the effect of $z$ on $y$ and scaling it by the effect of $z$ on $x_1$ (since $z$ affects $y$ via $x_1$).
 
-:::
 
-
-::: {.column width="30%" data-latex="{0.4\textwidth}"}
-
-\centering![]("images\images.jpg")
-
-:::
-::::::
 
 ## We saw the good. Now for the bad and ugly.
 
@@ -626,7 +603,7 @@ $\Rightarrow$ be very cautious about results when there is a weak first stage.
 
 What constitutes a "weak" instrument? 
 
-The standard benchmark is a first stage F-test that is less than 10. 
+The standard benchmark is a first stage F-test that is less than 10 (ie you want the F-stat to be large). 
 
 ## Dealing with Multiples
 

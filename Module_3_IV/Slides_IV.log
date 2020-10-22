@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 2.9.7300 64-bit) (preloaded format=pdflatex 2020.2.15)  21 OCT 2020 16:27
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 2.9.7300 64-bit) (preloaded format=pdflatex 2020.2.15)  22 OCT 2020 14:22
 entering extended mode
 **./Slides_IV.tex
 (Slides_IV.tex
@@ -1393,22 +1393,16 @@ Package hyperref Warning: Ignoring empty anchor on input line 29.
 \openout4 = `Slides_IV.vrb'.
 
 (Slides_IV.vrb
-<images/badass-unicorn-emma-sondergaard.jpg, id=234, 903.375pt x 889.3225pt>
-File: images/badass-unicorn-emma-sondergaard.jpg Graphic file (type jpg)
-<use images/badass-unicorn-emma-sondergaard.jpg>
-Package pdftex.def Info: images/badass-unicorn-emma-sondergaard.jpg  used on in
-put line 5.
-(pdftex.def)             Requested size: 92.1761pt x 90.74225pt.
 
-Package hyperref Warning: Ignoring empty anchor on input line 29.
+Package hyperref Warning: Ignoring empty anchor on input line 27.
 
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <9> on input line 63.
+(Font)              <9> on input line 61.
 LaTeX Font Info:    Font shape `T1/lmss/m/it' in size <9> not available
-(Font)              Font shape `T1/lmss/m/sl' tried instead on input line 63.
+(Font)              Font shape `T1/lmss/m/sl' tried instead on input line 61.
 ) [33
 
- <./images/badass-unicorn-emma-sondergaard.jpg>]
+]
 \openout4 = `Slides_IV.vrb'.
 
 (Slides_IV.vrb
@@ -1417,26 +1411,15 @@ Package hyperref Warning: Ignoring empty anchor on input line 20.
 
 ) [34
 
-]
-<images/images.jpg, id=251, 180.675pt x 281.05pt>
-File: images/images.jpg Graphic file (type jpg)
-<use images/images.jpg>
-Package pdftex.def Info: images/images.jpg  used on input line 953.
-(pdftex.def)             Requested size: 92.18713pt x 143.4022pt.
-[35
+] [35
 
- <./images/images.jpg>]
-File: images/images.jpg Graphic file (type jpg)
-<use images/images.jpg>
-Package pdftex.def Info: images/images.jpg  used on input line 980.
-(pdftex.def)             Requested size: 92.18713pt x 143.4022pt.
-[36
+] [36
 
 ]
-<images/download.jpg, id=264, 98.61844pt x 134.00063pt>
+<images/download.jpg, id=262, 98.61844pt x 134.00063pt>
 File: images/download.jpg Graphic file (type jpg)
 <use images/download.jpg>
-Package pdftex.def Info: images/download.jpg  used on input line 998.
+Package pdftex.def Info: images/download.jpg  used on input line 980.
 (pdftex.def)             Requested size: 98.61818pt x 134.00027pt.
 [37
 
@@ -1464,13 +1447,13 @@ Package hyperref Warning: Ignoring empty anchor on input line 21.
 \openout4 = `Slides_IV.vrb'.
 
 (Slides_IV.vrb
-<images/deaduni.jpg, id=302, 222.8325pt x 109.1578pt>
+<images/deaduni.jpg, id=300, 222.8325pt x 109.1578pt>
 File: images/deaduni.jpg Graphic file (type jpg)
 <use images/deaduni.jpg>
 Package pdftex.def Info: images/deaduni.jpg  used on input line 27.
 (pdftex.def)             Requested size: 222.83195pt x 109.15753pt.
 )
-Overfull \vbox (3.0306pt too high) detected at line 1165
+Overfull \vbox (3.0306pt too high) detected at line 1147
  []
 
 [43
@@ -1480,10 +1463,10 @@ Overfull \vbox (3.0306pt too high) detected at line 1165
 ] [45
 
 ]
-<images/real_sib_unicorn.jpg, id=322, 615.29875pt x 410.53375pt>
+<images/real_sib_unicorn.jpg, id=320, 615.29875pt x 410.53375pt>
 File: images/real_sib_unicorn.jpg Graphic file (type jpg)
 <use images/real_sib_unicorn.jpg>
-Package pdftex.def Info: images/real_sib_unicorn.jpg  used on input line 1206.
+Package pdftex.def Info: images/real_sib_unicorn.jpg  used on input line 1189.
 (pdftex.def)             Requested size: 307.29184pt x 205.02832pt.
 [46
 
@@ -1555,20 +1538,20 @@ Package hyperref Warning: Ignoring empty anchor on input line 14.
 \tf@snm=\write8
 \openout8 = `Slides_IV.snm'.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1748.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 1748.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1731.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 1731.
 (Slides_IV.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1748.
-Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 1748.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1731.
+Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 1731.
 
 LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 25675 strings out of 481565
- 470919 string characters out of 2913711
+ 25661 strings out of 481565
+ 470478 string characters out of 2913711
  722145 words of memory out of 3000000
- 40014 multiletter control sequences out of 15000+200000
+ 40002 multiletter control sequences out of 15000+200000
  617786 words of font info for 134 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  58i,12n,67p,799b,821s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -1599,9 +1582,9 @@ lic/lm/lmtt10.pfb><C:/Users/Claire/AppData/Local/Programs/MiKTeX 2.9/fonts/type
 1/public/lm/lmtt8.pfb><C:/Users/Claire/AppData/Local/Programs/MiKTeX 2.9/fonts/
 type1/public/lm/lmtti10.pfb><C:/Users/Claire/AppData/Local/Programs/MiKTeX 2.9/
 fonts/type1/public/amsfonts/symbols/msam10.pfb>
-Output written on Slides_IV.pdf (70 pages, 873841 bytes).
+Output written on Slides_IV.pdf (70 pages, 770300 bytes).
 PDF statistics:
- 596 PDF objects out of 1000 (max. 8388607)
+ 594 PDF objects out of 1000 (max. 8388607)
  210 named destinations out of 1000 (max. 500000)
- 18520 words of extra memory for PDF output out of 20736 (max. 10000000)
+ 18510 words of extra memory for PDF output out of 20736 (max. 10000000)
 
