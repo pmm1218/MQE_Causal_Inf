@@ -1,0 +1,314 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+  ignorenonframetext,
+]{beamer}
+\usepackage{pgfpages}
+\setbeamertemplate{caption}[numbered]
+\setbeamertemplate{caption label separator}{: }
+\setbeamercolor{caption name}{fg=normal text.fg}
+\beamertemplatenavigationsymbolsempty
+% Prevent slide breaks in the middle of a paragraph
+\widowpenalties 1 10000
+\raggedbottom
+\setbeamertemplate{part page}{
+  \centering
+  \begin{beamercolorbox}[sep=16pt,center]{part title}
+    \usebeamerfont{part title}\insertpart\par
+  \end{beamercolorbox}
+}
+\setbeamertemplate{section page}{
+  \centering
+  \begin{beamercolorbox}[sep=12pt,center]{part title}
+    \usebeamerfont{section title}\insertsection\par
+  \end{beamercolorbox}
+}
+\setbeamertemplate{subsection page}{
+  \centering
+  \begin{beamercolorbox}[sep=8pt,center]{part title}
+    \usebeamerfont{subsection title}\insertsubsection\par
+  \end{beamercolorbox}
+}
+\AtBeginPart{
+  \frame{\partpage}
+}
+\AtBeginSection{
+  \ifbibliography
+  \else
+    \frame{\sectionpage}
+  \fi
+}
+\AtBeginSubsection{
+  \frame{\subsectionpage}
+}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\hypersetup{
+  pdftitle={MQE: Economic Inference from Data: Module 4: Randomized Control Trials},
+  pdfauthor={Claire Duquennois},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
+\newif\ifbibliography
+\usepackage{longtable,booktabs}
+\usepackage{caption}
+% Make caption package work with longtable
+\makeatletter
+\def\fnum@table{\tablename~\thetable}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+
+\title{MQE: Economic Inference from Data:\\
+Module 4: Randomized Control Trials}
+\author{Claire Duquennois}
+\date{6/9/2020}
+
+\begin{document}
+\frame{\titlepage}
+
+\begin{frame}{Causal Inference with non-random assignment:}
+\protect\hypertarget{causal-inference-with-non-random-assignment}{}
+Randomizing treatment is not always possible:
+
+\begin{itemize}
+\item
+  the program or policy has already happened
+\item
+  randomization in unfeasible
+\item
+  randomizing treatment would be unethical (ex: randomizing exposure to
+  pollutants)
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Causal Inference with non-random assignment:}
+\protect\hypertarget{causal-inference-with-non-random-assignment-1}{}
+With no randomized control trial we have to assume that the treatment
+was not randomly assigned:
+
+\begin{itemize}
+\item
+  treatment will depend on observable and/or unobservable
+  characteristics
+\item
+  their are important differences between our treated and untreated
+  units that we cannot control for
+\item
+  Leaving these variables out in the error term will cause OVB.
+\end{itemize}
+
+Differences-in-differences is a way of getting around non-random
+assignment of a treatment.
+\end{frame}
+
+\begin{frame}{DID: Example and intuition\footnote<.->{This section is
+  borrowed from scunning.com}}
+\protect\hypertarget{did-example-and-intuition}{}
+2002: Craigslist opens a new section called ``erotic services'' in San
+Francisco:
+
+\begin{itemize}
+\item
+  mostly used by sex workers to advertise and solicit clients.
+\item
+  Sex workers claimed it made them safer, because they could solicit
+  indoors from their computers and learn more about the men contacting
+  them.
+\item
+  Activists and law enforcement worried that it was facilitating sex
+  trafficking and increasing violence against women.
+\end{itemize}
+
+Which was it? Was erotic services (ERS) making women safer, or was it
+placing them in harm's way?
+\end{frame}
+
+\begin{frame}{SOS Empiricist!}
+\protect\hypertarget{sos-empiricist}{}
+This is an empirical question: What is the effect of ERS on female
+safety?
+
+\begin{itemize}
+\item
+  The fundamental problem of causal inference strikes again!
+\item
+  We can't know what effect it had because we are missing the data for
+  the counterfactual:
+\end{itemize}
+
+\[
+E[\tau]=E[\underbrace{Y_{SF,2003}(D_{SF,2003}=1)}_\text{observed}]-E[\underbrace{Y_{SF,2003}(D_{SF,2003}=0)}_\text{unobserved}]
+\]
+
+In 2003 only the first occurs, and the second is a counterfactual. So
+how do we proceed?
+\end{frame}
+
+\begin{frame}{Diff-in-Diff to the rescue:}
+\protect\hypertarget{diff-in-diff-to-the-rescue}{}
+The standard differences-in-differences strategy (DiD):
+
+\begin{itemize}
+\item
+  Define the intervention, \(D\)= the availability of the Craigslist ERS
+  webpage.
+\item
+  We want to know the causal effect, \(\tau\) of \(D\) on \(Y\)= female
+  murders.
+\end{itemize}
+
+Can we just compare SF murders in, say, 2003 with some other city, like
+Pittsburgh?
+\end{frame}
+
+\begin{frame}{Differencing A:}
+\protect\hypertarget{differencing-a}{}
+\begin{longtable}[]{@{}ll@{}}
+\toprule
+\ldots.City\ldots. &
+\ldots\ldots\ldots..Outcome\ldots\ldots\ldots\ldots.\tabularnewline
+\midrule
+\endhead
+San Francisco & \(Y_{SF,2003}=\alpha_{SF}+\tau\)\tabularnewline
+Pittsburgh & \(Y_{P,2003}=\alpha_{P}\)\tabularnewline
+\bottomrule
+\end{longtable}
+
+\begin{itemize}
+\item
+  \(\alpha_{SF}\) is a San Francisco fixed effect
+\item
+  \(\alpha_P\) is a Pittsburgh fixed effect.
+\end{itemize}
+
+If make a simple comparison between Pittsburgh and SF:
+
+\[
+\tilde{\tau}=Y_{SF,2003}-Y_{P,2003}=\alpha_{SF}+\tau-\alpha_{P}.
+\]
+\end{frame}
+
+\begin{frame}{Differencing A:}
+\protect\hypertarget{differencing-a-1}{}
+The simple difference is biased because of the difference in the
+underlying murder rates between the two cities:
+
+\[
+\tilde{\tau}-\tau=\alpha_{SF}-\alpha_{P}. 
+\]
+\end{frame}
+
+\begin{frame}{Differencing B:}
+\protect\hypertarget{differencing-b}{}
+What if we compare SF to itself? Say in 2003 to 2001?
+
+\begin{longtable}[]{@{}ccc@{}}
+\toprule
+\ldots..City\ldots. & ..Time.. &
+\ldots\ldots\ldots.Outcome\ldots\ldots\ldots\ldots.\tabularnewline
+\midrule
+\endhead
+San Francisco & Before & \(Y_{SF,2001}=\alpha_{SF}\)\tabularnewline
+& After & \(Y_{SF,2003}=\alpha_{SF}+\lambda_{03}+\tau\)\tabularnewline
+\bottomrule
+\end{longtable}
+
+Again, this doesn't lead to an unbiased estimate of \(\tau\) since: \[
+\tilde{\tau}=\alpha_{SF}+\lambda_{03}+\tau-\alpha_{SF}=\lambda_{03}+\tau
+\]
+
+We eliminated the city fixed effect but not the changes in the murder
+rate over time which will bias my estimate: \[
+\tilde{\tau}-\tau=\lambda_{03}
+\] \textbf{How can I identify and control for these time effects?}
+\end{frame}
+
+\begin{frame}{Differencing A+B= Diff-in-Diff}
+\protect\hypertarget{differencing-ab-diff-in-diff}{}
+Combining the two approaches to eliminate both the city effects and the
+time effects:
+
+\begin{longtable}[]{@{}lllll@{}}
+\toprule
+\ldots City\ldots{} & ..Time.. & \ldots\ldots..Outcome\ldots\ldots.. &
+1st Diff & 2nd Diff\tabularnewline
+\midrule
+\endhead
+SF & Before & \(Y_{SF,2001}=\alpha_{SF}\) & &\tabularnewline
+& After & \(Y_{SF,2003}=\alpha_{SF}+\lambda_{03}+\tau\) &
+\(\lambda_{03}+\tau\) &\tabularnewline
+& & & & \(\tau\)\tabularnewline
+Pittsburgh & Before & \(Y_{P,2001}=\alpha_{P}\) & &\tabularnewline
+& After & \(Y_{P,2003}=\alpha_{P}+\lambda_{03}\) & \(\lambda_{03}\)
+&\tabularnewline
+\bottomrule
+\end{longtable}
+\end{frame}
+
+\begin{frame}{The idea}
+\protect\hypertarget{the-idea}{}
+Sometimes treatment and control group outcomes move in parallel in the
+absence of treatment.
+
+When they do, the divergence of a post-treatment path from the trend
+established by a comparison group may signal a treatment effect.
+\end{frame}
+
+\begin{frame}{The mechanics}
+\protect\hypertarget{the-mechanics}{}
+Difference-in-differences can be implemented as follows:
+
+\begin{enumerate}
+[1)]
+\tightlist
+\item
+  Compute the difference in the mean outcome variable \(Y\) in the post
+  treatment period \((t=1)\) and the before treatment period \((t=0)\)
+  for the control group \(C\):
+\end{enumerate}
+
+\[
+\bar{Y}_{C,1}-\bar{Y}_{C,0}=\Delta \bar{Y}_C
+\]
+
+\(\Rightarrow\) allows us to cancel out the control group fixed effect
+and identify the time fixed effect since \[
+\bar{Y}_{C,1}-\bar{Y}_{C,0}=\alpha_C+\lambda_1-\alpha_c=\lambda_1=\Delta \bar{Y}_C
+\]
+\end{frame}
+
+\end{document}

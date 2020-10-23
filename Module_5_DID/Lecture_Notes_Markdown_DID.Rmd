@@ -6,7 +6,6 @@ output:
   pdf_document:
     toc: true
     number_sections: true
-bibliography: notes_cited.bib
 ---
 
 ```{r setup,include=FALSE}
@@ -23,52 +22,52 @@ knitr::opts_chunk$set(tidy.opts=list(width.cutoff=80), tidy=TRUE)
 
 \section{Difference-in-Differences}
 
-Sometimes randomizing treatment by a program or policy is impossible because the intervention has already happened.  In other situations it may be that randomization my be infeasible. There are also many important questions where randomizing treatment would be unethical: the idea of randomizing exposure to pollutants for instance, is clearly problematic. 
+Sometimes randomizing treatment by a program or policy is impossible because the intervention has already happened.  In other situations it may be that randomization my be unfeasible. There are also many important questions where randomizing treatment would be unethical: the idea of randomizing exposure to pollutants for instance, is clearly problematic. 
 
 When we cannot implement a randomized control trial, and haven't been able to assign the treatment (or program, or policy, etc.) randomly ourselves, then we have to assume that the treatment was not randomly assigned: that it depends on either observable or unobservable characteristics of the people, firms, cities... under consideration. In this case their are important differences between our treated and untreated units that we cannot control for in a regression. Leaving these variables out in $u_i$ will cause OVB, which totally foils our attempts at estimating the causal effect. Differences-in-differences is a way of getting around non-random assignment of a treatment. 
 
 \subsection{Example and intuition}^[This section is borrowed from scunning.com]
 
-In 2002, Craigslist opened a new section on its front page called "erotic services" in San Francisco California. The section would end up being used by sex workers exclusively to advertise to and solicit clients. Sex workers claimed it made them safer, because instead of working on street corners and for pimps, they could solicit indoors from their computers, which as a bonus, also gave them the chance to learn more about the men contacting them. But activists and law enforcementworried that it was facilitating sex trafficing and increasing violence against women. Which was it? Was erotic services (ERS) making women safer, or was it placing them in harm's way? 
+In 2002, Craigslist opened a new section on its front page called "erotic services" in San Francisco California. The section would end up being used by sex workers exclusively to advertise to and solicit clients. Sex workers claimed it made them safer, because instead of working on street corners and for pimps, they could solicit indoors from their computers, which as a bonus, also gave them the chance to learn more about the men contacting them. But activists and law enforcement worried that it was facilitating sex trafficking and increasing violence against women. Which was it? Was erotic services (ERS) making women safer, or was it placing them in harm's way? 
 
-This is ultimately an empirical question. we want to know the effect of ERS on female safety, but the fundamental problem of causal inference says that we can't know what effect it had because we are missing the data necessary to make the calcylation. That is,
+This is ultimately an empirical question. We want to know the effect of ERS on female safety, but the fundamental problem of causal inference says that we can't know what effect it had because we are missing the data necessary to make the calculation. That is,
 
 $$
-E[\tau]=E[Y_{SF,2002}(D_{SF,2002}=1)]-E[Y_{SF,2002}(D_{SF,2002}=0)]
+E[\tau]=E[\underbrace{Y_{SF,2003}(D_{SF,2003}=1)}_\text{observed}]-E[\underbrace{Y_{SF,2003}(D_{SF,2003}=0)}_\text{unobserved}]
 $$
-where $Y_{SF,2002}(D_{SF,2002}=1)$ is women murdered in a world where San Francisco has ERS in 2003 and $Y_{SF,2002}(D_{SF,2002}=0)$ is women murdered in a world where San Francisco does not have ERS in 2002, \textit{at the exact same moment in time}. In 2002 only the first occure, and the second is a counterfactual. So how do we proceed?
+where $Y_{SF,2003}(D_{SF,2003}=1)$ is women murdered in a world where San Francisco has ERS in 2003 and $Y_{SF,2003}(D_{SF,2003}=0)$ is women murdered in a world where San Francisco does not have ERS in 2002, \textit{at the exact same moment in time}. In 2002 only the first occurs, and the second is a counterfactual. So how do we proceed?
 
 
-The standard way to evaluate interventions such as this is the standard differences-in-differences strategy (DiD). DiD is pasically a version of panel fixed effects, but can also be used with repeated cross-sections. Let's look at this example using some tables, which hopefully will help give you an idea of the intuition behind DiD, as well as some of it's identifying assumptions. Let's say the intervention, $D$, is the availability of the Craigslist erotic services webpage, and we want to know the causal effect of $D$ on $Y$, female murders. Couldn't we just compareSan Francisco murders in, say, 2003 with some other city, like Pittsburgh?
+The standard way to evaluate interventions such as this is the standard differences-in-differences strategy (DiD). DiD is basically a version of panel fixed effects, but can also be used with repeated cross-sections. Let's look at this example using some tables, which hopefully will help give you an idea of the intuition behind DiD, as well as some of it's identifying assumptions. Let's say the intervention, $D$, is the availability of the Craigslist erotic services webpage, and we want to know the causal effect, $\tau$ of $D$ on $Y$, female murders. Couldn't we just compare San Francisco murders in, say, 2003 with some other city, like Pittsburgh?
 
 
 |City         |Outcome                     |
 |-------------|----------------------------|
-|San Francisco|$Y_{SF,2003}=\alpha_{SF}+D$ |
+|San Francisco|$Y_{SF,2003}=\alpha_{SF}+\tau$ |
 |Pittsburgh   |$Y_{P,2003}=\alpha_{P}$     |
 
-where $\alpha_{SF}$ is an unobserved San Francisco fixed effect and $\alpha_P$is a Pittsburgh fixed effect. When we make a simple comparison between Pittsburgh and San Francisco, $Y_{SF,2003}-Y_{P,2003}=\alpha_{SF}+D-\alpha_{P}$ we get a causal effect that equals $D+\alpha_{SF}-\alpha_{P}$. Thus the simple difference is biased because of $\alpha_{SF}-\alpha_{P}$, the difference in the underlying murder rates between the two cities in a world where neither gets treated. So if our goal is to get an unbiased estimate of $D$, then the simple difference won't work. 
+where $\alpha_{SF}$ is an unobserved San Francisco fixed effect and $\alpha_P$is a Pittsburgh fixed effect. When we make a simple comparison between Pittsburgh and San Francisco, $Y_{SF,2003}-Y_{P,2003}=\alpha_{SF}+\tau-\alpha_{P}$ we get a causal effect that equals $\tilde{\tau}=\tau+\alpha_{SF}-\alpha_{P}$. Thus the simple difference is biased because of $\alpha_{SF}-\alpha_{P}$, the difference in the underlying murder rates between the two cities in a world where neither gets treated. So if our goal is to get an unbiased estimate of $\tau$, then the simple difference won't work. 
 
 But what if we compare San Francisco to itself? Say compare it in 2003 to two years earlier in 2001? Let's look at that simple before and after difference. 
 
 |City         |Time    |Outcome                                      |
 |-------------|--------|---------------------------------------------|
 |San Francisco|Before  |$Y_{SF,2001}=\alpha_{SF}$                    |
-|             |After   |$Y_{SF,2003}=\alpha_{SF}+\lambda_{03}+D$     |
+|             |After   |$Y_{SF,2003}=\alpha_{SF}+\lambda_{03}+\tau$     |
 
-Again, this doesn't lead to an unbiased estimate of $D$, even if it does eliminate the city fixed effect. That's because such differences can't control for, or net out, natural changes in the murder rate over time. I can't compare San Francisco before and after because to the time effects, $\lambda_{03}$ since $Y_{SF,2003}-Y_{SF,2001}=\alpha_{SF}+\lambda_{03}+D-\alpha_{SF}=\lambda_{03}+D$. However if I could identify and control for these time effects then I would be fine.
+Again, this doesn't lead to an unbiased estimate of $\tau$, even if it does eliminate the city fixed effect. That's because such differences can't control for, or net out, natural changes in the murder rate over time. I can't compare San Francisco before and after because to the time effects, $\lambda_{03}$ since $Y_{SF,2003}-Y_{SF,2001}=\alpha_{SF}+\lambda_{03}+\tau-\alpha_{SF}=\lambda_{03}+\tau$. However if I could identify and control for these time effects then I would be fine.
 
-This is the intuition fo the DiD strategy. I combine both these two simpler approaches, so that I can eliminate both the city effects and the time effects. Let's look at the following table.
+This is the intuition of the DiD strategy. I combine both these two simpler approaches, so that I can eliminate both the city effects and the time effects. Let's look at the following table.
 
 |City         |Time    |Outcome                                      | 1st Difference  |2nd Difference  |
 |-------------|--------|---------------------------------------------|-----------------|------------------|
 |San Francisco|Before  |$Y_{SF,2001}=\alpha_{SF}$                    |
-|             |After   |$Y_{SF,2003}=\alpha_{SF}+\lambda_{03}+D$     |$\lambda_{03}+D$ |                  |
-|             |        |                                             |                 |$D$               |
+|             |After   |$Y_{SF,2003}=\alpha_{SF}+\lambda_{03}+\tau$     |$\lambda_{03}+\tau$ |                  |
+|             |        |                                             |                 |$\tau$               |
 |Pittsburgh   |Before  |$Y_{P,2001}=\alpha_{P}$                      |                 |                  |
 |             |After   |$Y_{P,2003}=\alpha_{P}+\lambda_{03}$         | $\lambda_{03}$  |                  |
 
-The first difference does the simple before and after difference. This ultimately eliminates the unit specific fixed effects. Then, once those differences are made, we difference the differences (hence the name) to get the unbiased estimate of $D$. 
+The first difference does the simple before and after difference. This ultimately eliminates the unit specific fixed effects. Then, once those differences are made, we difference the differences (hence the name) to get the unbiased estimate of $\tau$. 
 
 \subsection{The mechanics}
 
@@ -103,7 +102,7 @@ $$
 $$
 (\bar{Y}_{T,1}-\bar{Y}_{T,0})-(\bar{Y}_{C,1}-\bar{Y}_{C,0})=(\Delta \bar{Y}_T-\Delta \bar{Y}_C)
 $$
-since by comparing the differences we can cancel ou the time fixed effect and isolate the treatment effect of interest:
+since by comparing the differences we can cancel out the time fixed effect and isolate the treatment effect of interest:
 
 
 $$
@@ -115,7 +114,7 @@ In a regression framework, we estimate the following,
 $$
 Y_{it}=\beta_0+\beta_1 Post_t+\beta_2 GetsTreat_i+\beta_3 Post_t\times GetsTreat_i+u_{it}
 $$
-where $Post_t$ is an indicatior for the post treatment period, and $GetsTreat_i$ is an indicator for observations in the treatment group that eventually gets treated. 
+where $Post_t$ is an indicator for the post treatment period, and $GetsTreat_i$ is an indicator for observations in the treatment group that eventually gets treated. 
 
 The regression framework has the benefit of providing us with standard errors so we can test for the significance of our estimators. We call $\beta_3$ the difference-in-differences estimator as it illustrates the differential impact of being in the post treatment period if you are in the treated group since, following the difference in mean procedure above, we have
 
@@ -129,7 +128,7 @@ $$
 
 \subsubsection{A simulation:}
 
-Suppose you are a principal of a school with ten 4th grade classrooms of 30 students each. At the begining of the 2001 school year, teachers were able to enroll their class in the scholastics book club, a new program that was not offered in prior years. 4 of your fourth grade teachers opted to enroll. You are interested in estimating the effect of participation in the book club on 4th grade 2001 reading scores. 
+Suppose you are a principal of a school with ten 4th grade classrooms of 30 students each. At the beginning of the 2001 school year, teachers were able to enroll their class in the scholastic book club, a new program that was not offered in prior years. 4 of your fourth grade teachers opted to enroll. You are interested in estimating the effect of participation in the book club on 4th grade 2001 reading scores. 
 
 
 ```{r did1, results="asis"}
@@ -194,7 +193,7 @@ stargazer(regnodid, regdid,regdidfe, type="latex")
 
 
 
-\subsection{Identifying Assmption:}
+\subsection{Identifying Assumption:}
 
 The key assumption for the validity of this method is the \textit{the difference between before and after in the comparison group is a good counterfactual for the treatment group.} In other words, the trend in outcomes of the comparison group is what we would have observed in the treatment group absent the treatment (which could be exposure to an event, policy, intervention...). 
 
@@ -211,16 +210,16 @@ The key assumption in a DID model is that absent treatment, the outcome of the t
 \subsection{Robustness}
 \subsubsection{Parallel Trends}
 
-The assumption that the treated group would have followed a trend that was parallel to that of the control group is actually a fairly big assumption in many circumstances. Indeed, policymakers for instance will often select into treatment or control based differences in the anticipated effects of treatment, or pre-existing differences in outcomes,  which basically implies that the parallel trends assumption does not hold. A classic example of this is the "Ashenfelter dip", named after Orley Ashenfelter, a labor economist at Princeton. Individuals who are "Treated" by job training programs are often individuals who just experienced a "dip" in earnings due to a job loss. When they get rehired their earnings increase substantially. If I compare their change in earnings to the change experiences by people who did not sign up for job training, I will see a large differential increae in earnings associated with program participation. It would be a mistake however to attribut this to the causal effect of the training as it is primairly due to who selects into training. Similarly, when policy makers  select individuals or locations to apply a new policy, they will likely select places or people who have the most to gain from the policy. This is a form of selection bias that violates parallel trends. 
+The assumption that the treated group would have followed a trend that was parallel to that of the control group is actually a fairly big assumption in many circumstances. Indeed, policymakers for instance will often select into treatment or control based differences in the anticipated effects of treatment, or pre-existing differences in outcomes,  which basically implies that the parallel trends assumption does not hold. A classic example of this is the "Ashenfelter dip", named after Orley Ashenfelter, a labor economist at Princeton. Individuals who are "Treated" by job training programs are often individuals who just experienced a "dip" in earnings due to a job loss. When they get rehired their earnings increase substantially. If I compare their change in earnings to the change experiences by people who did not sign up for job training, I will see a large differential increase in earnings associated with program participation. It would be a mistake however to attribute this to the causal effect of the training as it is primarily due to who selects into training. Similarly, when policy makers  select individuals or locations to apply a new policy, they will likely select places or people who have the most to gain from the policy. This is a form of selection bias that violates parallel trends. 
 
-How can we check to see if the parallel trends assumption is likely to hold? Empiricists faced with this untestable assumption typically choose to use deduction as a way to check this assumptions validity. We reason that if the pre-treatment trends were parallel between the two groups, then wouldn't it stand to reason that the post-treatment trends would have been too? Not that it is important to understand that just because the pre-treatment trend are parallel does not \textit{prove} that the post-treatmetn trends would have evolved in the same way. But given that we see that the pre-treatment trends evolved similarly, it does give some confidence that the post treatment trends would have too (absent some unobserved group specific time shock). 
+How can we check to see if the parallel trends assumption is likely to hold? Empiricists faced with this untestable assumption typically choose to use deduction as a way to check this assumptions validity. We reason that if the pre-treatment trends were parallel between the two groups, then wouldn't it stand to reason that the post-treatment trends would have been too? Not that it is important to understand that just because the pre-treatment trend are parallel does not \textit{prove} that the post-treatment trends would have evolved in the same way. But given that we see that the pre-treatment trends evolved similarly, it does give some confidence that the post treatment trends would have too (absent some unobserved group specific time shock). 
 
-Including leads into the DiD model is an easy way to check the pre-treatment trends. Lags can also be included to analyze whether the treatment effect changes over time after the treatment assignment too. This is done by estimating some form of the following specfication
+Including leads into the DiD model is an easy way to check the pre-treatment trends. Lags can also be included to analyze whether the treatment effect changes over time after the treatment assignment too. This is done by estimating some form of the following specification
 
 $$
 Y_{it}=\beta_0+\beta_2GetsTreat_i+\sum_{t=-n}^m\beta_{3t}Period_t \times GetsTreat_i+\lambda_t+u_{it}
 $$
-where tratment occurs right after period $t=0$. Thus if parallel trends hods, $E[\hat{\beta}_{3,t<1}]=0$ since there is no treatment in these time periods. Whereas the estimated coefficients $\hat{\beta}_{3,t>0}$ could be different from 0 depending on the treatment effect and it's lagged impacts. These results are typically best presented graphically in a graph that
+where treatment occurs right after period $t=0$. Thus if parallel trends hods, $E[\hat{\beta}_{3,t<1}]=0$ since there is no treatment in these time periods. Whereas the estimated coefficients $\hat{\beta}_{3,t>0}$ could be different from 0 depending on the treatment effect and it's lagged impacts. These results are typically best presented graphically in a graph that
 
 a)either plots the mean outcome for both the treatment and control for several periods before and after treatment, 
 
@@ -335,13 +334,13 @@ stargazer( regdidall2,regdidall3, type="latex",no.space=TRUE)
 
 \subsubsection{Falsification Tests: Alternative outcomes}
 
-Suppose you are still concerned that the parallel trends assumption is violated. In addition to the leads and lags check described above, you can also check and see if there is a pattern of parallel trends for an alternative outcome measure that sould not be affected by treatment. For the ERS example, you could estimate the same model with manslaughter or male murders as the outcome variable.  Though these variables would be affected by the underlying violent crime in the city, neither of these variables are predicted to be affected by ERS. We would anticipate a pattern of parallel trends with the control cities and no discontinuous change in San Francisco when ERS comes online. 
+Suppose you are still concerned that the parallel trends assumption is violated. In addition to the leads and lags check described above, you can also check and see if there is a pattern of parallel trends for an alternative outcome measure that should not be affected by treatment. For the ERS example, you could estimate the same model with manslaughter or male murders as the outcome variable.  Though these variables would be affected by the underlying violent crime in the city, neither of these variables are predicted to be affected by ERS. We would anticipate a pattern of parallel trends with the control cities and no discontinuous change in San Francisco when ERS comes online. 
 
 \subsubsection{Falsification Tests: Alternative controls and triple differences}
 
-A DiD research design can sometimes be made more compeling by adding another layer of differencing to the estimator, resulting in a triple-diffs estimator. For example, consider our simulated example estimating the effect of joining the scholastic book club on reading scores. Now suppose that a subset of students already had access to the book club through an after school program. In this cse, we can use the students in the after school program as an additional "control" group, since their performance should not change when the book club is introduced to the classrooms. 
+A DiD research design can sometimes be made more compelling by adding another layer of differencing to the estimator, resulting in a triple-diffs estimator. For example, consider our simulated example estimating the effect of joining the scholastic book club on reading scores. Now suppose that a subset of students already had access to the book club through an after school program. In this case, we can use the students in the after school program as an additional "control" group, since their performance should not change when the book club is introduced to the classrooms. 
 
-In practice, we would implement this with a triple ddifference estimator. Let $\bar{Y}_{a,g,t}$ represent the mean reading score of students in group $g$ (control of treatment classes), in year $t$, that participate ($a=AS$) or are not ($a=NAS$) in the after school progrm. The triple difference estimator is then
+In practice, we would implement this with a triple difference estimator. Let $\bar{Y}_{a,g,t}$ represent the mean reading score of students in group $g$ (control of treatment classes), in year $t$, that participate ($a=AS$) or are not ($a=NAS$) in the after school program. The triple difference estimator is then
 
 $$
 [(\bar{Y}_{T,1,AS}-\bar{Y}_{T,1,NAS})-(\bar{Y}_{T,0,NAS}-\bar{Y}_{T,0,NAS})]-[(\bar{Y}_{C,1, AS}-\bar{Y}_{C,1, NAS})-(\bar{Y}_{C,0,AS}-\bar{Y}_{C,0,NAS})]
@@ -351,7 +350,7 @@ In other words, we compare the evolution of the gap between the after school kid
 
 The advantage of this triple diff structure is that it allows us to relax some assumptions. We no longer need to assume that outcomes for treated and control would evolve similarly in expectation- we now only need to assume that, to the extent that outcomes evolve differently in treated and control classes, the difference affects participants and non-participants in the after school program similarly. 
 
-We can easily implement this triple diffs estimator within the regression framework. the key is to put in an indicator for every main effect or interaction up to, but not including, the level at which the treatmetn varies. Thus we include the main effects for time, class and after-school program participation as well as all possible two way interactions between each of these indicators. The regression looks like this:
+We can easily implement this triple diffs estimator within the regression framework. the key is to put in an indicator for every main effect or interaction up to, but not including, the level at which the treatment varies. Thus we include the main effects for time, class and after-school program participation as well as all possible two way interactions between each of these indicators. The regression looks like this:
 
 $$
 \begin{aligned}
@@ -360,9 +359,9 @@ Y_{i,a,g,t}=&\alpha_0+\alpha_1 GetT_{g}+\alpha_2 AS_{a}+\alpha_3 Post_{t}+\alpha
 \end{aligned}
 $$
 
-In this case, since it is only the studnets who are not in the after school program ($AS=0$) that get treated when the the treated classes ($GetT=1$) adopt the book club when $Post=1$, we would expect the treatment effect to manifest as $\alpha_4>0$ and $\alpha_4+\alpha_7=0$ since the after school kids experience no change in the post period.
+In this case, since it is only the students who are not in the after school program ($AS=0$) that get treated when the the treated classes ($GetT=1$) adopt the book club when $Post=1$, we would expect the treatment effect to manifest as $\alpha_4>0$ and $\alpha_4+\alpha_7=0$ since the after school kids experience no change in the post period.
 
-I simulate a new set of reading scores that based on a DGP that includes the after school program effects. I estimate a simple DID specification as well as a triple differnces specification.  
+I simulate a new set of reading scores that based on a DGP that includes the after school program effects. I estimate a simple DID specification as well as a triple differences specification.  
 
 
 ```{r tripdid, results="asis"}
@@ -431,21 +430,21 @@ stargazer( regdid3d,regdid3dinter,  type="latex")
 
 ```
 
-The first thing to notice is that the simple difference in difference specification now gives me an underestimate of the true treatment effect. This is because the coefficient will give me the average treatment effect on the treated classes in the post period. However now that we generated data where 50\% of students were already treated through the after school program and experience no change between t=0 and t=1, the average treatment effect is halved. This is not unlike how what we saw in the previous chapter where we looked at heterogeneity in treatment effects and saw that the average treatment effect can hide vast differences in treatment effects accross groups. In order to reveal these, we need to add additional interaction terms. When I estimate the triple difference specification, the full picture emerges. As predicted, $E[\hat{\alpha}_4]=\tau=10$, as modeled, and $E[\hat{\alpha}_7]=-\tau=-10$, since the treatment that starts in period 1 does not affect the after school participants. 
+The first thing to notice is that the simple difference in difference specification now gives me an underestimate of the true treatment effect. This is because the coefficient will give me the average treatment effect on the treated classes in the post period. However now that we generated data where 50\% of students were already treated through the after school program and experience no change between t=0 and t=1, the average treatment effect is halved. This is not unlike how what we saw in the previous chapter where we looked at heterogeneity in treatment effects and saw that the average treatment effect can hide vast differences in treatment effects across groups. In order to reveal these, we need to add additional interaction terms. When I estimate the triple difference specification, the full picture emerges. As predicted, $E[\hat{\alpha}_4]=\tau=10$, as modeled, and $E[\hat{\alpha}_7]=-\tau=-10$, since the treatment that starts in period 1 does not affect the after school participants. 
 
 This result can act as a good robustness test. We have just shown that the jump in test scores in 2001 is driven by students who just gained access to the book club. Students **in the same classes**, whose access to the book club did not change, did not experience this jump in scores. Their performance continues to parallel that of the control group. This is convincing because 
 
 1) it provides support for the parallel trends assumption and 
 
-2)it helps rule out that something elsed changed in the classes that select into treatment that could explain the shift in scores. 
+2)it helps rule out that something else changed in the classes that select into treatment that could explain the shift in scores. 
 
-\subsection{Generalized DID: Staggared events}
+\subsection{Generalized DID: Staggered events}
 
  ![...]("C:\Users\Claire\Dropbox\MQE_CI_Fall2020\Lecture Notes\PanelRollout.png")
 
 Sometimes there are natural experiments in which there is a "pure control" that never gets treated and can serve as a counterfactual to treatment. Other times we do not have a true control, but can use our DID model for another type of comparison if a treatment or reform is rolled out over a number of months/years across various treatment units. In these cases we can use the staggered nature of the roll out to identify the causal effect of the program. 
 
-In the figure above, unit 1 is treated at time 3, unit 2 at time 5, unit 3 at time 7, etc. The units that have not yet been treated at time $t$ serve as the control group for the units that are being treated at time $t$. The impact we are trying to capture is the change in the outcome (here the decline) measured on the verticle axis that seems to happen whenever a unit enters treatment.
+In the figure above, unit 1 is treated at time 3, unit 2 at time 5, unit 3 at time 7, etc. The units that have not yet been treated at time $t$ serve as the control group for the units that are being treated at time $t$. The impact we are trying to capture is the change in the outcome (here the decline) measured on the vertical axis that seems to happen whenever a unit enters treatment.
 
 In a regression framework, we would estimate the following,
 

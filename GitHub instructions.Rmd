@@ -380,9 +380,9 @@ To make sure a folder on your computer reflect the most recent changes made in a
 
       `> origin  https://github.com/YOUR_USERNAME/YOUR_FORK.git (push)`
       
-      `> upstream  https://github.com/YOUR_USERNAME/YOUR_FORK.git (fetch)`
+      `> upstream  https://github.com/ORIGINAL_OWNER/ORIGINAL_REPOSITORY.git (fetch)`
 
-      `> upstream  https://github.com/YOUR_USERNAME/YOUR_FORK.git (push)`
+      `> upstream  https://github.com/ORIGINAL_OWNER/ORIGINAL_REPOSITORY.git (push)`
       
 5. You can now `fetch` changes to that repo and have them reflected on your local machine with the command
 
@@ -392,11 +392,16 @@ To make sure a folder on your computer reflect the most recent changes made in a
 
     `$ git checkout master`
     
+    Note: you may need to replace the term `master` with `main` if you are a collaborator on the upstream repo. 
+    
 7. Merge the changes from upstream/master into your local master branch. This brings your fork's master branch into sync with the upstream repository, without losing your local changes.
 
     `$ git merge upstream/master`
     
-Note: Git may send you to a weird window asking you to write a commit message. You can escape this with `Shift+:` followed by Q. 
+    Notes: 
+      - Git may send you to a weird window asking you to write a commit message. You can escape this with `Shift+:` followed by Q.
+
+      - you may need to replace the term `master` with `main` if you are a collaborator on the upstream repo. 
 
 
 
