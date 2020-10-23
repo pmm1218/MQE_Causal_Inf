@@ -94,7 +94,7 @@ $$
 $$
 which allows us to cancel out the treated group fixed effect 
 $$
-\bar{Y}_{T,1}-\bar{Y}_{T,0}=\alpha_T+\lambda_1+D-\alpha_T=\lambda_1+D=\Delta \bar{Y}_T
+\bar{Y}_{T,1}-\bar{Y}_{T,0}=\alpha_T+\lambda_1+\tau-\alpha_T=\lambda_1+\tau=\Delta \bar{Y}_T
 $$
 
 3) Treatment impact is then measured by the difference-in-differences:
@@ -106,7 +106,7 @@ since by comparing the differences we can cancel out the time fixed effect and i
 
 
 $$
-\Delta \bar{Y}_T-\Delta \bar{Y}_C=\lambda_1+D-\lambda_1=D
+\Delta \bar{Y}_T-\Delta \bar{Y}_C=\lambda_1+\tau-\lambda_1=\tau
 $$
 
 In a regression framework, we estimate the following,

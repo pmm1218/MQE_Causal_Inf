@@ -177,8 +177,169 @@ $$
 
   $\Rightarrow$ allows us to cancel out the control group fixed effect and identify the time fixed effect since
 $$
-\bar{Y}_{C,1}-\bar{Y}_{C,0}=\alpha_C+\lambda_1-\alpha_c=\lambda_1=\Delta \bar{Y}_C
+\bar{Y}_{C,1}-\bar{Y}_{C,0}=\alpha_C+\lambda_1-\alpha_C=\lambda_1=\Delta \bar{Y}_C
+$$
+
+## The mechanics
+
+
+2) Compute the difference in the mean outcome variable $Y$ in the post treatment period $(t=1)$ and the before treatment period $(t=0)$ for the treated group $T$:
+
+$$
+\bar{Y}_{T,1}-\bar{Y}_{T,0}=\Delta \bar{Y}_T
+$$
+which allows us to cancel out the treated group fixed effect 
+$$
+\bar{Y}_{T,1}-\bar{Y}_{T,0}=\alpha_T+\lambda_1+\tau-\alpha_T=\lambda_1+\tau=\Delta \bar{Y}_T
+$$
+
+## The mechanics
+
+
+3) Treatment impact is then measured by the difference-in-differences:
+
+$$
+(\bar{Y}_{T,1}-\bar{Y}_{T,0})-(\bar{Y}_{C,1}-\bar{Y}_{C,0})=(\Delta \bar{Y}_T-\Delta \bar{Y}_C)
+$$
+since by comparing the differences we can cancel out the time fixed effect and isolate the treatment effect of interest:
+
+
+$$
+\Delta \bar{Y}_T-\Delta \bar{Y}_C=\lambda_1+\tau-\lambda_1=\tau
+$$
+
+## DID Regressions:
+
+This can be done in a regression framework:
+
+$$
+Y_{it}=\beta_0+\beta_1 Post_t+\beta_2 GetsTreat_i+\beta_3 Post_t\times GetsTreat_i+u_{it}
+$$
+
+- $Post_t$ is an indicator for the post treatment period, 
+
+- $GetsTreat_i$ is an indicator for observations in the treatment group that eventually gets treated. 
+
+## DID Regressions:
+
+$\beta_3$ is the difference-in-differences estimator: 
+
+- estimates the differential impact of being in the post treatment period if you are in the treated group since 
+
+
+\small
+$$
+\begin{aligned}
+E[Y_{C,1}]-E[Y_{C,0}]&=(\beta_0+\beta_1)-(\beta_0)=\beta_1\\
+E[Y_{T,1}]-E[Y_{T,0}]&=(\beta_0+\beta_1+\beta_2+\beta_3)-(\beta_0+\beta_2)=\beta_1+\beta_3\\
+\end{aligned}
+$$
+
+$$
+(E[Y_{T,1}]-E[Y_{T,0}])-(E[Y_{C,1}]-E[Y_{C,0}])=\beta_3
 $$
 
 
 
+## A simulation:
+
+Suppose you are a principal of a school:
+
+- ten 4th grade classrooms of 30 students each. 
+
+- Starting in 2001 school year, teachers can enroll their class in the scholastic book club
+
+- 4 of your fourth grade teachers opted to enroll.
+
+You are interested in estimating the effect of participation in the book club on 4th grade  reading scores. 
+
+
+## A simulation:
+\tiny
+```{r did1, results="asis"}
+
+set.seed(6000)
+scores<-as.data.frame(rep(c(1,2,3,4,5,6,7,8,9,10),times=30))
+names(scores)<-c("class")
+scores <- fastDummies::dummy_cols(scores, select_columns = "class")
+
+scores$error<-rnorm(300, mean=0, sd=10)
+
+#suppose teachers in the better performing classes (classes, 7,8,9,10) select to participate in the book club program
+scores$treat<-0
+scores$treat[scores$class%in%c(7,8,9,10)]<-1
+
+tau<-10
+
+#the data generating process
+scores$read4<-(85+tau*scores$treat
+               +(-10)*scores$class_1+(-15)*scores$class_2+(-5)*scores$class_3
+               +(-8)*scores$class_4+(-3)*scores$class_5+(3)*scores$class_6
+               +(5)*scores$class_7+(8)*scores$class_8+(10)*scores$class_9+(12)*scores$class_10
+               +scores$error)
+
+scores$year<-"2001"
+scores01<-scores
+rm(scores)
+```
+## A simulation:
+\tiny
+```{r did1a, results="asis"}
+
+scores<-as.data.frame(rep(c(1,2,3,4,5,6,7,8,9,10),times=30))
+names(scores)<-c("class")
+scores <- fastDummies::dummy_cols(scores, select_columns = "class")
+
+scores$error<-rnorm(300, mean=0, sd=10)
+
+scores$treat<-0
+scores$treat[scores$class%in%c(7,8,9,10)]<-1
+
+#the data generating process
+scores$read4<-(78
+               +(-10)*scores$class_1+(-15)*scores$class_2+(-5)*scores$class_3
+               +(-8)*scores$class_4+(-3)*scores$class_5+(3)*scores$class_6
+               +(5)*scores$class_7+(8)*scores$class_8+(10)*scores$class_9+(12)*scores$class_10
+               +scores$error)
+
+scores$year<-"2000"
+scores00<-scores
+rm(scores)
+
+scores<-rbind(scores01, scores00)
+```
+
+## A simulation:
+\tiny
+```{r did1b, results="asis"}
+
+regnodid<-felm(read4~treat,scores[scores$year=="2001",])
+
+scores$post<-0
+scores$post[scores$year=="2001"]<-1
+regdid<-felm(read4~post+treat+post*treat,scores)
+
+regdidfe<-felm(read4~post+treat+post*treat|class,scores)
+```
+
+## A simulation:
+\tiny
+```{r did1c, results="asis"}
+stargazer(regnodid, regdid,regdidfe, type="latex", header=FALSE, 
+          add.lines = list(c("Class FE", "No", "No", "Yes")), omit.stat = c("ser","rsq", "adj.rsq"))
+```
+
+
+## Identifying Assumption:
+
+Key assumption: 
+
+\textit{the difference between before and after in the comparison group is a good counterfactual for the treatment group.} 
+
+- the trend in outcomes of the comparison group is what we would have observed in the treatment group absent the treatment
+
+## Identifying Assumption:
+
+This assumption is best illustrated graphically. 
+
+ ![]("C:\Users\Claire\Dropbox\MQE_CI_Fall2020\Lecture Notes\DIDregression.png")
