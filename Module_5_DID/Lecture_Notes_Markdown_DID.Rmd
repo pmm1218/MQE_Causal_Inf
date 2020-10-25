@@ -147,7 +147,12 @@ scores$treat[scores$class%in%c(7,8,9,10)]<-1
 tau<-10
 
 #the data generating process
-scores$read4<-85+tau*scores$treat+(-10)*scores$class_1+(-15)*scores$class_2+(-5)*scores$class_3+(-8)*scores$class_4+(-3)*scores$class_5+(3)*scores$class_6+(5)*scores$class_7+(8)*scores$class_8+(10)*scores$class_9+(12)*scores$class_10+scores$error
+scores$read4<-(85+tau*scores$treat
+                +(-10)*scores$class_1+(-15)*scores$class_2+(-5)*scores$class_3
+               +(-8)*scores$class_4+(-7)*scores$class_5+(-13)*scores$class_6
+               +(11)*scores$class_7+(8)*scores$class_8+(10)*scores$class_9
+               +(12)*scores$class_10
+               +scores$error)
 
 scores$year<-"2001"
 
@@ -165,7 +170,12 @@ scores$treat<-0
 scores$treat[scores$class%in%c(7,8,9,10)]<-1
 
 #the data generating process
-scores$read4<-78+(-10)*scores$class_1+(-15)*scores$class_2+(-5)*scores$class_3+(-8)*scores$class_4+(-3)*scores$class_5+(3)*scores$class_6+(5)*scores$class_7+(8)*scores$class_8+(10)*scores$class_9+(12)*scores$class_10+scores$error
+scores$read4<-(78
+               +(-10)*scores$class_1+(-15)*scores$class_2+(-5)*scores$class_3
+               +(-8)*scores$class_4+(-7)*scores$class_5+(-13)*scores$class_6
+               +(11)*scores$class_7+(8)*scores$class_8+(10)*scores$class_9
+               +(12)*scores$class_10
+               +scores$error)
 
 scores$year<-"2000"
 
@@ -210,16 +220,16 @@ The key assumption in a DID model is that absent treatment, the outcome of the t
 \subsection{Robustness}
 \subsubsection{Parallel Trends}
 
-The assumption that the treated group would have followed a trend that was parallel to that of the control group is actually a fairly big assumption in many circumstances. Indeed, policymakers for instance will often select into treatment or control based differences in the anticipated effects of treatment, or pre-existing differences in outcomes,  which basically implies that the parallel trends assumption does not hold. A classic example of this is the "Ashenfelter dip", named after Orley Ashenfelter, a labor economist at Princeton. Individuals who are "Treated" by job training programs are often individuals who just experienced a "dip" in earnings due to a job loss. When they get rehired their earnings increase substantially. If I compare their change in earnings to the change experiences by people who did not sign up for job training, I will see a large differential increase in earnings associated with program participation. It would be a mistake however to attribute this to the causal effect of the training as it is primarily due to who selects into training. Similarly, when policy makers  select individuals or locations to apply a new policy, they will likely select places or people who have the most to gain from the policy. This is a form of selection bias that violates parallel trends. 
+The assumption that the treated group would have followed a trend that was parallel to that of the control group is actually a fairly big assumption in many circumstances. Indeed, policymakers for instance will often select into treatment or control based on differences in the anticipated effects of treatment, or pre-existing differences in outcomes,  which basically implies that the parallel trends assumption does not hold. A classic example of this is the "Ashenfelter dip", named after Orley Ashenfelter, a labor economist at Princeton. Individuals who are "Treated" by job training programs are often individuals who just experienced a "dip" in earnings due to a job loss. When they get rehired their earnings increase substantially. If I compare their change in earnings to the change experienced by people who did not sign up for job training, I will see a large differential increase in earnings associated with program participation. It would be a mistake however to attribute this to the causal effect of the training as it is primarily due to who selects into training. Similarly, when policy makers  select individuals or locations to apply a new policy, they will likely select places or people who have the most to gain from the policy. This is a form of selection bias that violates parallel trends. 
 
-How can we check to see if the parallel trends assumption is likely to hold? Empiricists faced with this untestable assumption typically choose to use deduction as a way to check this assumptions validity. We reason that if the pre-treatment trends were parallel between the two groups, then wouldn't it stand to reason that the post-treatment trends would have been too? Not that it is important to understand that just because the pre-treatment trend are parallel does not \textit{prove} that the post-treatment trends would have evolved in the same way. But given that we see that the pre-treatment trends evolved similarly, it does give some confidence that the post treatment trends would have too (absent some unobserved group specific time shock). 
+How can we check to see if the parallel trends assumption is likely to hold? Empiricists faced with this untestable assumption typically choose to use deduction as a way to check this assumptions validity. We reason that if the pre-treatment trends were parallel between the two groups, then wouldn't it stand to reason that the post-treatment trends would have been too? Note that it is important to understand that just because the pre-treatment trend are parallel does not \textit{prove} that the post-treatment trends would have evolved in the same way. But given that we see that the pre-treatment trends evolved similarly, it does give some confidence that the post treatment trends would have too (absent some unobserved group specific time shock). 
 
 Including leads into the DiD model is an easy way to check the pre-treatment trends. Lags can also be included to analyze whether the treatment effect changes over time after the treatment assignment too. This is done by estimating some form of the following specification
 
 $$
 Y_{it}=\beta_0+\beta_2GetsTreat_i+\sum_{t=-n}^m\beta_{3t}Period_t \times GetsTreat_i+\lambda_t+u_{it}
 $$
-where treatment occurs right after period $t=0$. Thus if parallel trends hods, $E[\hat{\beta}_{3,t<1}]=0$ since there is no treatment in these time periods. Whereas the estimated coefficients $\hat{\beta}_{3,t>0}$ could be different from 0 depending on the treatment effect and it's lagged impacts. These results are typically best presented graphically in a graph that
+where treatment occurs right after period $t=0$. Thus if parallel trends holds, $E[\hat{\beta}_{3,t<1}]=0$ since there is no treatment in these time periods. Whereas the estimated coefficients $\hat{\beta}_{3,t>0}$ could be different from 0 depending on the treatment effect and it's lagged impacts. These results are typically best presented graphically in a graph that
 
 a)either plots the mean outcome for both the treatment and control for several periods before and after treatment, 
 
@@ -242,18 +252,21 @@ tauyr<-c(0,0,0,0,0,0,10,10,10,10,10)
 yrfe<-c(72,77,75,79,81,79,83,77,82,84,81)
 
 for(i in 1:11){
-  
   name<-paste("scores", yr[i], sep="_")
   scores<-scoresbase
   scores$error<-rnorm(300, mean=0, sd=10)
   tau<-tauyr[i]
   yearfe<-yrfe[i]
   #the data generating process
-scores$read4<-yearfe+tau*scores$treat+(-10)*scores$class_1+(-15)*scores$class_2+(-5)*scores$class_3+(-8)*scores$class_4+(-3)*scores$class_5+(3)*scores$class_6+(5)*scores$class_7+(8)*scores$class_8+(10)*scores$class_9+(12)*scores$class_10+scores$error
+  scores$read4<-(yearfe+tau*scores$treat+scores$error
+                +(-10)*scores$class_1+(-15)*scores$class_2+(-5)*scores$class_3
+               +(-8)*scores$class_4+(-7)*scores$class_5+(-13)*scores$class_6
+               +(11)*scores$class_7+(8)*scores$class_8+(10)*scores$class_9
+               +(12)*scores$class_10)
 
-scores$year<-yr[i]
-assign(name, scores)
-rm(scores)
+  scores$year<-yr[i]
+  assign(name, scores)
+  rm(scores)
 }
 
 allscores<-rbind(scores_1995,scores_1996,scores_1997,scores_1998,scores_1999,
@@ -264,16 +277,13 @@ allscores$post[allscores$year%in%c(2001,2002,2003,2004,2005)]<-1
 
 allscores <- fastDummies::dummy_cols(allscores, select_columns = "year")
 
-
-
-#regdidall<-felm(read4~post+treat+post*treat,allscores)
-
-
-regdidall2<-felm(read4~treat+year_1995*treat+year_1996*treat+year_1997*treat+year_1998*treat+year_1999*treat+year_2001*treat+year_2002*treat+year_2003*treat+year_2004*treat+year_2005*treat,allscores)
-
+regdidall2<-felm(read4~treat
+                 +year_1995*treat+year_1996*treat+year_1997*treat+year_1998*treat
+                 +year_1999*treat+year_2001*treat+year_2002*treat+year_2003*treat
+                 +year_2004*treat+year_2005*treat,
+                 allscores)
 
 stargazer( regdidall2, type="latex",no.space=TRUE)
-
 
 ```
 
@@ -290,10 +300,10 @@ grp_mean<-allscores%>%
 grp_mean$treat<-as.factor(grp_mean$treat)
 
 #difference in means plot
-didmeans<-ggplot(grp_mean, aes(year, groupmean,group=treat, color = treat)) +
+didmeans<-ggplot(grp_mean, aes(year, groupmean, group=treat, color = treat)) +
     stat_summary(geom = 'line') +
     geom_vline(xintercept = 2000) +
-    theme_minimal()
+    theme( axis.text.x = element_blank())
 
 didmeans
 
@@ -313,12 +323,14 @@ res<-cbind(res,year)
 res$ci<-1.96*res$`Std. Error`
 
 names(res)<-c("Estimate","se", "t",  "p", "year", "ci")
+
 # Use 95% confidence interval instead of SEM
 didplot2<-ggplot(res, aes(x=year, y=Estimate)) + 
     geom_errorbar(aes(ymin=Estimate-ci, ymax=Estimate+ci),width=.1) +
     geom_vline(xintercept = 2000)+
-      geom_hline(yintercept = 0)+
-     geom_point()
+    geom_hline(yintercept = 0)+
+    geom_point()
+
 didplot2
 ```
  \subsubsection{A note on Inference}
@@ -326,7 +338,14 @@ didplot2
  In many DID setups, the variable of interest only varies at a "group" level (ex: at the state or class level) meaning that the outcome variables are often serially correlated. This means that conventional standard errors will often severely understate the standard deviation of the estimators and so standard errors are biased downward (i.e. incorrectly small) which can lead to inference errors. The most commonly applied solution to this is to cluster standard errors at the group level (more on clustering at the end of the semester). Clustering standard errors can be done in R using the felm function as illustrated below. 
  
 ```{r didinf, results="asis"} 
-regdidall3<-felm(read4~treat+year_1995*treat+year_1996*treat+year_1997*treat+year_1998*treat+year_1999*treat+year_2001*treat+year_2002*treat+year_2003*treat+year_2004*treat+year_2005*treat|0|0|class,allscores)
+regdidall3<-felm(read4~treat
+                 +year_1995*treat+year_1996*treat+year_1997*treat+year_1998*treat
+                 +year_1999*treat+year_2001*treat+year_2002*treat+year_2003*treat
+                 +year_2004*treat+year_2005*treat
+                 |0
+                 |0
+                 |class,
+                 allscores)
 
 stargazer( regdidall2,regdidall3, type="latex",no.space=TRUE)
 

@@ -12,6 +12,8 @@ output:
 library(MASS)
 library(lfe)
 library(stargazer)
+library(dplyr)
+library(ggplot2)
 knitr::opts_chunk$set(echo = FALSE)
 knitr::opts_chunk$set(fig.width=9, fig.height=5)
 options(width=80)
@@ -273,9 +275,10 @@ tau<-10
 
 #the data generating process
 scores$read4<-(85+tau*scores$treat
-               +(-10)*scores$class_1+(-15)*scores$class_2+(-5)*scores$class_3
-               +(-8)*scores$class_4+(-3)*scores$class_5+(3)*scores$class_6
-               +(5)*scores$class_7+(8)*scores$class_8+(10)*scores$class_9+(12)*scores$class_10
+                +(-10)*scores$class_1+(-15)*scores$class_2+(-5)*scores$class_3
+               +(-8)*scores$class_4+(-7)*scores$class_5+(-13)*scores$class_6
+               +(11)*scores$class_7+(8)*scores$class_8+(10)*scores$class_9
+               +(12)*scores$class_10
                +scores$error)
 
 scores$year<-"2001"
@@ -298,8 +301,9 @@ scores$treat[scores$class%in%c(7,8,9,10)]<-1
 #the data generating process
 scores$read4<-(78
                +(-10)*scores$class_1+(-15)*scores$class_2+(-5)*scores$class_3
-               +(-8)*scores$class_4+(-3)*scores$class_5+(3)*scores$class_6
-               +(5)*scores$class_7+(8)*scores$class_8+(10)*scores$class_9+(12)*scores$class_10
+               +(-8)*scores$class_4+(-7)*scores$class_5+(-13)*scores$class_6
+               +(11)*scores$class_7+(8)*scores$class_8+(10)*scores$class_9
+               +(12)*scores$class_10
                +scores$error)
 
 scores$year<-"2000"
@@ -338,8 +342,220 @@ Key assumption:
 
 - the trend in outcomes of the comparison group is what we would have observed in the treatment group absent the treatment
 
+## Identifying Assumption: Parallel Trends
+
+
+**Absent treatment, the outcome of the treated group would have followed a trend that was parallel to that of the control group**
+
+ ![Green: Never Treated, Red: Treated]("images\DIDregressionblank.png"){width=70%}
+
+## The Parallel Trends Assumption: 
+
+- We are treating the dashed green line as the counterfactual for the treated group
+
+- Any deviation from this counterfactual is attributed to the treatment effect
+
+- This assumption is straightforward but fundamentally **untestable**, because we will never actually observe this counterfactual of what would have happened to the treated group had they not been treated. 
+ 
+## DID visually:
+
+$$
+Y_{it}=\beta_0+\beta_1 Post_t+\beta_2 GetsTreat_i+\beta_3 Post_t\times GetsTreat_i+u_{it}
+$$
+Which number corresponds to which coefficient? $\Rightarrow$ Top Hat
+
+ ![Green: Never Treated, Red: Treated]("images\DIDregression.png"){width=70%}
+ 
 ## Identifying Assumption:
 
-This assumption is best illustrated graphically. 
+$$
+Y_{it}=\beta_0+\beta_1 Post_t+\beta_2 GetsTreat_i+\beta_3 Post_t\times GetsTreat_i+u_{it}
+$$
 
- ![]("C:\Users\Claire\Dropbox\MQE_CI_Fall2020\Lecture Notes\DIDregression.png")
+ ![Green: Never Treated, Red: Treated]("images\DIDregressionnum.png"){width=70%}
+ 
+ 
+ 
+## Problems with the Parallel Trends assumption
+
+The parallel trends assumption is a fairly big assumption in many circumstances: 
+
+- policymakers may select treatment and control based on differences in the anticipated effects of treatment, or pre-existing differences in outcomes
+
+In this case, the parallel trends assumption does not hold. 
+
+## Example: Ashenfelter dips
+
+Individuals who are "Treated" by job training programs are often individuals who just experienced a "dip" in earnings due to a job loss. When they get rehired their earnings increase substantially.
+
+- If I compare their change in earnings to the change experienced by people who did not sign up for job training, I will see a large differential increase in earnings associated with program participation. 
+
+- This is due to who selects into training, not the causal effect of training.
+
+## Verifying Parallel trends
+
+How can we check to see if the parallel trends assumption is likely to hold? 
+
+- Fundamentally untestable assumption 
+
+- use deduction to check this assumptions validity.
+
+$\Rightarrow$ if the pre-treatment trends were parallel between the two groups, then wouldn't it stand to reason that the post-treatment trends would have been too? 
+
+Note: parallel pre-treatment trends does not **\textit{prove}** that the assumption holds. But it does give some confidence that it does (absent some unobserved group specific time shock). 
+
+## Verifying Parallel trends
+
+Including leads into the DiD model is an easy way to check the pre-treatment trends. (Lags can also be included to see if treatment effect change over time). 
+
+Suppose treatment occurs right after period $t=0$, estimate 
+
+$$
+Y_{it}=\beta_0+\beta_2GetsTreat_i+\sum_{t=-n}^m\beta_{3t}Period_t \times GetsTreat_i+\lambda_t+u_{it}.
+$$
+
+
+
+If parallel trends holds:
+
+- $E[\hat{\beta}_{3,t<1}]=0$ since there is no treatment in these time periods.
+
+- If $\tau\neq0$, $E[\hat{\beta}_{3,t>0}]\neq0$.
+
+These results are typically best presented graphically. 
+
+## Graphing DID estimates
+
+Two main types of graphs
+
+- plots of the mean outcome for both the treatment and control for several periods before and after treatment, 
+
+- and/or a graph that plots the $\hat{\beta}_{3t}$ estimates from the specification above. 
+
+## Simulation: With leads and Lags
+\tiny
+```{r did2, results="asis"}
+
+set.seed(1999)
+scoresbase<-as.data.frame(rep(c(1,2,3,4,5,6,7,8,9,10),times=30))
+names(scoresbase)<-c("class")
+scoresbase <- fastDummies::dummy_cols(scoresbase, select_columns = "class")
+
+#suppose teachers in the better performing classes (classes, 7,8,9,10) select to participate in the book club program
+scoresbase$treat<-0
+scoresbase$treat[scoresbase$class%in%c(7,8,9,10)]<-1
+```
+
+
+## Simulation: With leads and Lags
+
+\tiny
+```{r did2a, results="asis"}
+yr<-c(1995,1996,1997,1998,1999,2000,2001,2002,2003,2004,2005)
+tauyr<-c(0,0,0,0,0,0,10,10,10,10,10)
+yrfe<-c(72,77,75,79,81,79,83,77,82,84,81)
+
+for(i in 1:11){
+  name<-paste("scores", yr[i], sep="_")
+  scores<-scoresbase
+  scores$error<-rnorm(300, mean=0, sd=10)
+  tau<-tauyr[i]
+  yearfe<-yrfe[i]
+  #the data generating process
+  scores$read4<-(yearfe+tau*scores$treat+scores$error
+               +(-10)*scores$class_1+(-15)*scores$class_2+(-5)*scores$class_3
+               +(-8)*scores$class_4+(-7)*scores$class_5+(-13)*scores$class_6
+               +(11)*scores$class_7+(8)*scores$class_8+(10)*scores$class_9
+               +(12)*scores$class_10)
+
+  scores$year<-yr[i]
+  assign(name, scores)
+  rm(scores)
+}
+
+allscores<-rbind(scores_1995,scores_1996,scores_1997,scores_1998,scores_1999,
+                 scores_2000,scores_2001,scores_2002,scores_2003,scores_2004,scores_2005)
+```
+
+## Simulation: With leads and Lags
+\tiny
+```{r did2b, results="asis"}
+
+allscores$post<-0
+allscores$post[allscores$year%in%c(2001,2002,2003,2004,2005)]<-1
+
+allscores <- fastDummies::dummy_cols(allscores, select_columns = "year")
+
+regdidall2<-felm(read4~treat
+                 +year_1995*treat+year_1996*treat+year_1997*treat+year_1998*treat
+                 +year_1999*treat+year_2001*treat+year_2002*treat+year_2003*treat
+                 +year_2004*treat+year_2005*treat,
+                 allscores)
+```
+
+## Simulation: With leads and Lags
+\tiny
+```{r did2bc, results="asis"}
+
+stargazer( regdidall2, type="latex",no.space=TRUE, header=FALSE, single.row=TRUE, omit.stat = "all")
+
+```
+
+## Simulation: With leads and Lags
+\tiny
+```{r didplot, results="asis"}
+
+#start with plot of group means
+
+#calculateing the mean score for each year by treatment status
+grp_mean<-allscores%>%
+    group_by(year,treat)%>%
+    dplyr::summarize(groupmean = mean(read4, na.rm=TRUE))
+
+grp_mean$treat<-as.factor(grp_mean$treat)
+
+#difference in means plot
+didmeans<-ggplot(grp_mean, aes(year, groupmean, group=treat, color = treat)) +
+    stat_summary(geom = 'line') +
+    geom_vline(xintercept = 2000) +
+    theme_minimal()
+
+
+```
+
+## Simulation: With leads and Lags
+ ![]("Slides_DID_files\figure-beamer\didplot-1.pdf"){width=70%}
+
+
+## Simulation: With leads and Lags
+\tiny
+```{r didplotb, results="asis"}
+#plot of differences coefficients
+
+res<-coef(summary(regdidall2))
+res<-as.data.frame(res)
+
+res<-res[13:22,]
+
+a<-c(0,0,0,0)
+
+res<-rbind(res,a)
+
+year<-c(1995,1996,1997,1998,1999,2001,2002,2003,2004,2005,2000)
+res<-cbind(res,year)
+res$ci<-1.96*res$`Std. Error`
+
+names(res)<-c("Estimate","se", "t",  "p", "year", "ci")
+# Use 95% confidence interval instead of SEM
+didplot2<-ggplot(res, aes(x=year, y=Estimate)) + 
+    geom_errorbar(aes(ymin=Estimate-ci, ymax=Estimate+ci),width=.1) +
+    geom_vline(xintercept = 2000)+
+      geom_hline(yintercept = 0)+
+     geom_point()
+
+
+```
+
+## Simulation: With leads and Lags
+
+ ![]("Slides_DID_files\figure-beamer\didplotb-1.pdf"){width=70%}
