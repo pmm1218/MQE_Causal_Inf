@@ -432,29 +432,33 @@ Two main types of graphs
 
 - and/or a graph that plots the $\hat{\beta}_{3t}$ estimates from the specification above. 
 
-## Simulation: With leads and Lags
+## Simulation: With leads and lags
 \tiny
 ```{r did2, results="asis"}
-
+#simulating the data
 set.seed(1999)
 scoresbase<-as.data.frame(rep(c(1,2,3,4,5,6,7,8,9,10),times=30))
 names(scoresbase)<-c("class")
 scoresbase <- fastDummies::dummy_cols(scoresbase, select_columns = "class")
 
-#suppose teachers in the better performing classes (classes, 7,8,9,10) select to participate in the book club program
+#suppose the better teachers (classes, 7,8,9,10)
+#select to participate in the book club program
 scoresbase$treat<-0
 scoresbase$treat[scoresbase$class%in%c(7,8,9,10)]<-1
 ```
 
 
-## Simulation: With leads and Lags
+## Simulation: With leads and lags
 
 \tiny
 ```{r did2a, results="asis"}
+
+#Gnerating simulated data for each year using a for loop
 yr<-c(1995,1996,1997,1998,1999,2000,2001,2002,2003,2004,2005)
 tauyr<-c(0,0,0,0,0,0,10,10,10,10,10)
 yrfe<-c(72,77,75,79,81,79,83,77,82,84,81)
 
+#loop to generate the data
 for(i in 1:11){
   name<-paste("scores", yr[i], sep="_")
   scores<-scoresbase
@@ -477,7 +481,7 @@ allscores<-rbind(scores_1995,scores_1996,scores_1997,scores_1998,scores_1999,
                  scores_2000,scores_2001,scores_2002,scores_2003,scores_2004,scores_2005)
 ```
 
-## Simulation: With leads and Lags
+## Simulation: With leads and lags
 \tiny
 ```{r did2b, results="asis"}
 
@@ -493,7 +497,7 @@ regdidall2<-felm(read4~treat
                  allscores)
 ```
 
-## Simulation: With leads and Lags
+## Simulation: With leads and lags
 \tiny
 ```{r did2bc, results="asis"}
 
@@ -501,7 +505,7 @@ stargazer( regdidall2, type="latex",no.space=TRUE, header=FALSE, single.row=TRUE
 
 ```
 
-## Simulation: With leads and Lags
+## Simulation: With leads and lags
 \tiny
 ```{r didplot, results="asis"}
 
@@ -523,11 +527,11 @@ didmeans<-ggplot(grp_mean, aes(year, groupmean, group=treat, color = treat)) +
 
 ```
 
-## Simulation: With leads and Lags
- ![]("Slides_DID_files\figure-beamer\didplot-1.pdf"){width=70%}
+## Simulation: With leads and lags
+ ![]("Slides_DID_files\figure-beamer\didplot-1.pdf")
 
 
-## Simulation: With leads and Lags
+## Simulation: With leads and lags
 \tiny
 ```{r didplotb, results="asis"}
 #plot of differences coefficients
@@ -558,4 +562,328 @@ didplot2<-ggplot(res, aes(x=year, y=Estimate)) +
 
 ## Simulation: With leads and Lags
 
- ![]("Slides_DID_files\figure-beamer\didplotb-1.pdf"){width=70%}
+ ![]("Slides_DID_files\figure-beamer\didplotb-1.pdf")
+ 
+## A note on Inference: Clustering
+ 
+What if the variable of interest only varies at a "group" level 
+
+- ex: at the state or class level
+
+- $\Rightarrow$ observations are related with each other within certain groups
+
+- There is less variation then we actually think
+
+Conventional standard errors will often severely understate the standard deviation of the estimators and lead to inference errors. 
+
+Solution: cluster standard errors at the group level.
+
+## A note on Inference: Clustering
+
+Clustering standard errors can be done in R using the felm function: 
+ \tiny
+```{r didinf, results="asis"} 
+regdidall3<-felm(read4~treat
+                 +year_1995*treat+year_1996*treat+year_1997*treat+year_1998*treat
+                 +year_1999*treat+year_2001*treat+year_2002*treat+year_2003*treat
+                 +year_2004*treat+year_2005*treat
+                 |0
+                 |0
+                 |class,
+                 allscores)
+
+```
+
+## A note on Inference: Clustering
+
+\tiny
+```{r didinf2, results="asis"} 
+
+stargazer( regdidall2,regdidall3, type="latex",no.space=TRUE, single.row=TRUE, omit.stat = "all", header=FALSE)
+
+```
+
+
+
+
+## Falsification Tests: Alternative outcomes
+
+In addition to checking for parallel pre-trends, you can also check and see if there is a pattern of parallel trends for an alternative outcome measure that should not be affected by treatment. 
+ 
+For the ERS example, 
+
+- estimate the same model with manslaughter or male murders as the outcome variable. 
+
+- these variables would be affected by the underlying violent crime in the city, but should be unaffected by ERS. 
+
+
+
+## Falsification Tests: Triple differences
+
+Adding another layer of differencing to the estimator (a triple-diff estimator) can make DID results more compelling.
+
+In our simulated example:
+
+- Suppose a subset of students already had access to the book club through an after school program.
+
+- We can use the students in the after school program as an additional "control" group, since their performance should not change when the book club is introduced to the classrooms. 
+
+## Falsification Tests: Triple differences
+
+Let $\bar{Y}_{a,g,t}$ represent the mean reading score of students
+
+- in group $g$ (control or treatment classes)
+
+- in year $t$
+
+- that are ($a=AS$) or are not ($a=NAS$) in the after school program.
+
+The triple difference estimator is then
+\footnotesize
+$$
+[(\bar{Y}_{T,1,AS}-\bar{Y}_{T,1,NAS})-(\bar{Y}_{T,0,AS}-\bar{Y}_{T,0,NAS})]-[(\bar{Y}_{C,1, AS}-\bar{Y}_{C,1, NAS})-(\bar{Y}_{C,0,AS}-\bar{Y}_{C,0,NAS})]
+$$
+\normalsize
+$\Rightarrow$ we compare the evolution of the gap between the after school kids and the others in the treated classrooms to the evolution of the gap between after school kids and the others in the control classrooms.
+
+## Falsification Tests: Triple differences
+
+Triple difference estimation allows us to relax some assumptions:
+
+- We no longer need to assume that outcomes for treated and control would evolve similarly in expectation-
+
+- we now only need to assume that, to the extent that outcomes evolve differently in treated and control classes, the difference affects participants and non-participants in the after school program similarly. 
+
+##  Triple differences
+
+Triple diff regressions: Lots of interation terms!
+
+- Put in an indicator for every main effect and interaction up to, but not including, the level at which the treatment varies.
+
+- We include the main effects for time, class and after-school program participation as well as all possible two way interactions between each of these indicators. 
+
+The regression looks like this:
+
+$$
+\begin{aligned}
+Y_{i,a,g,t}=&\alpha_0+\alpha_1 GetT_{g}+\alpha_2 AS_{a}+\alpha_3 Post_{t}\\
+&+\alpha_4 (GetT \times Post)_{gt}+\alpha_5 (GetT \times AS)_{ga}+\alpha_6 (Post \times AS)_{ta}\\
+&+\alpha_7 (GetT \times Post \times AS)_{agt}+u_{igta}
+\end{aligned}
+$$
+
+##  Triple differences
+
+Where will we see the treatment effect?
+
+- Students who are not in the after school program ($AS=0$) 
+
+- When the the treated classes ($GetT=1$) adopt the book club
+
+- When treatment is implemented$Post=1$, 
+
+
+$\Rightarrow$ we would expect the treatment effect to manifest as:
+
+- $\alpha_4>0$ 
+
+- $\alpha_4+\alpha_7=0$ (since the after school kids experience no change in the post period).
+
+##  Triple differences: Simulation
+
+I simulate a new set of reading scores that based on a DGP that includes the after school program effects.
+
+
+\tiny
+```{r tripdid, results="asis"}
+
+set.seed(123456)
+scores<-as.data.frame(rep(c(1,2,3,4,5,6,7,8,9,10),times=30))
+names(scores)<-c("class")
+scores <- fastDummies::dummy_cols(scores, select_columns = "class")
+
+scores$error<-rnorm(300, mean=0, sd=10)
+
+#a random indicator for participation in the afterschool program
+scores$aftsch<-rbinom(300,1,0.5)
+
+#suppose the best teachers (classes, 7,8,9,10) 
+#select into participating in the book club program
+scores$treat<-0
+scores$treat[scores$class%in%c(7,8,9,10)]<-1
+
+#creating an indicator for students who are become treated
+#and are not in the after school program
+scores$treatnotaftsch<-0
+scores$treatnotaftsch[scores$treat==1 & scores$aftsch==0]<-1
+
+#the treatment effect
+tau<-10
+
+#the data generating process
+scores$read4<-(85+13*scores$aftsch+tau*scores$treatnotaftsch+scores$error
+               +(-10)*scores$class_1+(-15)*scores$class_2+(-5)*scores$class_3
+               +(-8)*scores$class_4+(-3)*scores$class_5+(3)*scores$class_6
+               +(5)*scores$class_7+(8)*scores$class_8+(10)*scores$class_9+(12)*scores$class_10)
+
+scores$year<-"2001"
+
+scores01<-scores
+rm(scores)
+```
+
+##  Triple differences: Simulation
+
+\tiny
+```{r tripdida, results="asis"}
+
+scores<-as.data.frame(rep(c(1,2,3,4,5,6,7,8,9,10),times=30))
+names(scores)<-c("class")
+scores <- fastDummies::dummy_cols(scores, select_columns = "class")
+
+scores$error<-rnorm(300, mean=0, sd=10)
+
+#a random indicator for participation in the afterschool program
+scores$aftsch<-rbinom(300,1,0.5)
+
+#suppose the best teachers (classes, 7,8,9,10) 
+#select into participating in the book club program
+scores$treat<-0
+scores$treat[scores$class%in%c(7,8,9,10)]<-1
+
+#creating an indicator for students who are become treated
+#and are not in the after school program
+scores$treatnotaftsch<-0
+scores$treatnotaftsch[scores$treat==1 & scores$aftsch==0]<-1
+
+#the data generating process
+scores$read4<-(78+18*scores$aftsch+scores$error
+               +(-10)*scores$class_1+(-15)*scores$class_2+(-5)*scores$class_3
+               +(-8)*scores$class_4+(-3)*scores$class_5+(3)*scores$class_6
+               +(5)*scores$class_7+(8)*scores$class_8+(10)*scores$class_9
+               +(12)*scores$class_10)
+
+scores$year<-"2000"
+
+scores00<-scores
+rm(scores)
+
+scores<-rbind(scores01, scores00)
+```
+
+##  Triple differences: Simulation
+
+\tiny
+```{r tripdidb, results="asis"}
+
+scores$post<-0
+scores$post[scores$year=="2001"]<-1
+
+regdid3d<-felm(read4~post+treat+post*treat|0|0|class,scores)
+
+regdid3dinter<-felm(read4~post+treat+aftsch
+                    +post*treat+treat*aftsch+post*aftsch
+                    +post*aftsch*treat
+                    |0|0|class,
+                    scores)
+
+```
+
+##  Triple differences: Simulation
+
+\tiny
+```{r tripdidc, results="asis"}
+
+stargazer( regdid3d,regdid3dinter, type="latex",no.space=TRUE,  omit.stat = "all", header=FALSE)
+
+```
+
+##  Triple differences: Simulation
+
+
+The simple DID specification underestimates of the true treatment effect.**Why?**
+
+- the coefficient gives the **ATE** on the treated classes in the post period. Since 50\% of students were already treated through the after school program the ATE is halved. 
+
+- Recall: the average treatment effect can hide vast differences in treatment effects across groups. 
+
+- To reveal these, we need to add additional interaction terms. 
+
+With the triple difference specification:
+
+- $E[\hat{\alpha}_4]=\tau=10$, 
+
+- and $E[\hat{\alpha}_7]=-\tau=-10$ (since the "new" treatment does not affect the after school participants). 
+
+##  Triple differences: As Robustness test
+
+The triple difference shows that the jump in test scores in 2001 is driven by students who just gained access to the book club. 
+
+Students **in the same classes**, whose access to the book club did not change, did not experience this jump in scores. 
+
+Their performance continues to parallel that of the control group. 
+
+This is convincing because 
+
+- it provides support for the parallel trends assumption and 
+
+- it helps rule out that something else changed in the classes that select into treatment that could explain the shift in scores. 
+
+
+ 
+## Generalized DID: Staggered events
+
+Sometimes we have a "pure control" that never gets treated and can serve as a counterfactual to treatment. 
+
+Other times we do not have a true control, but a treatment is rolled out over a number of months/years across various treatment units. 
+
+Researchers have used the staggered nature of the roll out to identify the causal effects. 
+
+
+## Generalized DID: Staggered events
+
+ ![Staggered roll out]("C:\Users\Claire\Dropbox\MQE_CI_Fall2020\Lecture Notes\PanelRollout.png"){width=70%}
+
+Unit 1 is treated at time 3, unit 2 at time 5, unit 3 at time 7, etc.
+
+Untreated units at time $t$ serve as the control group for the units that are being treated at time $t$. 
+
+## Generalized DID: Staggered events
+
+In a regression framework, we would estimate a two-way FE DID, 
+
+$$
+y_{it}=\beta_0+\beta D_{it}+\gamma_i+\phi_t+u_{it}
+$$
+
+The key assumption:
+
+- changes in the control group are a good counterfactual for the change in the treatment group
+
+- test these assumptions are very similar to the methods we have already discussed.
+
+The main difference:
+
+- treatment does not happen at a fixed point in time. 
+
+- often need to generate a new set of "relative to event time" indicators that are centered around the treatment time of a particular unit. 
+
+## Staggered events: WARNING
+
+Our understanding of staggered event DID estimations is evolving.
+
+Several recent new papers reassessing these estimation strategies:  
+
+- Goodman-Bacon (2018, 2019): 
+    - This "general" DD estimator is a weighted average of all possible two-group/two-period DD estimators in the data:  treated units act as both controls and treatment depending on the situation
+    
+    - How the weighting is done is not clearly theoretically justified 
+
+    - Estimates are potentially biased when effects change over time.
+    
+Exercise caution when using this type of approach as our understanding of these estimators, and how to correct for their problems is rapidly evolving. 
+
+
+
+
+

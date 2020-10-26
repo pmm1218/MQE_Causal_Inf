@@ -269,7 +269,7 @@ Balance tests are often run on many variables:
 
 - if many are significantly different, this is a red flag that the key assumption does not hold 
 
-- There are corrections that can be implemented if the unbalanced variables are of particular concern (look up Bonferroni correction)   
+- If an unbalanced variable is of particular concern you may want to control for it and/or keep it in mind in your interpretation of results  
 
 ## RCT Simulation
 
@@ -464,6 +464,11 @@ If we include more x's in our regression,
 
 - $\Rightarrow \hat{\beta}$ can be estimated more precisely. 
 
+## Heterogeneity
+
+Suppose you are interested in heterogenous effects on Y of treatment D based on characteristic X. Write the estimating equation you should use (you can use B nistead of $\Beta$)
+
+$\Rightarrow$ Top Hat
 
 ## Heterogeneity
 

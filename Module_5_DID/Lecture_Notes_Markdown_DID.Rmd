@@ -362,7 +362,7 @@ A DiD research design can sometimes be made more compelling by adding another la
 In practice, we would implement this with a triple difference estimator. Let $\bar{Y}_{a,g,t}$ represent the mean reading score of students in group $g$ (control of treatment classes), in year $t$, that participate ($a=AS$) or are not ($a=NAS$) in the after school program. The triple difference estimator is then
 
 $$
-[(\bar{Y}_{T,1,AS}-\bar{Y}_{T,1,NAS})-(\bar{Y}_{T,0,NAS}-\bar{Y}_{T,0,NAS})]-[(\bar{Y}_{C,1, AS}-\bar{Y}_{C,1, NAS})-(\bar{Y}_{C,0,AS}-\bar{Y}_{C,0,NAS})]
+[(\bar{Y}_{T,1,AS}-\bar{Y}_{T,1,NAS})-(\bar{Y}_{T,0,AS}-\bar{Y}_{T,0,NAS})]-[(\bar{Y}_{C,1, AS}-\bar{Y}_{C,1, NAS})-(\bar{Y}_{C,0,AS}-\bar{Y}_{C,0,NAS})]
 $$
 
 In other words, we compare the evolution of the gap between the after school kids and the others in the treated classrooms to the evolution of the gap between after school kids and the others in the control classrooms.
@@ -385,13 +385,13 @@ I simulate a new set of reading scores that based on a DGP that includes the aft
 
 ```{r tripdid, results="asis"}
 
-set.seed(8000)
+set.seed(123456)
 scores<-as.data.frame(rep(c(1,2,3,4,5,6,7,8,9,10),times=30))
 names(scores)<-c("class")
 scores <- fastDummies::dummy_cols(scores, select_columns = "class")
 
 scores$error<-rnorm(300, mean=0, sd=10)
-scores$aftsch<-rbinom(300,1,0.4)
+scores$aftsch<-rbinom(300,1,0.5)
 #suppose teachers in the better performing classes (classes, 7,8,9,10) select to participate in the book club program
 scores$treat<-0
 scores$treat[scores$class%in%c(7,8,9,10)]<-1
@@ -402,7 +402,11 @@ scores$treatnotaftsch[scores$treat==1 & scores$aftsch==0]<-1
 tau<-10
 
 #the data generating process
-scores$read4<-85+13*scores$aftsch+tau*scores$treatnotaftsch+(-10)*scores$class_1+(-15)*scores$class_2+(-5)*scores$class_3+(-8)*scores$class_4+(-3)*scores$class_5+(3)*scores$class_6+(5)*scores$class_7+(8)*scores$class_8+(10)*scores$class_9+(12)*scores$class_10+scores$error
+scores$read4<-(85+13*scores$aftsch+tau*scores$treatnotaftsch+scores$error
+               +(-10)*scores$class_1+(-15)*scores$class_2+(-5)*scores$class_3
+               +(-8)*scores$class_4+(-3)*scores$class_5+(3)*scores$class_6
+               +(5)*scores$class_7+(8)*scores$class_8+(10)*scores$class_9
+               +(12)*scores$class_10)
 
 scores$year<-"2001"
 
@@ -424,7 +428,11 @@ scores$treatnotaftsch<-0
 scores$treatnotaftsch[scores$treat==1 & scores$aftsch==0]<-1
 
 #the data generating process
-scores$read4<-78+18*scores$aftsch+(-10)*scores$class_1+(-15)*scores$class_2+(-5)*scores$class_3+(-8)*scores$class_4+(-3)*scores$class_5+(3)*scores$class_6+(5)*scores$class_7+(8)*scores$class_8+(10)*scores$class_9+(12)*scores$class_10+scores$error
+scores$read4<-(78+18*scores$aftsch+scores$error
+               +(-10)*scores$class_1+(-15)*scores$class_2+(-5)*scores$class_3
+               +(-8)*scores$class_4+(-3)*scores$class_5+(3)*scores$class_6
+               +(5)*scores$class_7+(8)*scores$class_8+(10)*scores$class_9
+               +(12)*scores$class_10)
 
 scores$year<-"2000"
 
@@ -436,11 +444,11 @@ scores<-rbind(scores01, scores00)
 
 scores$post<-0
 scores$post[scores$year=="2001"]<-1
-regdid3d<-felm(read4~post+treat+post*treat,scores)
+regdid3d<-felm(read4~post+treat+post*treat|0|0|class,scores)
 
 
 
-regdid3dinter<-felm(read4~post+treat+aftsch+post*treat+treat*aftsch+post*aftsch+post*aftsch*treat,scores)
+regdid3dinter<-felm(read4~post+treat+aftsch+post*treat+treat*aftsch+post*aftsch+post*aftsch*treat|0|0|class,scores)
 
 
 
@@ -471,3 +479,5 @@ $$
 y_{it}=\beta_0+\beta D_{it}+\gamma_i+\phi_t+u_{it}
 $$
 Here too, the key assumption is that changes in the control group are a good counterfactual for the annual change in the treatment group and the way you would test these assumptions are very similar to the methods we have already discussed. The main difference is that transition into treatment does not happen at a fixed point in time. In order to do the robustness test described earlier in this context, it usually makes sense to generate a new set of "relative to event time" indicators that are centered around the treatment year of a particular unit. Thus $t=0$ would be year 3 for unit 1, year 5 for unit 2, 7 for unit 3 and 14 for unit 4. $t-1$ would be year 2 for unit 1, year 4 for unit 2 etc. These event time indicators can then be used to "line up" the treatment years to visualize and test the parallel trends assumptions. 
+
+This class of two way fixed effect DID estimations has been widely used in the empirical literature. Nevertheless, a number of recent econometric papers (see Goodman-Bacon 2018,2019) have begun to delve into the properties of these two way fixed effect DID estimators when the timing of treatment varies and have uncovered a number of concerns with these approaches.These estimators are basically calculating a type of "weighted average" of all possible two-group/two-period DD estimators that are found in the data. This implies that treated units act as both controls and treatment depending on the two-group/two-period comparison. The weights that are implicitly used weights up units that get treated in the middle of the panel, though there is no good theoretical reason why this should be as it is simply determined by how the panel was draws. Finally, estimates are potentially biased if the treatment effects vary over time. Because of these emerging findings, caution should be used in using these types of estimators as our understanding of them, and how to possibly correct for these problems, is rapidly evolving. 
