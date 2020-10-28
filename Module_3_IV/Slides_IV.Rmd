@@ -679,7 +679,7 @@ $$
 
 Our goal:
 
-- estimate the effect that the treatment (say a pill) has on our outcome (say blood pressure)
+- estimate the effect that the treatment (say a physical therapy regimen of stretching excercises) has on our outcome (say knee pain)
 
 - our hope is that $\tau$ is negative and large in magnitude. 
 
@@ -688,11 +688,11 @@ Our goal:
 
 Options: Non-Experimental estimates:
 
-- Selling the drug to the general population.
+- Promote the stretching excercises to the general population.
   
 - Collect some data
   
-- Regress blood pressure on whether or not you take the pill
+- Regress knee pain on whether or not you did the stretching excercises 
   
 - **What is the problem with this approach?** 
 
@@ -700,15 +700,16 @@ Options: Non-Experimental estimates:
 
 Options: Non-Experimental estimates:
 
-- Selling the drug to the general population.
+
+- Promote the stretching excercises to the general population.
   
 - Collect some data
   
-- Regress blood pressure on whether or not you take the pill
+- Regress knee pain on whether or not you did the stretching excercises 
   
 - **What is the problem with this approach?** 
   
-  - people who take the pill are the ones who have high blood pressure to begin with! 
+  - people who do the stretching excercises are the ones who have high knee pain to begin with! 
   
   - We will likely get a positive estimate of $\tau$ (even with controls).
     
@@ -719,9 +720,9 @@ Options: A Medical Trial:
 
 - randomly assign some patients to the treatment group and others to the control group.
   
-- Treatment group is given the pill and told to take it
+- Treatment group is given instruction on the stretching excercises and told to do them daily
   
-- Control group are given a placebo (or nothing at all).   
+- Control group are not.   
 
 
 ## Medical trials (RCT)
@@ -742,9 +743,9 @@ Back in the old days: the **intention to treat** (or ITT) estimate:
 
 **Non-compliance**:
 
-- some (selected) people in the treatment group would fail to take the pill 
+- some (selected) people in the treatment group would fail to do the stretching excercises 
 
-- some (selected) people in the control group would obtain the pill from another source (even though they were not supposed to)
+- some (selected) people in the control group would obtain learn about the stretching excercises from another source (even though they were not supposed to)
 
 Non-compliance can bias the estimate of $\tau$.
 
@@ -771,10 +772,10 @@ This is actually a simple IV problem:
 
 - $Z_i$ is randomly assigned so by construction will be uncorrelated with $\epsilon_i$ so $cov(Z_i,\epsilon_i)=0$ (the exclusion restriction). 
 
-- $Z_i$ is correlated with $D_i$, because you are going to be more likely to take the pill if you are in the treatment group so $cov(Z_i,D_i)\neq0$ (the first stage).
+- $Z_i$ is correlated with $D_i$, because you are going to be more likely to do the stretches if you are in the treatment group so $cov(Z_i,D_i)\neq0$ (the first stage).
 
 
-$\Rightarrow Z_i$ is a valid instrument for $D_i$ and the IV estimator gives us a consistent estimate of $\tau$, the effect of taking the pill on blood pressure. 
+$\Rightarrow Z_i$ is a valid instrument for $D_i$ and the IV estimator gives us a consistent estimate of $\tau$, the effect of the stretching excercises on knee pain. 
 
 ## The "Work Horse" IV: Intuition
 
@@ -784,17 +785,17 @@ Example:
 
 - Assume the non-compliance problem only exists for the people in the treatment group. 
 
-- Only half the people in the treatment group take the pill (ie half of the treatment group fails to comply and does not take the pill while the other half takes the pill as they were told to)
+- Only half the people in the treatment group do the stretching excercises (ie half of the treatment group fails to comply and does not do the stretching excercises while the other half do the excercises as they were told to)
 
 **What will the IV look like?**
 
 ## The "Work Horse" IV: Intuition
 
-The first stage will regress whether you took the pill on whether you were in the treatment group $D_i$ on $Z_i$:
+The first stage will regress whether you did the excercises on whether you were in the treatment group $D_i$ on $Z_i$:
 $$
 D_i=\gamma_0+\gamma_1Z_i+u_i
 $$
-Zero people in the control group took the pill while half in the treatment group took the pill:
+Zero people in the control group did the stretches while half in the treatment group did the stretches:
 
 $\Rightarrow E[\hat{\gamma}_0]=0$ and $E[\hat{\gamma}_1]=0.5$. 
 
@@ -803,7 +804,7 @@ $\Rightarrow E[\hat{\gamma}_0]=0$ and $E[\hat{\gamma}_1]=0.5$.
 
 The IV estimate is the reduced form scaled by the first stage: 
 
-The reduced form is a regression of $Y_i$ (your blood pressure) on $Z_i$(whether you were assigned to the treatment or control group): 
+The reduced form is a regression of $Y_i$ (your knee pain) on $Z_i$(whether you were assigned to the treatment or control group): 
 $$
 Y_i=\pi_0+\pi_1Z_i+v_i
 $$
@@ -822,12 +823,12 @@ $$
 
 **How is this fixing the non-complier problem?**
 
-The reduced form is estimating the effect that being assigned to the treatment group has on blood pressure. 
+The reduced form is estimating the effect that being assigned to the treatment group has on knee pain. 
 
 But this is not what we are interested in. 
 
 
-We want to know the effect of taking the pill. 
+We want to know the effect of doing the stretching excercises. 
 
 
 ## The "Work Horse" IV: Intuition
@@ -836,7 +837,7 @@ We want to know the effect of taking the pill.
 
 If there were perfect compliance: 
 
-- the reduced form estimate would be the effect of taking the pill
+- the reduced form estimate would be the effect of doing the stretching excercises
 
   - the first stage would give us $\hat{\gamma}_1=1$ 
 
@@ -844,22 +845,22 @@ If there were perfect compliance:
   
 If compliance isn't perfect: 
 
-- the reduced form estimates the effect of increasing the probability you take the pill 
+- the reduced form estimates the effect of increasing the probability you do the stretching excercises 
 
-  - This means that the reduced form is not estimating the full effect of taking the pill
+  - This means that the reduced form is not estimating the full effect of the stretching excercises
 
 ## The "Work Horse" IV: Intuition: Example
 
-- 10 people in the treatment group. 5 take the pill and 5 do not. 
+- 10 people in the treatment group. 5 do the excercises and 5 do not. 
 
-  - The (expected) mean blood pressure for the treatment group:
+  - The (expected) mean knee pain for the treatment group:
 $$
  E[Y_i|TreatGroup_i]=\frac{5\alpha+5(\alpha+\tau)}{10}=\alpha+\frac{\tau}{2}
 $$
 
-- 10 people in the control group, no one takes the pill. 
+- 10 people in the control group, no one does the stretching excercises. 
 
-  - The (expected) mean blood pressure for the control group:
+  - The (expected) mean knee pain for the control group:
 $$
  E[Y_i|ContGroup_i]=\alpha
 $$
@@ -867,16 +868,16 @@ $$
 
 ## The "Work Horse" IV: Intuition: Example
 
-- 10 people in the treatment group. 5 take the pill and 5 do not. 
+- 10 people in the treatment group. 5 take do the stretches and 5 do not. 
 
-  - The (expected) mean blood pressure for the treatment group:
+  - The (expected) mean knee pain for the treatment group:
 $$
  E[Y_i|TreatGroup_i]=\frac{5\alpha+5(\alpha+\tau)}{10}=\alpha+\frac{\tau}{2}
 $$
 
-- 10 people in the control group, no one takes the pill. 
+- 10 people in the control group, no one does the stretches. 
 
-  - The (expected) mean blood pressure for the control group:
+  - The (expected) mean knee pain for the control group:
 $$
  E[Y_i|ContGroup_i]=\alpha
 $$
@@ -886,7 +887,7 @@ $$
 \hat{\pi}_1=\alpha+\frac{\tau}{2}-\alpha = \frac{\tau}{2}
 $$
 
- is half the effect of taking the pill (since only half the treated group takes it). 
+ is half the effect of taking the excercises (since only half the treated group did them). 
  
 ## The "Work Horse" IV: Intuition: Example
 
@@ -899,17 +900,17 @@ The IV estimate gives us a consistent estimate because it is scaling the reduced
 
 We re-scale the reduced form because:
 
-- being in the treatment group only increases your probability of taking the pill by 50 percentage points not by a full 100 percentage points.
+- being in the treatment group only increases your probability of doing the ecercises by 50 percentage points not by a full 100 percentage points.
 
-- the reduced form only represents half of the effect of taking the pill 
+- the reduced form only represents half of the effect of doing the stretching excercises
 
 ## The "Work Horse" IV: Intuition:
 
 Note:
 
-- the IV is different from simply taking the mean of $Y_i$ for those in the treatment group who took the pill and subtracting the mean of $Y_i$ for those in the control group who did not take the pill. 
+- the IV is different from simply taking the mean of $Y_i$ for those in the treatment group who did the stretches and subtracting the mean of $Y_i$ for those in the control group who did not. 
 
-- This would be affected by the same selection issues as a simple OLS regression of $Y_i$ on $d_i$.
+- This would be affected by the same selection issues as a simple OLS regression of $Y_i$ on $D_i$.
 
 
 
