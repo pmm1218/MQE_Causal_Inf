@@ -811,7 +811,7 @@ $$
 Therefore our IV estimate,
 
 $$
-\hat{\beta}_{IV}=\frac{\hat{\pi}_1}{\hat{\gamma}_1}=\frac{\hat{\pi}_1}{0.5}.
+\hat{\tau}_{IV}=\frac{\hat{\pi}_1}{\hat{\gamma}_1}=\frac{\hat{\pi}_1}{0.5}.
 $$ 
 
 
@@ -840,7 +840,7 @@ If there were perfect compliance:
 
   - the first stage would give us $\hat{\gamma}_1=1$ 
 
-  - the IV estimate would be $\hat{\beta}_{IV}=\frac{\hat{\pi}_1}{1}=\hat{\pi}_1$.
+  - the IV estimate would be $\hat{\tau}_{IV}=\frac{\hat{\pi}_1}{1}=\hat{\pi}_1$.
   
 If compliance isn't perfect: 
 
@@ -854,14 +854,14 @@ If compliance isn't perfect:
 
   - The (expected) mean blood pressure for the treatment group:
 $$
- E[y_i|TreatGroup_i]=\frac{5\beta_0+5(\beta_0+\beta_1)}{10}=\beta_0+\frac{\beta_1}{2}
+ E[Y_i|TreatGroup_i]=\frac{5\alpha+5(\alpha+\tau)}{10}=\alpha+\frac{\tau}{2}
 $$
 
 - 10 people in the control group, no one takes the pill. 
 
   - The (expected) mean blood pressure for the control group:
 $$
- E[y_i|ContGroup_i]=\beta_0
+ E[Y_i|ContGroup_i]=\alpha
 $$
 
 
@@ -871,19 +871,19 @@ $$
 
   - The (expected) mean blood pressure for the treatment group:
 $$
- E[y_i|TreatGroup_i]=\frac{5\beta_0+5(\beta_0+\beta_1)}{10}=\beta_0+\frac{\beta_1}{2}
+ E[Y_i|TreatGroup_i]=\frac{5\alpha+5(\alpha+\tau)}{10}=\alpha+\frac{\tau}{2}
 $$
 
 - 10 people in the control group, no one takes the pill. 
 
   - The (expected) mean blood pressure for the control group:
 $$
- E[y_i|ContGroup_i]=\beta_0
+ E[Y_i|ContGroup_i]=\alpha
 $$
 
 So the reduced form coefficient(=the difference of means):
 $$
-\hat{\pi}_1=\beta_0+\frac{\beta_1}{2}-\beta_0 = \frac{\beta_1}{2}
+\hat{\pi}_1=\alpha+\frac{\tau}{2}-\alpha = \frac{\tau}{2}
 $$
 
  is half the effect of taking the pill (since only half the treated group takes it). 
@@ -892,7 +892,7 @@ $$
 
 Thus,  
 $$
-E[\beta_{1,IV}]=\frac{\pi_1}{\gamma_1}=\frac{0.5\beta_1}{0.5}=\beta_1.
+E[\tau_{IV}]=\frac{\pi_1}{\gamma_1}=\frac{0.5\tau}{0.5}=\tau.
 $$
 
 The IV estimate gives us a consistent estimate because it is scaling the reduced form by the first stage.
@@ -907,9 +907,9 @@ We re-scale the reduced form because:
 
 Note:
 
-- the IV is different from simply taking the mean of $Y_i$ for those in the treatment group who took the pill and subtracting the mean of $y_i$ for those in the control group who did not take the pill. 
+- the IV is different from simply taking the mean of $Y_i$ for those in the treatment group who took the pill and subtracting the mean of $Y_i$ for those in the control group who did not take the pill. 
 
-- This would be affected by the same selection issues as a simple OLS regression of $y_i$ on $d_i$.
+- This would be affected by the same selection issues as a simple OLS regression of $Y_i$ on $d_i$.
 
 
 

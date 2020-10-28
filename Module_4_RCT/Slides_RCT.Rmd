@@ -464,11 +464,13 @@ If we include more x's in our regression,
 
 - $\Rightarrow \hat{\beta}$ can be estimated more precisely. 
 
+
 ## Heterogeneity
 
-Suppose you are interested in heterogenous effects on Y of treatment D based on characteristic X. Write the estimating equation you should use (you can use B nistead of $\Beta$)
+Suppose you are interested in heterogenous effects on Y of treatment D based on characteristic X. Write the estimating equation you should use (you can use B instead of $\beta$)
 
 $\Rightarrow$ Top Hat
+
 
 ## Heterogeneity
 
