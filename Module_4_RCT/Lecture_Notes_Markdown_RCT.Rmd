@@ -277,14 +277,20 @@ rcthet1<-felm(read4~treat+female+female*treat,scores5)
 nf<-20
 
 #the data generating process: notice the class does affect a students score
-scores5$read4het1<-alpha+nf*scores5$treat+scores5$error+4*scores5$class_1+(-6)*scores5$class_2+8*scores5$class_3+(-4)*scores5$class_4+7*scores5$class_5+(-2)*scores5$class_6+5*scores5$class_7+(-10)*scores5$class_8+8*scores5$class_9+4*scores5$class_10+(-20)*scores5$female*scores5$treat
+scores5$read4het1<-(alpha+nf*scores5$treat+scores5$error+4*scores5$class_1+(-6)*scores5$class_2
+                    +8*scores5$class_3+(-4)*scores5$class_4+7*scores5$class_5
+                    +(-2)*scores5$class_6+5*scores5$class_7+(-10)*scores5$class_8
+                    +8*scores5$class_9+4*scores5$class_10+(-20)*scores5$female*scores5$treat)
 
 rct2<-felm(read4het1~treat,scores5)
 rcthet2<-felm(read4het1~treat+female+female*treat,scores5)
 
 nf2<-30
 
-scores5$read4het2<-alpha+nf2*scores5$treat+scores5$error+4*scores5$class_1+(-6)*scores5$class_2+8*scores5$class_3+(-4)*scores5$class_4+7*scores5$class_5+(-2)*scores5$class_6+5*scores5$class_7+(-10)*scores5$class_8+8*scores5$class_9+4*scores5$class_10+(-40)*scores5$female*scores5$treat
+scores5$read4het2<-(alpha+nf2*scores5$treat+scores5$error+4*scores5$class_1+(-6)*scores5$class_2
+                    +8*scores5$class_3+(-4)*scores5$class_4+7*scores5$class_5
+                    +(-2)*scores5$class_6+5*scores5$class_7+(-10)*scores5$class_8
+                    +8*scores5$class_9+4*scores5$class_10+(-40)*scores5$female*scores5$treat)
 
 rct3<-felm(read4het2~treat,scores5)
 rcthet3<-felm(read4het2~treat+female+female*treat,scores5)
@@ -318,7 +324,7 @@ Thus the CDC website on contraception effectiveness reports typical (ITT) while 
 
 Beyond the assumption of random assignment of D, there is an implicit assumption embedded in the previous section that is known rather awkwardly as the \textit{stable unit treatment value assumption} or \textit{SUTVA}. SUTVA basically states that unit $i$'s potential outcomes are unaffected by whether unit $j$ is treated or untreated, ie there are no spillovers. Thus, SUTVA is often referred to as the "no interference" assumption. Basically what assumption requires is that for our treatment estimates to be correct, the affect of treatment on Jill does not depend on the whether or not Jill's neighbor received the treatment. In other words, SUTVA tends to be violated whenever the treatment, $D_i$ involves spillovers between groups, aka some type of externality.
 
-There are many instances where SUTVA does not hold. A classic example of SUTVA not holding is the case of vaccines. If $D_i$ represents inoculation of unit $i$ with the measles vaccine, and $Y-i$ represents whether unit $i$ gets the measles, clearly $Y_i(D_i)$ depends on all of the $D$'s, not just $D_i$. For example, if all the units are vaccinated, except $i$ then $Y_i(1)-Y_i(0)=0$, ie the vaccine has no treatment effect on unit $i$, since there is no one for $i$ to catch the measles from. 
+There are many instances where SUTVA does not hold. A classic example of SUTVA not holding is the case of vaccines. If $D_i$ represents inoculation of unit $i$ with the measles vaccine, and $Y_i$ represents whether unit $i$ gets the measles, clearly $Y_i(D_i)$ depends on all of the $D$'s, not just $D_i$. For example, if all the units are vaccinated, except $i$ then $Y_i(1)-Y_i(0)=0$, ie the vaccine has no treatment effect on unit $i$, since there is no one for $i$ to catch the measles from. 
 
 \subsubsection{Attrition Bias}
 
@@ -326,7 +332,7 @@ Another factor that can bias RCT estimates is what is referred to attrition bias
 
 If attrition is completely random, then it is not really a problem. Your sample size will be smaller but it will not bias your results. But what will happen if attrition is a function of treatment status?
 
-RCT estimates are likely biases when attrition correlates with treatment status. To see why, lets return to our simulation of the reading group RCT. We know that the true treatment effect of participating in the small reading group is $\tau=10$. However suppose that instead of observing the reading scores of all students, there quite a few scores that are missing because some students did not show up on test day. Furthermore, the students who do not show up are the students who are nervous about the test because they know they will do poorly on the reading exam. 
+RCT estimates are likely biased when attrition correlates with treatment status. To see why, lets return to our simulation of the reading group RCT. We know that the true treatment effect of participating in the small reading group is $\tau=10$. However suppose that instead of observing the reading scores of all students, there quite a few scores that are missing because some students did not show up on test day. Furthermore, the students who do not show up are the students who are nervous about the test because they know they will do poorly on the reading exam. 
 
 In the code below, I replace the 4th grade reading score of low performing students with `NA` and re-estimate my treatment effects
 
@@ -347,10 +353,10 @@ stargazer(rctmiss, rctmiss2, type="latex")
 
 Clearly this attrition pattern has biased our estimate of the treatment effect downward. Why is this? Students who scored between 65 and 75 in the control group are unobserved but their treatment group counterparts are observed since they are scoring between 75 and 85 as a result of the treatment. Thus while the treatment is shifting the distribution upwards by 10 points, it is also making the "observed" left tale longer which biases our estimates downwards from the true 10 point effect.  
 
-So what can be done to address attrition bias? The first solution is to minimize attrition throughout the data collection process. If you are still faced with attrition, you can also check to see if there the attrition is similar across treatment and control groups and make sure that it does not correlate with observable. Finally, even with problematic attrition, it is often possible to bound the extent of the bias by making hypothetical assumptions about who is dropping out of control and treatment. For instance, if the principal knows that students who will score below 75 don't take the test, she can recover the true treatment effect by excluding the students who became observed because of the treatment from the estimation, as we see in the second column (of course it is unlikely that in the real world, a researcher would know the exact model of attrition).
+So what can be done to address attrition bias? The first solution is to minimize attrition throughout the data collection process. If you are still faced with attrition, you can also check to see if there the attrition is similar across treatment and control groups and make sure that it does not correlate with observables. Finally, even with problematic attrition, it is often possible to bound the extent of the bias by making hypothetical assumptions about who is dropping out of control and treatment. For instance, if the principal knows that students who will score below 75 don't take the test, she can recover the true treatment effect by excluding the students who became observed because of the treatment from the estimation, as we see in the second column (of course it is unlikely that in the real world, a researcher would know the exact model of attrition).
 
 \subsection{RCT critiques}
-Randomized Control trial present some huge advantages when it comes to causal inference. Thru randomization, omitted variable are no longer a problem and we can be much more confident that our estimates are the causal effect of the treatment we are studying. Because of these advantages RCT have become a widely used tool in economics and the social sciences today. The 2019 Nobel Laureat in Economics was give to Abhijit Banerjee, Esther Duflo and Michael Kremer for their role in bringing this experimental approach to economic research (particularly in development economics). It is also worth noting that RCT are relatively easy to explain to policy makers, and even the general public. This presents some important advantages when it comes to communicating research results to the wider world.
+Randomized Control trial present some huge advantages when it comes to causal inference. With randomization, omitted variable are no longer a problem and we can be much more confident that our estimates are the causal effect of the treatment we are studying. Because of these advantages RCT have become a widely used tool in economics and the social sciences today. The 2019 Nobel Laureat in Economics was give to Abhijit Banerjee, Esther Duflo and Michael Kremer for their role in bringing this experimental approach to economic research (particularly in development economics). It is also worth noting that RCT are relatively easy to explain to policy makers, and even the general public. This presents some important advantages when it comes to communicating research results to the wider world.
 
 Nevertheless, despite their many advantages, RCT's do present certain limitations. RCT's can be quite costly to conduct and the logistics of running an RCT are quite demanding. Furthermore, there are many very important social and economic questions where running an RCT would simply not be ethical. Understanding the effects of juvenile incarceration on human capital and future crime is clearly a question of first order importance. Randomizing which juveniles get incarcerated for the purpose of research is also clearly unethical, leaving researcher to tackle these questions with the other empirical approaches we discuss in this course.
 
@@ -359,7 +365,7 @@ In addition to these practical and ethical limitations, there are also some more
 \subsubsection{External validity}
 
 One of the major concerns that comes up with regards to RCT generated estimates are concerns about the external validity of the results: are the estimates generalizable to other contexts? 
-For practical reasons, RCT's (especially in development economics) are often conducted in a limited geographical area with a relatively small sample size.^ [Small as compared to the kind of sample you might have when working with large administrative data.] It is thus not always clear if you would expect to get the same results in a different context or if the program were implemented on a larger scale. Furthermore, because RCT's are often implemented with a lot more care and resources then a large scale policy might be, it is also not clear if we would expect the same results if the treatment were implemented at scale. This concern is further complicated by experimenter demand effects.
+For practical reasons, RCT's (especially in development economics) are often conducted in a limited geographical area with a relatively small sample size.^ [Small as compared to the kind of sample you might have when working with large administrative data.] It is thus not always clear if you would expect to get the same results in a different context or if the program were implemented on a larger scale. Because RCT's are often implemented with a lot more care and resources then a large scale policy might be, it is also not clear if we would expect the same results. This concern is further complicated by experimenter demand effects.
 
 \subsubsection{Experimenter demand effects}
 
@@ -372,8 +378,61 @@ For these reasons, it is generally advisable to make sure that the salience of t
 Another important concern with small scale RCT's is that many of the policies we are interested in in economics affect variables that are not determined by a single individual's choices, such as prices. Most RCT's are small enough in scale that they are unlikely to affect market level variables such as prices.  It is conceivable though that if the intervention were implemented at scale, some interventions could affect market level variables which in turn could potentially counteract some of the benefits that were estimated in the small scale experiment. In a small experiment, I may be able to encourage seasonal migration to urban areas with a subsidy and find that migrants are able to find jobs there and earn some returns to migrating. If this was implemented at scale, the outcome might be very different. A national subsidy could increase labor supply in the urban area substantially possibly leading to unemployed migrants and wage adjustments. The effect of the nationally implemented policy could be very different from those estimated with the smaller scale RCT. 
 
 \subsection{Fishing for Stars}
- ![...]("images\significant_comic.png")
+
+This next point is not exclusively an RCT problem, nor even an Economics problem. Though because of the sunk costs involved in doing an RCT, incentives have made some of these problems particularly pronounced in projects with RCT designs, while others are more pronounced in other research designs.
+
+The points made here will be most relevant for research done in academic settings because they are driven by the incentive to publish. Even if you do not end up working in this setting, what you want to think about is how the incentive structure you are working in (business, policy...) could generate incentives that affect how you, your colleagues, your bosses, your subordinates, conduct analyses. 
+
+\subsubsection{Publication Bias}
+
+Publication Bias is widespread in many scientific fields. It refers to a pattern whereby papers with certain types of findings are more likely to get published in academic journals, leaving a lot of other types of papers unpublished. In particular, papers that report null-results (ie, no statistically significant effect was detected) are much more difficult to publish, so much so that they go unwritten altogether leading to what some researchers refer to as the "file drawer" problem: Well done research that finds null-results is simply unobserved, languishing unwritten in the drawers (hard-drives) of universities, potentially giving an incomplete picture to the answer to important questions and leading to wasted effort as researchers re-do analysis that has already done but just was never publicized.  
+
+\centering ![]("images\mervis.png"){width=75%}
+
+\flushleft \subsubsection{P-Hacking}
+
+\centering ![ ]("images\phackingcomic.png"){width=40%}
  
-  ![...]("images\phackingcomic.png")
+\flushleft Since there are often different (valid) ways to specify a regression, researchers will often favor the (valid) specification that yields the most "publishable" results. 
+
+A pattern whereby there is an excess mass of papers reporting p-values that are right under the "significance" (z=1.96) threshold has been documented in many fields. 
+
+![From Brodeur et al.2016  ]("images\brodeuretal.png"){width=65%}
+
+![ ]("images\pvalpolsci.png"){width=85%}
+
+\subsubsection{Cherry-Picking}
+
+\flushleft When researchers have incurred large costs on a project, there are very strong incentives to find significant effects. One way to increase the chance of finding significant effects, is to collect data on a huge number of outcome variables. Without insight into the actual research process, it then becomes difficult to tell if the researcher found what their hypothesis predicted or if they simply ran many many regressions. 
+
+\centering ![]("images\significant_comic.png")
+
+ 
+\flushleft \subsection{Research Transparency}
+
+Fortunately there is a push to address these issues in economics, particularly in the RCT field where these incentives are very strong and the researcher has so much control over the data collection process. 
+
+- Increasingly journals require that the data and code used to generate the research results be made available to other researchers. This allows people the opportunity to verify the methodology used by the researcher. 
+
+- When a project runs regressions on an inordinate number of outcome variables, it is increasingly expected that the researcher will report multiple inference adjusted standard errors (in addition to the usual standard errors). These adjusted standard errors generally require a stricter significance threshold for individual comparisons, so as to compensate for the number of inferences being made.
+
+- Pre-analysis plans are increasingly becoming the norm. A pre-analysis plan is a document detailing the the questions, methods, and estimations a researcher plans to implement in a research project before they actually receive any data. The plan is then dated and filed in a public repository so that when the data is later analysed, evaluators can assess how far the researcher had to deviate from their initial project plan. 
+
+- Some journals are starting to accept articles based on the pre-analysis plan, before seeing any results.
+
+ ![]("images\PAP.png")
+ 
+
+
+
+
+
+
+
+
+
+
+
+ 
 
 

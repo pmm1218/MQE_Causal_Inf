@@ -90,33 +90,36 @@ Panel Data can be
 
 ## Review: Indicator (Dummy) Variables
 
-If I have multiple Female observation and multiple non-female observations I can control for the effect of being female on wages: 
+If I have multiple Female observation and multiple non-female observations I can control for the effect of being female on wages.  
+
+If I have multiple Married observation and multiple non-married observations I can control for the effect of being married on wages.  
+
 
 $$
-Income_{it}=\beta_0+\beta_1 Schooling_{it}+\beta_2Female_i+\epsilon.
+Income_{it}=\beta_0+\beta_1 Schooling_{it}+\beta_2Female_i+ \beta_3 Married_{it}+\epsilon.
 $$
 
 ## Fixed Effects as Individual Indicator Variables
 
+\tiny
 
-
-|Indiv|Income      |School |Female  |Year   |Indiv1   |Indiv2|...    |IndivN|
-|-----|------------|-------|--------|-------|---------|------|-------|------|
-|1	  |22000       |12     |1       |2007   |1        |0     |0      |0     |
-|1    |23000       |12     |1       |2008   |1        |0     |0      |0     |
-|2	  |57000       |16     |1       |2007   |0        |1     |0      |0     |
-|2    |63000       |17     |1       |2008   |0        |1     |0      |0     |
-|...  |...         |...    |...     |...    |...      |...   |...    |...   |
-|N	  |15000       |12     |0       |2007   |0        |0     |0      |1     |
-|N    |13000       |12     |0       |2008   |0        |0     |0      |1     |
+|Indiv|Income |School |Female |Married |Year   |Indiv1   |Indiv2|...    |IndivN|
+|-----|-------|-------|-------|--------|-------|---------|------|-------|------|
+|1	  |22000  |12     |1      |1       |2007   |1        |0     |0      |0     |
+|1    |23000  |12     |1      |1       |2008   |1        |0     |0      |0     |
+|2	  |57000  |16     |1      |0       |2007   |0        |1     |0      |0     |
+|2    |63000  |17     |1      |1       |2008   |0        |1     |0      |0     |
+|...  |...    |...    |...    |...     |...    |...      |...   |...    |...   |
+|N	  |15000  |12     |0      |0       |2007   |0        |0     |0      |1     |
+|N    |13000  |12     |0      |0       |2008   |0        |0     |0      |1     |
 
 
 ## Fixed Effects as Individual Indicator Variables
 
 I can estimate:
-\small
+\footnotesize
 $$
-Inc_{it}=\beta_0+\beta_1School_{it}+\beta_2Fem_i+\beta_{a1}Ind1_i+\beta_{a2}Ind2_i+...+\beta_{aN-1}Ind(N-1)_i+\epsilon.
+Inc_{it}=\beta_0+\beta_1Sch_{it}+\beta_2Fem_i+\beta_3 Mar_{it}+\beta_{a1}Ind1_i+\beta_{a2}Ind2_i+...+\beta_{aN-1}Ind(N-1)_i+\epsilon.
 $$
 \normalsize
 What do the $\beta_{ak}$ coefficients tell me?
@@ -130,7 +133,9 @@ Also:
 
 - Why are there only (N-1) individual dummies? 
 
+- Will I be able to estimate the $\beta_2$ on $Fem_i$?
 
+- Will I be able to estimate the $\beta_3$ on $Mar_{it}$?
 
 ## Fixed Effects as Individual Indicator Variables
 
@@ -152,7 +157,7 @@ Also:
 **For notational convenience:** 
 
 $$
-Income_{it}=\beta_0+\beta_1Schooling_{it}+\beta_2Female_i+\gamma_i+\epsilon.
+Income_{it}=\beta_0+\beta_1Schooling_{it}+\beta_2Married_{it}+\gamma_i+\epsilon.
 $$
 
 ## Fixed Effects 
@@ -161,12 +166,24 @@ $$
 
 
 $$
-Income_{it}=\beta_0+\beta_1Schooling_{it}+\beta_2Female_i+\gamma_i+\tau_t+\epsilon.
+Income_{it}=\beta_0+\beta_1Schooling_{it}+\beta_2 Married_{it}+\gamma_i+\tau_t+\epsilon.
 $$
 
 - What is $\tau_t$?
 
 - What is this estimation equivalent to?
+
+## Fixed Effects and variation:
+
+If I estimate 
+
+$$
+Income_{it}=\beta_0+\beta_1Schooling_{it}+\beta_2 Married_{it}+\gamma_i+\tau_t+\epsilon.
+$$
+Where (who?) is my identifying variation coming from for estimating $\beta_1$?
+
+Does this matter? How does it change our interpretation of the estimate?
+
 
 ## A Simulation:
 
@@ -313,7 +330,7 @@ The third:
 $$
 Score_{ci}=\beta_0+\beta_1Treat_{ci}+\kappa_c+\epsilon
 $$
-where $\kappa_i$ is a classroom fixed effect.
+where $\kappa_c$ is a classroom fixed effect.
 \bigskip
 
 
@@ -588,6 +605,11 @@ Interpret the coefficient on unemployment.
 Why were we not able to estimate a coefficient for $area_i$ and $west_i$?
 
 $\Rightarrow$ Top Hat 
+
+## Example: Crime and Unemployment
+
+\center ![]("images\Xindep.jpg"){width=75%}
+
 
 ## Example: Crime and Unemployment
 

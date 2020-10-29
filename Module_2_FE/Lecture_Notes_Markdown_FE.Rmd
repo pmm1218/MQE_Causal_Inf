@@ -30,7 +30,7 @@ Income_i=\beta_0+\beta_1 Schooling_i+\epsilon
 \end{split}
 \end{equation}
 
-could not be interpreted as causal estimates because of selection and omitted variable bias. We also saw that even if I add lots of controls for the type of demographic characteristics that are often included in datasets, there would still likely remain important omitted variables. Most datasets do not have measures of `ability','enthusiasm', or 'grit' that could be important determinants of both a persons income and their schooling level. But what if I can control for all the unobservable characteristics of an individual, as long as they do not change over time?
+could not be interpreted as causal estimates because of selection and omitted variable bias. We also saw that even if I add lots of controls for the type of demographic characteristics that are often included in datasets, there would still likely remain important omitted variables. Most datasets do not have measures of `ability','enthusiasm', or 'grit' that could be important determinants of both a person's income and their schooling level. But what if I can control for all the unobservable characteristics of an individual, as long as they do not change over time?
 
 \subsection{Data Structures}
 
@@ -78,20 +78,19 @@ Income_{it}=\beta_0+\beta_1 Schooling_{it}+\beta_2Female_i+\epsilon.
 
 Now that I observe the same individual multiple times, I can do something similar by adding individual controls. I can create dummy variables set to 1 for observations about a particular individual, and 0 otherwise, and add these controls to my regression:
 
-
-|Individual    |Income      |Schooling   |Female  |Year   |Indiv1   |Indiv2   |...    |IndivN   |
-|--------------|------------|------------|--------|-------|---------|---------|-------|---------|
-|1	           |22000       |12          |1       |2007   |1        |0        |0      |0        |
-|1	           |23000       |12          |1       |2008   |1        |0        |0      |0        |
-|2	           |57000       |16          |1       |2007   |0        |1        |0      |0        |
-|2	           |63000       |17          |1       |2008   |0        |1        |0      |0        |
-|...	         |...         |...         |...     |...    |...      |...      |...    |...      |
-|N	           |15000       |12          |0       |2007   |0        |0        |0      |1        |
-|N	           |13000       |12          |0       |2008   |0        |0        |0      |1        |
+|Indiv|Income |School |Female |Married |Year   |Indiv1   |Indiv2|...    |IndivN|
+|-----|-------|-------|-------|--------|-------|---------|------|-------|------|
+|1	  |22000  |12     |1      |1       |2007   |1        |0     |0      |0     |
+|1    |23000  |12     |1      |1       |2008   |1        |0     |0      |0     |
+|2	  |57000  |16     |1      |0       |2007   |0        |1     |0      |0     |
+|2    |63000  |17     |1      |1       |2008   |0        |1     |0      |0     |
+|...  |...    |...    |...    |...     |...    |...      |...   |...    |...   |
+|N	  |15000  |12     |0      |0       |2007   |0        |0     |0      |1     |
+|N    |13000  |12     |0      |0       |2008   |0        |0     |0      |1     |
 
 \begin{equation}
 \begin{split}
-Income_{it}=\beta_0+\beta_1Schooling_{it}+\beta_2Female_i+\beta_{a1}Indiv1_i+\beta_{a2}Indiv2_i+...+\beta_{aN-1}Indiv(N-1)_i+\epsilon.
+Inc_{it}=\beta_0+\beta_1Sch_{it}+\beta_2Female_i+\beta_3 Married_{it}+\beta_{a1}Indiv1_i+\beta_{a2}Indiv2_i+...+\beta_{aN-1}Indiv(N-1)_i+\epsilon.
 \end{split}
 \end{equation}
 
@@ -101,13 +100,13 @@ Notes:
 \item Notice that only $(N-1)$ individual dummies are added. Why? Just as with any other variable, we must have an omitted category to avoid the problem of multicollineariy. 
 \end{itemize}
 
-What will these individual controls control for? $\beta_{a1}$ will control for the effect of being individual 1 on income that is not explained by that person's gender or schooling.Thus any **time invariant** characteristic that affects individual 1's income, such as ability, grit, enthusiasm... will be controlled for by adding this individual dummy variable. 
+What will these individual controls control for? $\beta_{a1}$ will control for the effect of being individual 1 on income that is not explained by that person's gender or schooling.Thus any **time invariant** characteristic that affects individual 1's income, such as ability, grit, enthusiasm... will be controlled for by adding this individual dummy variable. In fact, because there is no time variation in $Female_i$ in our data, we will not be able to estimate the $\beta_2$ coefficient since the effect of $Female_i$ will be baked into each individual's control: when we hold the individual we are looking at constant, there is no variation in $Female_i$ with which to estimate $\beta_2$. 
 
 These individual dummy variables are known as individual **fixed effects**. For notational convenience, rather than listing them all we instead add a greek letter with the correct subscript to our regression (say $\gamma_i$) as follows
 
 \begin{equation}
 \begin{split}
-Income_{it}=\beta_0+\beta_1Schooling_{it}+\beta_2Female_i+\gamma_i+\epsilon.
+Income_{it}=\beta_0+\beta_1Schooling_{it}+\beta_2Married_{it}+\gamma_i+\epsilon.
 \end{split}
 \end{equation}
 
@@ -115,9 +114,11 @@ Notice that given the data I can add an additional control that may be important
 
 \begin{equation}
 \begin{split}
-Income_{it}=\beta_0+\beta_1Schooling_{it}+\beta_2Female_i+\gamma_i+\tau_t+\epsilon.
+Income_{it}=\beta_0+\beta_1Schooling_{it}+\beta_2Married_{it}+\gamma_i+\tau_t+\epsilon.
 \end{split}
 \end{equation}
+
+Finally, as with all econometric specifications, it is important to think about where our identifying variation is coming from. For individuals who's schooling does not change between the years in my data, the effect of their schooling will be baked into their individual fixed effect: there is not enough variation to disentangle the two. This means that the $\beta_1$ coefficient on schooling is identified off of "switchers", ie observations that experience a change in their schooling. This is important because it may change how generalizable we think the results are and how we want to interpret this coefficient. If all of the switchers are in their 20's, when people are more likely to experience a change in schooling, it is not clear whether our estimate would apply well to older populations for example.  
 
 \subsection{A Simulation}
 
@@ -173,7 +174,7 @@ Score_{ci}&=\beta_0+\beta_1 Treat_{ci}+\beta_2Class2_c+\beta_3Class3_c+\beta_4Cl
 Score_{ci}&=\beta_0+\beta_1 Treat_{ci}+\kappa_c+\epsilon
 \end{aligned}
 $$
-where $\kappa_i$ is a classroom fixed effect.
+where $\kappa_c$ is a classroom fixed effect.
 
 
 ```{r simfe5, results = "asis"}

@@ -1,7 +1,7 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 2.9.7300 64-bit) (preloaded format=pdflatex 2020.2.15)  15 OCT 2020 15:08
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 2.9.7300 64-bit) (preloaded format=pdflatex 2020.2.15)  26 OCT 2020 13:16
 entering extended mode
-**./Slides_FE.tex
-(Slides_FE.tex
+**./Slides_DID.tex
+(Slides_DID.tex
 LaTeX2e <2020-02-02>
 L3 programming layer <2020-02-03> ("C:\Users\Claire\AppData\Local\Programs\MiKT
 eX 2.9\tex/latex/beamer\beamer.cls"
@@ -977,7 +977,10 @@ nd-pdfmode.def"
 File: l3backend-pdfmode.def 2020-02-03 L3 backend support: PDF mode
 \l__kernel_color_stack_int=\count336
 \l__pdf_internal_box=\box79
-) (Slides_FE.aux
+) (Slides_DID.aux
+
+LaTeX Warning: Label `' multiply defined.
+
 
 LaTeX Warning: Label `' multiply defined.
 
@@ -985,7 +988,7 @@ LaTeX Warning: Label `' multiply defined.
 LaTeX Warning: Label `' multiply defined.
 
 )
-\openout1 = `Slides_FE.aux'.
+\openout1 = `Slides_DID.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 153.
 LaTeX Font Info:    ... okay on input line 153.
@@ -1169,11 +1172,11 @@ Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             See the microtype manual for details.
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: End \AtBeginDocument code.
-(Slides_FE.nav) [1
+(Slides_DID.nav) [1
 
 {C:/Users/Claire/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}]
 LaTeX Font Info:    Trying to load font information for OT1+lmss on input line 
-172.
+169.
 ("C:\Users\Claire\AppData\Local\Programs\MiKTeX 2.9\tex/latex/lm\ot1lmss.fd"
 File: ot1lmss.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
@@ -1182,27 +1185,27 @@ Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
 LaTeX Font Info:    Trying to load font information for OML+lmm on input line 1
-72.
+69.
 ("C:\Users\Claire\AppData\Local\Programs\MiKTeX 2.9\tex/latex/lm\omllmm.fd"
 File: omllmm.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 
-172.
+169.
 ("C:\Users\Claire\AppData\Local\Programs\MiKTeX 2.9\tex/latex/lm\omslmsy.fd"
 File: omslmsy.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 
-172.
+169.
 ("C:\Users\Claire\AppData\Local\Programs\MiKTeX 2.9\tex/latex/lm\omxlmex.fd"
 File: omxlmex.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10.95> on input line 172.
+(Font)              <10.95> on input line 169.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <8> on input line 172.
+(Font)              <8> on input line 169.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <6> on input line 172.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 172
+(Font)              <6> on input line 169.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 169
 .
 ("C:\Users\Claire\AppData\Local\Programs\MiKTeX 2.9\tex/latex/amsfonts\umsa.fd"
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
@@ -1211,7 +1214,7 @@ File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 cfg"
 File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 172
+LaTeX Font Info:    Trying to load font information for U+msb on input line 169
 .
 ("C:\Users\Claire\AppData\Local\Programs\MiKTeX 2.9\tex/latex/amsfonts\umsb.fd"
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
@@ -1221,16 +1224,37 @@ cfg"
 File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
 )
 LaTeX Font Info:    Font shape `T1/lmss/m/it' in size <10.95> not available
-(Font)              Font shape `T1/lmss/m/sl' tried instead on input line 172.
+(Font)              Font shape `T1/lmss/m/sl' tried instead on input line 169.
 LaTeX Font Info:    Font shape `T1/lmss/m/it' in size <8> not available
-(Font)              Font shape `T1/lmss/m/sl' tried instead on input line 172.
+(Font)              Font shape `T1/lmss/m/sl' tried instead on input line 169.
 LaTeX Font Info:    Font shape `T1/lmss/m/it' in size <6> not available
-(Font)              Font shape `T1/lmss/m/sl' tried instead on input line 172.
+(Font)              Font shape `T1/lmss/m/sl' tried instead on input line 169.
 [2
 
 ] [3
 
-] [4
+]
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <14.4> on input line 211.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <10> on input line 211.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <7> on input line 211.
+LaTeX Font Info:    Font shape `T1/lmss/m/it' in size <14.4> not available
+(Font)              Font shape `T1/lmss/m/sl' tried instead on input line 211.
+LaTeX Font Info:    Font shape `T1/lmss/m/it' in size <10> not available
+(Font)              Font shape `T1/lmss/m/sl' tried instead on input line 211.
+LaTeX Font Info:    Font shape `T1/lmss/m/it' in size <7> not available
+(Font)              Font shape `T1/lmss/m/sl' tried instead on input line 211.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <9> on input line 211.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <5> on input line 211.
+LaTeX Font Info:    Font shape `T1/lmss/m/it' in size <9> not available
+(Font)              Font shape `T1/lmss/m/sl' tried instead on input line 211.
+LaTeX Font Info:    Font shape `T1/lmss/m/it' in size <5> not available
+(Font)              Font shape `T1/lmss/m/sl' tried instead on input line 211.
+[4
 
 ] [5
 
@@ -1242,30 +1266,19 @@ LaTeX Font Info:    Font shape `T1/lmss/m/it' in size <6> not available
 
 ] [9
 
-] [10
-
 ]
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <9> on input line 313.
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5> on input line 313.
-LaTeX Font Info:    Font shape `T1/lmss/m/it' in size <9> not available
-(Font)              Font shape `T1/lmss/m/sl' tried instead on input line 313.
-LaTeX Font Info:    Font shape `T1/lmss/m/it' in size <5> not available
-(Font)              Font shape `T1/lmss/m/sl' tried instead on input line 313.
-
-Overfull \hbox (15.4502pt too wide) detected at line 313
-\T1/lmss/m/sl/9 Inc[] \OT1/lmss/m/n/9 = \OML/lmm/m/it/9 [] \OT1/lmss/m/n/9 + \
-OML/lmm/m/it/9 []\T1/lmss/m/sl/9 Sch[] \OT1/lmss/m/n/9 + \OML/lmm/m/it/9 []\T
-1/lmss/m/sl/9 Fem[] \OT1/lmss/m/n/9 + \OML/lmm/m/it/9 []\T1/lmss/m/sl/9 Mar[] 
-\OT1/lmss/m/n/9 + \OML/lmm/m/it/9 []\T1/lmss/m/sl/9 Ind\T1/lmss/m/n/9 1[] \OT1
-/lmss/m/n/9 + \OML/lmm/m/it/9 []\T1/lmss/m/sl/9 Ind\T1/lmss/m/n/9 2[] \OT1/lms
-s/m/n/9 + \OML/lmm/m/it/9 ::: \OT1/lmss/m/n/9 + \OML/lmm/m/it/9 []\T1/lmss/m/s
-l/9 Ind\OT1/lmss/m/n/9 (\T1/lmss/m/sl/9 N \OMS/lmsy/m/n/9   \T1/lmss/m/n/9 1\OT
-1/lmss/m/n/9 )[] + \OML/lmm/m/it/9 :
+Overfull \hbox (15.26108pt too wide) in alignment at lines 333--333
+ [] [] [] [] [] 
  []
 
-[11
+
+Overfull \hbox (15.26108pt too wide) in alignment at lines 333--333
+ [] [] [] [] [] 
+ []
+
+[10
+
+] [11
 
 ] [12
 
@@ -1277,300 +1290,295 @@ l/9 Ind\OT1/lmss/m/n/9 (\T1/lmss/m/sl/9 N \OMS/lmsy/m/n/9   \T1/lmss/m/n/9 1\OT
 
 ] [16
 
-]
-\openout4 = `Slides_FE.vrb'.
+] [17
 
-(Slides_FE.vrb
-LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 1
-1.
+]
+\openout4 = `Slides_DID.vrb'.
+
+(Slides_DID.vrb
+LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 6
+.
 ("C:\Users\Claire\AppData\Local\Programs\MiKTeX 2.9\tex/latex/lm\t1lmtt.fd"
 File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <6> not available
-(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 16.
-LaTeX Font Info:    Trying to load font information for TS1+lmtt on input line 
-22.
-("C:\Users\Claire\AppData\Local\Programs\MiKTeX 2.9\tex/latex/lm\ts1lmtt.fd"
-File: ts1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
-))
-Overfull \vbox (36.81355pt too high) detected at line 466
+(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 7.
+) [18
+
+]
+\openout4 = `Slides_DID.vrb'.
+
+(Slides_DID.vrb) [19
+
+]
+\openout4 = `Slides_DID.vrb'.
+
+(Slides_DID.vrb) [20
+
+]
+\openout4 = `Slides_DID.vrb'.
+
+(Slides_DID.vrb
+
+Package hyperref Warning: Ignoring empty anchor on input line 14.
+
+) [21
+
+] [22
+
+]
+<images/DIDregressionblank.png, id=166, 366.61969pt x 274.77657pt>
+File: images/DIDregressionblank.png Graphic file (type png)
+<use images/DIDregressionblank.png>
+Package pdftex.def Info: images/DIDregressionblank.png  used on input line 622.
+
+(pdftex.def)             Requested size: 215.10658pt x 161.21951pt.
+[23
+
+ <./images/DIDregressionblank.png>] [24
+
+]
+<images/DIDregression.png, id=181, 366.61969pt x 274.77657pt>
+File: images/DIDregression.png Graphic file (type png)
+<use images/DIDregression.png>
+Package pdftex.def Info: images/DIDregression.png  used on input line 653.
+(pdftex.def)             Requested size: 215.10658pt x 161.21951pt.
+
+Overfull \vbox (1.67554pt too high) detected at line 653
  []
 
-[17
+[25
 
-]
-\openout4 = `Slides_FE.vrb'.
+ <./images/DIDregression.png>]
+<images/DIDregressionnum.png, id=190, 366.61969pt x 274.77657pt>
+File: images/DIDregressionnum.png Graphic file (type png)
+<use images/DIDregressionnum.png>
+Package pdftex.def Info: images/DIDregressionnum.png  used on input line 666.
+(pdftex.def)             Requested size: 215.10658pt x 161.21951pt.
+[26
 
-(Slides_FE.vrb) [18
-
-]
-\openout4 = `Slides_FE.vrb'.
-
-(Slides_FE.vrb) [19
-
-]
-\openout4 = `Slides_FE.vrb'.
-
-(Slides_FE.vrb) [20
-
-]
-\openout4 = `Slides_FE.vrb'.
-
-(Slides_FE.vrb) [21
-
-]
-\openout4 = `Slides_FE.vrb'.
-
-(Slides_FE.vrb
-LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <10.95> not available
-(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 11.
-) [22
-
-]
-\openout4 = `Slides_FE.vrb'.
-
-(Slides_FE.vrb) [23
-
-]
-\openout4 = `Slides_FE.vrb'.
-
-(Slides_FE.vrb) [24
-
-]
-\openout4 = `Slides_FE.vrb'.
-
-(Slides_FE.vrb
-
-Package hyperref Warning: Ignoring empty anchor on input line 13.
-
-) [25
-
-] [26
-
-] [27
+ <./images/DIDregressionnum.png>] [27
 
 ] [28
 
-] [29
+]
+LaTeX Font Info:    Font shape `T1/lmss/bx/it' in size <10.95> not available
+(Font)              Font shape `T1/lmss/bx/sl' tried instead on input line 721.
+
+[29
+
+] [30
+
+] [31
 
 ]
-\openout4 = `Slides_FE.vrb'.
+\openout4 = `Slides_DID.vrb'.
 
-(Slides_FE.vrb) [30
-
-]
-\openout4 = `Slides_FE.vrb'.
-
-(Slides_FE.vrb
-Overfull \hbox (12.86163pt too wide) in alignment at lines 20--25
- [] [] [] [] [] [] [] [] [] [] 
- []
-
-
-Overfull \hbox (12.86163pt too wide) in alignment at lines 25--39
- [] [] [] [] [] [] [] [] [] [] 
- []
-
-) [31
+(Slides_DID.vrb) [32
 
 ]
-\openout4 = `Slides_FE.vrb'.
+\openout4 = `Slides_DID.vrb'.
 
-(Slides_FE.vrb) [32
-
-]
-\openout4 = `Slides_FE.vrb'.
-
-(Slides_FE.vrb
-
-Package hyperref Warning: Ignoring empty anchor on input line 21.
-
-) [33
-
-] [34
+(Slides_DID.vrb) [33
 
 ]
-\openout4 = `Slides_FE.vrb'.
+\openout4 = `Slides_DID.vrb'.
 
-(Slides_FE.vrb) [35
+(Slides_DID.vrb) [34
 
 ]
-\openout4 = `Slides_FE.vrb'.
+\openout4 = `Slides_DID.vrb'.
 
-(Slides_FE.vrb
+(Slides_DID.vrb
 
 Package hyperref Warning: Ignoring empty anchor on input line 13.
 
-) [36
-
-] [37
+) [35
 
 ]
-\openout4 = `Slides_FE.vrb'.
+\openout4 = `Slides_DID.vrb'.
 
-(Slides_FE.vrb) [38
+(Slides_DID.vrb
+LaTeX Font Info:    Trying to load font information for TS1+lmtt on input line 
+18.
+("C:\Users\Claire\AppData\Local\Programs\MiKTeX 2.9\tex/latex/lm\ts1lmtt.fd"
+File: ts1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
+)) [36
 
 ]
-\openout4 = `Slides_FE.vrb'.
+<Slides_DID_files/figure-beamer/didplot-1.pdf, id=264, 650.43pt x 361.35pt>
+File: Slides_DID_files/figure-beamer/didplot-1.pdf Graphic file (type pdf)
+<use Slides_DID_files/figure-beamer/didplot-1.pdf>
+Package pdftex.def Info: Slides_DID_files/figure-beamer/didplot-1.pdf  used on 
+input line 923.
+(pdftex.def)             Requested size: 307.30002pt x 170.72223pt.
+[37
 
-(Slides_FE.vrb) [39
+ <./Slides_DID_files/figure-beamer/didplot-1.pdf>]
+\openout4 = `Slides_DID.vrb'.
+
+(Slides_DID.vrb) [38
 
 ]
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10> on input line 1113.
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7> on input line 1113.
-LaTeX Font Info:    Font shape `T1/lmss/m/it' in size <10> not available
-(Font)              Font shape `T1/lmss/m/sl' tried instead on input line 1113.
+<Slides_DID_files/figure-beamer/didplotb-1.pdf, id=283, 650.43pt x 361.35pt>
+File: Slides_DID_files/figure-beamer/didplotb-1.pdf Graphic file (type pdf)
+<use Slides_DID_files/figure-beamer/didplotb-1.pdf>
+Package pdftex.def Info: Slides_DID_files/figure-beamer/didplotb-1.pdf  used on
+ input line 960.
+(pdftex.def)             Requested size: 307.30002pt x 170.72223pt.
+[39
 
-LaTeX Font Info:    Font shape `T1/lmss/m/it' in size <7> not available
-(Font)              Font shape `T1/lmss/m/sl' tried instead on input line 1113.
+ <./Slides_DID_files/figure-beamer/didplotb-1.pdf>] [40
 
+]
+\openout4 = `Slides_DID.vrb'.
 
-Overfull \hbox (22.50912pt too wide) detected at line 1113
-\T1/lmss/m/sl/10 crmrte[] \OT1/lmss/m/n/10 = \OML/lmm/m/it/10 [] \OT1/lmss/m/n
-/10 + \OML/lmm/m/it/10 []\T1/lmss/m/sl/10 unemp[] \OT1/lmss/m/n/10 + \OML/lmm/
-m/it/10 []\T1/lmss/m/sl/10 area[] \OT1/lmss/m/n/10 + \OML/lmm/m/it/10 []\T1/l
-mss/m/sl/10 west[] \OT1/lmss/m/n/10 + \OML/lmm/m/it/10 []\T1/lmss/m/sl/10 oar
-ea[] \OT1/lmss/m/n/10 + \OML/lmm/m/it/10 []\T1/lmss/m/sl/10 lawexp[] \OT1/lmss
-/m/n/10 + \OML/lmm/m/it/10 []\T1/lmss/m/sl/10 pcinc[] \OT1/lmss/m/n/10 + \OML/
-lmm/m/it/10 
+(Slides_DID.vrb) [41
+
+]
+\openout4 = `Slides_DID.vrb'.
+
+(Slides_DID.vrb
+
+Package hyperref Warning: Ignoring empty anchor on input line 13.
+
+) [42
+
+] [43
+
+] [44
+
+]
+Overfull \hbox (21.35176pt too wide) detected at line 1108
+\OT1/lmss/m/n/9 [([] \OMS/lmsy/m/n/9   []\OT1/lmss/m/n/9 ) \OMS/lmsy/m/n/9   \O
+T1/lmss/m/n/9 ([] \OMS/lmsy/m/n/9   []\OT1/lmss/m/n/9 )] \OMS/lmsy/m/n/9   \OT1
+/lmss/m/n/9 [([] \OMS/lmsy/m/n/9   []\OT1/lmss/m/n/9 ) \OMS/lmsy/m/n/9   \OT1/l
+mss/m/n/9 ([] \OMS/lmsy/m/n/9   []\OT1/lmss/m/n/9 )]
  []
 
-[40
+[45
+
+] [46
 
 ]
-\openout4 = `Slides_FE.vrb'.
-
-(Slides_FE.vrb
-Overfull \hbox (68.83513pt too wide) in paragraph at lines 38--38
-[]\T1/lmtt/m/n/6 ##    felm(formula = crmrte ~ unem + area + west + offarea + l
-awexpc +      pcinc, data = crime[crime$year == "87", ])[] 
- []
-
-) [41
-
-] [42
-
-]
-\openout4 = `Slides_FE.vrb'.
-
-(Slides_FE.vrb) [43
-
-]
-\openout4 = `Slides_FE.vrb'.
-
-(Slides_FE.vrb
-Overfull \hbox (21.02263pt too wide) in paragraph at lines 52--52
-[]\T1/lmtt/m/n/6 ##    felm(formula = crmrte ~ unem + area + west + offarea + l
-awexpc +      pcinc | city, data = crime)[] 
- []
-
-) [44
-
-] [45
-
-]
-<images/Xindep.jpg, id=312, 501.875pt x 376.40625pt>
-File: images/Xindep.jpg Graphic file (type jpg)
-<use images/Xindep.jpg>
-Package pdftex.def Info: images/Xindep.jpg  used on input line 1272.
-(pdftex.def)             Requested size: 230.46707pt x 172.85031pt.
-[46
-
- <./images/Xindep.jpg>]
-Overfull \hbox (11.04231pt too wide) detected at line 1288
+Overfull \hbox (22.10112pt too wide) detected at line 1149
 [][]
  []
 
 [47
 
-]
-\openout4 = `Slides_FE.vrb'.
+] [48
 
-(Slides_FE.vrb
-Overfull \hbox (43.33513pt too wide) in paragraph at lines 52--52
-[]\T1/lmtt/m/n/6 ##    felm(formula = crmrte ~ unem + area + west + offarea + l
-awexpc +      pcinc | city + year, data = crime)[] 
+]
+\openout4 = `Slides_DID.vrb'.
+
+(Slides_DID.vrb)
+Overfull \vbox (18.6643pt too high) detected at line 1219
  []
 
-) [48
-
-] [49
-
-] [50
-
-] [51
+[49
 
 ]
-Overfull \hbox (11.04231pt too wide) detected at line 1403
-[][]
- []
+\openout4 = `Slides_DID.vrb'.
 
-[52
+(Slides_DID.vrb) [50
 
 ]
-\openout4 = `Slides_FE.vrb'.
+\openout4 = `Slides_DID.vrb'.
 
-(Slides_FE.vrb) [53
+(Slides_DID.vrb) [51
+
+]
+\openout4 = `Slides_DID.vrb'.
+
+(Slides_DID.vrb
+
+Package hyperref Warning: Ignoring empty anchor on input line 13.
+
+) [52
+
+] [53
+
+] [54
+
+] [55
+
+]
+<C:/Users/Claire/Dropbox/MQE_CI_Fall2020/Lecture Notes/PanelRollout.png, id=397
+, 646.415pt x 386.44376pt>
+File: C:/Users/Claire/Dropbox/MQE_CI_Fall2020/Lecture Notes/PanelRollout.png Gr
+aphic file (type png)
+<use C:/Users/Claire/Dropbox/MQE_CI_Fall2020/Lecture Notes/PanelRollout.png>
+Package pdftex.def Info: C:/Users/Claire/Dropbox/MQE_CI_Fall2020/Lecture Notes/
+PanelRollout.png  used on input line 1401.
+(pdftex.def)             Requested size: 215.10289pt x 128.59412pt.
+[56
+
+ <C:/Users/Claire/Dropbox/MQE_CI_Fall2020/Lecture Notes/PanelRollout.png>] [57
+
+] [58
 
 ]
 \tf@nav=\write6
-\openout6 = `Slides_FE.nav'.
+\openout6 = `Slides_DID.nav'.
 
 \tf@toc=\write7
-\openout7 = `Slides_FE.toc'.
+\openout7 = `Slides_DID.toc'.
 
 \tf@snm=\write8
-\openout8 = `Slides_FE.snm'.
+\openout8 = `Slides_DID.snm'.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1426.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 1426.
-(Slides_FE.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1426.
-Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 1426.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1462.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 1462.
+(Slides_DID.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1462.
+Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 1462.
 
 LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 25483 strings out of 481565
- 467835 string characters out of 2913711
- 721950 words of memory out of 3000000
- 39907 multiletter control sequences out of 15000+200000
- 612012 words of font info for 112 fonts, out of 3000000 for 9000
+ 25613 strings out of 481565
+ 471344 string characters out of 2913711
+ 722276 words of memory out of 3000000
+ 40008 multiletter control sequences out of 15000+200000
+ 621661 words of font info for 125 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 58i,11n,67p,799b,561s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 58i,11n,67p,800b,604s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Users/Claire/AppData/Local/Programs/MiKTeX 2.9/fonts/enc/dvips/lm/lm-math
 sy.enc}{C:/Users/Claire/AppData/Local/Programs/MiKTeX 2.9/fonts/enc/dvips/lm/lm
--mathit.enc}{C:/Users/Claire/AppData/Local/Programs/MiKTeX 2.9/fonts/enc/dvips/
-lm/lm-ec.enc}{C:/Users/Claire/AppData/Local/Programs/MiKTeX 2.9/fonts/enc/dvips
-/lm/lm-ts1.enc}{C:/Users/Claire/AppData/Local/Programs/MiKTeX 2.9/fonts/enc/dvi
-ps/lm/lm-rm.enc}<C:/Users/Claire/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/
-public/lm/lmmi10.pfb><C:/Users/Claire/AppData/Local/Programs/MiKTeX 2.9/fonts/t
-ype1/public/lm/lmmi6.pfb><C:/Users/Claire/AppData/Local/Programs/MiKTeX 2.9/fon
-ts/type1/public/lm/lmmi9.pfb><C:/Users/Claire/AppData/Local/Programs/MiKTeX 2.9
-/fonts/type1/public/lm/lmss10.pfb><C:/Users/Claire/AppData/Local/Programs/MiKTe
-X 2.9/fonts/type1/public/lm/lmss12.pfb><C:/Users/Claire/AppData/Local/Programs/
-MiKTeX 2.9/fonts/type1/public/lm/lmss8.pfb><C:/Users/Claire/AppData/Local/Progr
-ams/MiKTeX 2.9/fonts/type1/public/lm/lmss9.pfb><C:/Users/Claire/AppData/Local/P
-rograms/MiKTeX 2.9/fonts/type1/public/lm/lmssbx10.pfb><C:/Users/Claire/AppData/
-Local/Programs/MiKTeX 2.9/fonts/type1/public/lm/lmsso10.pfb><C:/Users/Claire/Ap
-pData/Local/Programs/MiKTeX 2.9/fonts/type1/public/lm/lmsso8.pfb><C:/Users/Clai
-re/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/lm/lmsso9.pfb><C:/Users
-/Claire/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/lm/lmsy10.pfb><C:/
-Users/Claire/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/lm/lmsy5.pfb>
-<C:/Users/Claire/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/lm/lmsy6.
-pfb><C:/Users/Claire/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/lm/lm
-sy9.pfb><C:/Users/Claire/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/l
-m/lmtk10.pfb><C:/Users/Claire/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/pub
-lic/lm/lmtt10.pfb><C:/Users/Claire/AppData/Local/Programs/MiKTeX 2.9/fonts/type
-1/public/lm/lmtt8.pfb><C:/Users/Claire/AppData/Local/Programs/MiKTeX 2.9/fonts/
-type1/public/lm/lmtti10.pfb><C:/Users/Claire/AppData/Local/Programs/MiKTeX 2.9/
-fonts/type1/public/amsfonts/symbols/msam10.pfb>
-Output written on Slides_FE.pdf (53 pages, 448360 bytes).
+-ec.enc}{C:/Users/Claire/AppData/Local/Programs/MiKTeX 2.9/fonts/enc/dvips/lm/l
+m-rm.enc}{C:/Users/Claire/AppData/Local/Programs/MiKTeX 2.9/fonts/enc/dvips/lm/
+lm-ts1.enc}{C:/Users/Claire/AppData/Local/Programs/MiKTeX 2.9/fonts/enc/dvips/l
+m/lm-mathit.enc}{C:/Users/Claire/AppData/Local/Programs/MiKTeX 2.9/fonts/enc/dv
+ips/lm/lm-mathex.enc}<C:/Users/Claire/AppData/Local/Programs/MiKTeX 2.9/fonts/t
+ype1/public/lm/lmex10.pfb><C:/Users/Claire/AppData/Local/Programs/MiKTeX 2.9/fo
+nts/type1/public/lm/lmmi10.pfb><C:/Users/Claire/AppData/Local/Programs/MiKTeX 2
+.9/fonts/type1/public/lm/lmmi6.pfb><C:/Users/Claire/AppData/Local/Programs/MiKT
+eX 2.9/fonts/type1/public/lm/lmmi7.pfb><C:/Users/Claire/AppData/Local/Programs/
+MiKTeX 2.9/fonts/type1/public/lm/lmmi8.pfb><C:/Users/Claire/AppData/Local/Progr
+ams/MiKTeX 2.9/fonts/type1/public/lm/lmss10.pfb><C:/Users/Claire/AppData/Local/
+Programs/MiKTeX 2.9/fonts/type1/public/lm/lmss12.pfb><C:/Users/Claire/AppData/L
+ocal/Programs/MiKTeX 2.9/fonts/type1/public/lm/lmss8.pfb><C:/Users/Claire/AppDa
+ta/Local/Programs/MiKTeX 2.9/fonts/type1/public/lm/lmss9.pfb><C:/Users/Claire/A
+ppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/lm/lmssbo10.pfb><C:/Users/C
+laire/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/lm/lmssbx10.pfb><C:/
+Users/Claire/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/lm/lmsso10.pf
+b><C:/Users/Claire/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/lm/lmss
+o8.pfb><C:/Users/Claire/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/lm
+/lmsso9.pfb><C:/Users/Claire/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/publ
+ic/lm/lmsy10.pfb><C:/Users/Claire/AppData/Local/Programs/MiKTeX 2.9/fonts/type1
+/public/lm/lmsy5.pfb><C:/Users/Claire/AppData/Local/Programs/MiKTeX 2.9/fonts/t
+ype1/public/lm/lmsy6.pfb><C:/Users/Claire/AppData/Local/Programs/MiKTeX 2.9/fon
+ts/type1/public/lm/lmsy8.pfb><C:/Users/Claire/AppData/Local/Programs/MiKTeX 2.9
+/fonts/type1/public/lm/lmsy9.pfb><C:/Users/Claire/AppData/Local/Programs/MiKTeX
+ 2.9/fonts/type1/public/lm/lmtk10.pfb><C:/Users/Claire/AppData/Local/Programs/M
+iKTeX 2.9/fonts/type1/public/lm/lmtt8.pfb><C:/Users/Claire/AppData/Local/Progra
+ms/MiKTeX 2.9/fonts/type1/public/lm/lmtti10.pfb><C:/Users/Claire/AppData/Local/
+Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/symbols/msam10.pfb>
+Output written on Slides_DID.pdf (58 pages, 641775 bytes).
 PDF statistics:
- 468 PDF objects out of 1000 (max. 8388607)
- 159 named destinations out of 1000 (max. 500000)
- 18480 words of extra memory for PDF output out of 20736 (max. 10000000)
+ 536 PDF objects out of 1000 (max. 8388607)
+ 174 named destinations out of 1000 (max. 500000)
+ 18505 words of extra memory for PDF output out of 20736 (max. 10000000)
 

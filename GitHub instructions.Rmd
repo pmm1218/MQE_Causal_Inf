@@ -20,6 +20,9 @@ Git and GitHub are often used in conjunction but are really two distinct things.
 
 To get a big picture overview of exactly what you can do with Git and Git hub, I would recommend taking the time to watch the Git and GitHub for Poets series of youtube videos https://www.youtube.com/playlist?list=PLRqwX-V7Uu6ZF9C0YMKuns9sLDzK6zoiV.
 
+The diagram below give a basic sketch of what group workflow on GitHub should look like. Each group will have a central repo which each group member will fork onto their personal GitHub account. If you wish to work on your local computer, you can then use Git to clone, pull and push changes between your fork and your local machine. From your GitHub account, you can then integrate your code and sync your work with the central repo for your project. 
+
+  ![]("images\git-fork-clone-flow.png"){width=75%}
 
 # Getting started:
 
@@ -197,6 +200,53 @@ There are two possibilities when you receive a pull request. The edits proposed 
 
 The pull request will now switch to Merged status. If you navigate to the file in your repo, you should see the new edits appear. And of you go to the file's **history** (button on the upper right) you can see the commit that was just made via the merged pull request.
 
+## Making sure your forked repo is up to date with the parent repo
+
+If you are collaborating on a project, before you start working on the files you will want to make sure that you are working on the most up to date version of your group's code. Similarly, if you are referring to the course notes in your repo, you want to make sure that these notes are the most up do date version and reflect any changes or edits I made to them since you forked the course repo. Keeping your repos up to date will reduce the risk of merge conflicts and make your group collaboration much smoother. 
+
+### How do I know if my repo is not up to date?
+
+To check in see if someone made changes to the parent repo you originally forked your repo from that are not reflected in your fork:
+
+- Navigate into your repo 
+
+- You will see a cell above your files with a statement like: 
+
+    `This branch is 16 commits behind claireduq:master`
+
+  this means your repo it not up to date.
+  
+  
+### How to sync your repo if it is not up to date:
+
+1. Navigate to the main page of your forked repository
+
+2. Click on the **pull request** tab
+
+3. Click the green **New pull request** button
+
+4. You will see a cell that specifies the base repository and the head repository. We need to have the base repository be your repository and the head repository be the parent repository. For example, if you are trying to update your fork of the course repo we want 
+
+    `base repository: student/MQE_Causal_Inf` and `head repository: claireduq/MQE_Causal_Inf`
+    
+    to do this you can likely simply click on the highlighted blue text "switching the base" that is in the main window under the cell that specifies the base and the head.
+    
+5. Click the green **Create pull request** button
+
+6. Name your pull request
+
+7. Scroll down and click the green **Create pull request** button
+
+8. Click the green **Merge pull request** button
+
+9. Click the green **Confirm Merge** button
+
+10. Check and see that your files have updated and are now in sync with the parent repo
+  
+Note: this can be set up tobe done with a lot less clicking using git (see below).
+
+  
+**PRACTICE:** Update your forked MQE_Causal_Inf repos so that the reflect my recent edits. 
 
 
 # Basic actions with Git
@@ -301,7 +351,57 @@ Once you have made changes to the repo file on your computer, and saved them, yo
        which basically tells git to push your changes from your remote "origin" computer to the "master" branch on github. 
 
   7. You can now look at your repository on github and check that the edits you made appear in your files and the files history. 
+  
+  
+## Keeping your local folder in sync with the parent repo through git
 
+To make sure a folder on your computer reflect the most recent changes made in an upstream repo (that you originally forked from) you need  to configure the folder so that you can easily `fetch` any changes in the upstream repo: 
+
+1. Go to the terminal window and navigate to the git  folder by typing
+  
+     `$ cd /c/Users/ *******/filepath`
+
+2. List the current configures remote repository for your folder:
+     `$ git remote -v `
+    
+      `> origin  https://github.com/YOUR_USERNAME/YOUR_FORK.git (fetch)`
+
+      `> origin  https://github.com/YOUR_USERNAME/YOUR_FORK.git (push)`
+
+3. We want to change this. Specify a new remote upstream repo that will be synced with the fork
+
+      `$ git remote add upstream https://github.com/ORIGINAL_OWNER/ORIGINAL_REPOSITORY.git`
+
+4. Verify the new upstream repository you've specified for your fork.
+
+    `$ git remote -v `
+    
+      `> origin  https://github.com/YOUR_USERNAME/YOUR_FORK.git (fetch)`
+
+      `> origin  https://github.com/YOUR_USERNAME/YOUR_FORK.git (push)`
+      
+      `> upstream  https://github.com/ORIGINAL_OWNER/ORIGINAL_REPOSITORY.git (fetch)`
+
+      `> upstream  https://github.com/ORIGINAL_OWNER/ORIGINAL_REPOSITORY.git (push)`
+      
+5. You can now `fetch` changes to that repo and have them reflected on your local machine with the command
+
+    `$ git fetch upstream `
+    
+6. Check out your fork's local master branch.
+
+    `$ git checkout master`
+    
+    Note: you may need to replace the term `master` with `main` if you are a collaborator on the upstream repo. 
+    
+7. Merge the changes from upstream/master into your local master branch. This brings your fork's master branch into sync with the upstream repository, without losing your local changes.
+
+    `$ git merge upstream/master`
+    
+    Notes: 
+      - Git may send you to a weird window asking you to write a commit message. You can escape this with `Shift+:` followed by Q.
+
+      - you may need to replace the term `master` with `main` if you are a collaborator on the upstream repo. 
 
 
 
@@ -338,7 +438,7 @@ Now that you all have repos with the problem set, you will want to:
 
   - Review your team member's pull requests and merge them into your main project repo 
 
-  7. Rinse and repeat until you are all happy with your .Rmd file.
+  7. Next time you want to work on the assignment, make sure you syncronize your forked repo with the group leaders repo so that you are working on the most up to date version of your groups code (see instructions above).  `$git pull` any updates to your local machine and repeat steps 2-6. 
   8. Once the main group .Rmd file is finalized, you can compile it to html, pdf or word for submission.  
 
 **Hints:** I would recommend only keeping track of the .Rmd file on GitHub, until the very end when you will produce your final html, pdf or word file. This will make it so that when you deal with any conflicts in pull requests, you only need to edit the .Rmd file, and don't have to worry about the other files. 
@@ -449,7 +549,7 @@ Now that you all have repos with the problem set, you will want to:
 
   
   
-  7. Rinse and repeat until you are all happy with your .Rmd file.
+  7. Next time you want to work on the assignment, make sure you syncronize your forked repo with the group leaders repo so that you are working on the most up to date version of your group's code (see instructions above).  `$git pull` any updates to your local machine and repeat steps 2-6. .
   8. Once the main group .Rmd file is finalized, you can compile it to html, pdf or word for submission.  
 
 **Hints:** I would recommend only keeping track of the .Rmd file on GitHub, until the very end when you will produce your final html, pdf or word file. This will make it so that when you deal with any conflicts in pull requests, you only need to edit the .Rmd file, and don't have to worry about the other files. 
